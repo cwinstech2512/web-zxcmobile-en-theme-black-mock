@@ -1,4 +1,4 @@
-# zxtest
+# zx-mobile
 
 > A Vue.js project
 

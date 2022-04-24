@@ -1,4 +1,4 @@
-import loadingComponent from '../components/HomePage/loading.vue'
+import loadingComponent from '../components/Center/Common/loading.vue'
 
 const loading = {
   install: function (Vue) {

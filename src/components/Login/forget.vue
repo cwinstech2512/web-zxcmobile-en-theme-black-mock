@@ -1,0 +1,740 @@
+<template>
+  <div class="forget">
+    <!-- 头部导航 -->
+    <navBar :navBarName="navBarName" :navLeft="navLeft" :navRight="navRight" @openSide="openSide" />
+    <!-- 内容 -->
+    <div class="forget-main">
+      <!-- 第一步 -->
+      <div class="forget-main-step" v-show="step==0">
+        <div class="forget-main-step-box">
+          <ul>
+            <li>
+              <label>游戏账户：</label>
+              <input
+                type="text"
+                name="readonly"
+                maxlength="12"
+                v-model="gameName"
+                placeholder="请输入用户名"
+              />
+            </li>
+          </ul>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('a')">下一步</div>
+        </div>
+      </div>
+      <!-- 第二步 -->
+      <div class="forget-main-step" v-show="step==1">
+        <span>请选择找回密码方式</span>
+        <div class="forget-main-step-box">
+          <ul>
+            <li @click="nextStep('b1')">
+              <em>使用手机找回密码</em>
+              <i></i>
+            </li>
+            <li @click="nextStep('b2')">
+              <em>使用邮箱找回密码</em>
+              <i></i>
+            </li>
+            <li @click="nextStep('b3')">
+              <em>使用安保找回密码</em>
+              <i></i>
+            </li>
+          </ul>
+          <span @click="prevStep('a')">返回上一步</span>
+        </div>
+      </div>
+      <!-- 第三步 -->
+      <div class="forget-main-step" v-show="step==2">
+        <span>通过手机找回密码</span>
+        <div class="forget-main-step-box">
+          <ul>
+            <li>
+              <label>手机号码：</label>
+              <input type="text" name="readonly" v-model="phone" placeholder="请输入手机号码" />
+            </li>
+            <li>
+              <label>验证码：</label>
+              <input type="text" name="readonly" maxlength="8" v-model="phoneCode" />
+              <b @click="sendPhoneCode" :class="{on:codeBtnInClick}">{{codeBtnText}}</b>
+            </li>
+          </ul>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">下一步</div>
+          <span @click="prevStep('b')">返回上一步</span>
+        </div>
+      </div>
+      <div class="forget-main-step" v-show="step==3">
+        <span>通过邮箱找回密码</span>
+        <div class="forget-main-step-box">
+          <ul>
+            <li>
+              <label>邮箱号码：</label>
+              <input type="text" name="readonly" v-model="email" />
+            </li>
+            <li>
+              <label>验证码：</label>
+              <input type="text" name="readonly" maxlength="8" v-model="emailCode" />
+              <b @click="sendEmailCode" :class="{on:codeBtnInClick}">{{codeBtnText}}</b>
+            </li>
+          </ul>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">下一步</div>
+          <span @click="prevStep('b')">返回上一步</span>
+        </div>
+      </div>
+      <div class="forget-main-step" v-show="step==4">
+        <span>通过安保找回密码</span>
+        <div class="forget-main-step-box">
+          <ul>
+            <li>
+              <label>问题一：</label>
+              <input type="text" name="readonly" v-model="question1" disabled="disabled" />
+            </li>
+            <li>
+              <label>答案一：</label>
+              <input type="text" name="readonly" v-model="answer1" />
+            </li>
+            <li>
+              <label>问题二：</label>
+              <input
+                type="text"
+                name="readonly"
+                v-model="question2"
+                disabled="disabled"
+                placeholder="您向未设置安保问题"
+              />
+            </li>
+            <li>
+              <label>答案二：</label>
+              <input type="text" name="readonly" v-model="answer2" />
+            </li>
+          </ul>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">下一步</div>
+          <span @click="prevStep('b')">返回上一步</span>
+        </div>
+      </div>
+      <!-- 第四步 -->
+      <div class="forget-main-step" v-show="step==5">
+        <span>请设置新密码</span>
+        <div class="forget-main-step-box">
+          <ul>
+            <li>
+              <label>新密码：</label>
+              <input type="password" name="readonly" v-model="newPassword" />
+            </li>
+            <li>
+              <label>确认密码：</label>
+              <input type="password" name="readonly" v-model="repeatPassword" />
+            </li>
+          </ul>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('d')">完成</div>
+        </div>
+      </div>
+      <!-- 完成 -->
+      <div class="forget-main-step" v-show="step==6">
+        <div class="forget-main-step-box">
+          <div class="success">
+            <i></i>
+            <h2>修改成功</h2>
+          </div>
+          <div class="btn" :disabled="inClickProcess" @click="backLogin">立即登录</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import navBar from '@/components/Center/Common/navBar'
+import '../../../static/js/gt/gt.js'
+export default {
+  name: 'forget',
+  //  import引入的组件需要注入到对象中才能使用
+  components: { navBar },
+  data () {
+    //  这里存放数据
+    return {
+      navBarName: '忘记密码',
+      navLeft: 'back',
+      navRight: 'hide',
+      step: 0,
+      gameName: '',
+      phone: '',
+      phoneCode: '',
+      email: '',
+      emailCode: '',
+      question1: '我的中学老师叫什么名字?',
+      answer1: '',
+      question2: '',
+      answer2: '',
+      newPassword: '',
+      repeatPassword: '',
+      token: '',
+      vcode: '',
+      codeBtnInClick: false,
+      codeBtnText: '发送验证码',
+      totalTimespan: 60,
+      timerName: 'countdown',
+      inClickProcess: false
+    }
+  },
+  //  监听属性 类似于data概念
+  computed: {},
+  //  监控data中的数据变化
+  watch: {
+    gameName: function (val) {
+      this.gameName = val.replace(/\W/g, '')
+    },
+    phone: function (val) {
+      this.phone = val.replace(/\D/g, '')
+      if (val.length > 11) {
+        this.phone = val.slice(0, 11)
+      }
+    }
+  },
+  //  方法集合
+  methods: {
+    /**
+     * @description step1.输入游戏账号并提交
+     */
+    submitInputAccount () {
+      var _this = this
+      if (_this.inClickProcess) {
+        return false
+      }
+      if (_this.gameName.length < 4) {
+        _this.$swal({
+          text: '请输入正确的用户名',
+          type: 'warning',
+          confirmButtonText: '确定'
+        })
+        return false
+      }
+      _this.inClickProcess = true
+      let initGeetestUrl = '/api/Geetest/initGeetest'
+      this.$https
+        .fetchGet(initGeetestUrl, {})
+        .then(res => {
+          var resMessage = JSON.parse(res.data)
+          // eslint-disable-next-line
+          initGeetest({
+            gt: resMessage.gt,
+            challenge: resMessage.challenge,
+            offline: !resMessage.success, // 表示用户后台检测极验服务器是否宕机
+            new_captcha: resMessage.new_captcha,
+            product: 'bind'
+          }, function (captchaObj) {
+            captchaObj.onReady(function () {
+              captchaObj.verify()
+            }).onSuccess(function () {
+              var result = captchaObj.getValidate()
+              let url = 'api/forgotpwd/step1ByGeetest'
+              let params = {
+                UserName: _this.gameName,
+                seccodeGeetest: result.geetest_seccode,
+                validateGeetest: result.geetest_validate,
+                challengeGeetest: result.geetest_challenge
+              }
+              _this.$https
+                .fetchPost(url, params)
+                .then(res => {
+                  if (res.data.Success === true) {
+                    _this.token = res.data.Result.Token
+                    if (res.data.Result.QAData.length === 2) {
+                      _this.question1 = res.data.Result.QAData[0].Question
+                      _this.question2 = res.data.Result.QAData[1].Question
+                    }
+                    _this.inClickProcess = false
+                    _this.step = 1
+                  } else {
+                    _this.inClickProcess = false
+                    _this.AlertError(res.data.Message)
+                    captchaObj.reset()
+                  }
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+            }).onError(function () {
+              _this.$bus.$emit('loadingHide')
+              // console.log(err)
+            })
+          })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    /**
+     * @description step2-2根据手机号找回密码
+     */
+    pageFindByPhone () {
+      this.step = 2
+    },
+    /**
+     * @description step2-3根据邮箱找回密码
+     */
+    pageFindByEmail () {
+      this.step = 3
+    },
+    /**
+     * @description step2-4根据密保找回密码
+     */
+    pageFindBySafety () {
+      this.step = 4
+    },
+    /**
+     * @description step3.重置密码
+     */
+    pageResetPwd () {
+      if (this.step === 2) {
+        // 手机找回
+        this.submitFindByPhone()
+      } else if (this.step === 3) {
+        // 邮箱找回
+        this.submitFindByEmail()
+      } else if (this.step === 4) {
+        // 密保找回
+        this.submitFindBySafety()
+      }
+    },
+    /**
+     * @description 发送手机验证码
+     */
+    sendPhoneCode () {
+      var _this = this
+      if (_this.codeBtnInClick) {
+        return false
+      }
+      var reg = /^[1]+\d{10}$/gi
+      if (!_this.phone || !reg.test(_this.phone)) {
+        _this.AlertWarning('请输入正确的手机号码')
+        return false
+      }
+      _this.codeBtnInClick = true
+      let url = '/api/sendsmscode/forgot'
+      var params = {
+        Phone: _this.phone,
+        Token: _this.token
+      }
+      _this.$https
+        .fetchPost(url, _this.secret(params))
+        .then(res => {
+          if (res.data.Success === true) {
+            _this.timerName = setInterval(function () {
+              _this.totalTimespan--
+              if (_this.totalTimespan > 0) {
+                _this.codeBtnText = _this.totalTimespan + 's后重新发送'
+              } else {
+                // 当倒计时小于等于0时清除定时器
+                _this.codeBtnInClick = false
+                window.clearInterval(_this.timerName)
+                _this.codeBtnText = '发送验证码'
+                _this.totalTimespan = 60
+              }
+            }, 1000)
+          } else {
+            _this.codeBtnInClick = false
+            _this.AlertError(res.data.Message)
+          }
+        })
+        .catch(err => {
+          _this.codeBtnInClick = false
+          console.log(err)
+        })
+    },
+    /**
+     *@description 提交手机验证信息
+     */
+    submitFindByPhone () {
+      let _this = this
+      if (_this.inClickProcess) {
+        return false
+      }
+      var reg = /^[1]+\d{10}$/gi
+      if (!_this.phone || !reg.test(_this.phone)) {
+        _this.AlertWarning('请输入正确的手机号码')
+        return false
+      }
+      if (_this.phoneCode.length < 1) {
+        _this.AlertWarning('请输入验证码')
+        return false
+      }
+      _this.inClickProcess = true
+      let url = '/api/forgotpwd/step2verifysms'
+      var params = {
+        Phone: _this.phone,
+        Code: _this.phoneCode,
+        Token: _this.token
+      }
+      _this.$https
+        .fetchPost(url, _this.secret(params))
+        .then(res => {
+          if (res.data.Success === true) {
+            _this.vcode = res.data.Result.VCode
+            _this.inClickProcess = false
+            _this.step = 5
+          } else {
+            _this.inClickProcess = false
+            _this.$swal({
+              text: res.data.Message,
+              type: 'error',
+              confirmButtonText: '确定'
+            })
+          }
+        })
+        .catch(err => {
+          _this.inClickProcess = false
+          console.log(err)
+        })
+    },
+    /**
+     * @description 发送邮箱验证码
+     */
+    sendEmailCode () {
+      var _this = this
+      if (_this.codeBtnInClick) {
+        return false
+      }
+      if (!_this.email) {
+        _this.AlertWarning('请输入邮箱号码')
+        return false
+      }
+      _this.codeBtnInClick = true
+      let url = '/api/sendemailcode/forgot'
+      var params = {
+        Email: _this.email,
+        Token: _this.token
+      }
+      _this.$https
+        .fetchPost(url, _this.secret(params))
+        .then(res => {
+          if (res.data.Success === true) {
+            _this.timerName = setInterval(function () {
+              _this.totalTimespan--
+              if (_this.totalTimespan > 0) {
+                _this.codeBtnInClick = _this.totalTimespan + '秒后重新发送'
+              } else {
+                window.clearInterval(_this.timerName)
+                _this.codeBtnInClick = false
+                _this.codeBtnInClick = '发送验证码'
+                _this.totalTimespan = 60
+              }
+            }, 1000)
+          } else {
+            _this.codeBtnInClick = false
+            _this.AlertError(res.data.Message)
+          }
+        })
+        .catch(err => {
+          _this.codeBtnInClick = false
+          console.log(err)
+        })
+    },
+    /**
+     * @description 提交邮箱验证信息
+     */
+    submitFindByEmail () {
+      let _this = this
+      if (_this.inClickProcess) {
+        return false
+      }
+      if (_this.email.length < 1) {
+        _this.AlertWarning('请输入正确的邮箱号码')
+        return false
+      }
+      if (_this.emailCode.length < 1) {
+        _this.AlertWarning('请输入验证码')
+        return false
+      }
+      _this.inClickProcess = true
+      let url = '/api/forgotpwd/step2verifyemail'
+      var params = {
+        Email: _this.email,
+        Code: _this.emailCode,
+        Token: _this.token
+      }
+      _this.$https
+        .fetchPost(url, _this.secret(params))
+        .then(res => {
+          if (res.data.Success === true) {
+            _this.vcode = res.data.Result.VCode
+            _this.inClickProcess = false
+            _this.step = 5
+          } else {
+            _this.inClickProcess = false
+            _this.AlertError(res.data.Message)
+          }
+        })
+        .catch(err => {
+          _this.inClickProcess = false
+          console.log(err)
+        })
+    },
+    /**
+     * @description 提交密保验证信息
+     */
+    submitFindBySafety () {
+      let _this = this
+      if (_this.inClickProcess) {
+        return false
+      }
+      if (_this.answer1.length < 1 || _this.answer2.length < 1) {
+        _this.AlertWarning('请输入安保问题的答案')
+        return false
+      }
+      _this.inClickProcess = true
+      let url = '/api/forgotpwd/step2verifysqa'
+      var params = {
+        Answer1: _this.answer1,
+        Answer2: _this.answer2,
+        Token: _this.token
+      }
+      _this.$https
+        .fetchPost(url, _this.secret(params))
+        .then(res => {
+          if (res.data.Success === true) {
+            _this.vcode = res.data.Result.VCode
+            _this.inClickProcess = false
+            _this.step = 5
+          } else {
+            _this.inClickProcess = false
+            _this.AlertError(res.data.Message)
+          }
+        })
+        .catch(err => {
+          _this.inClickProcess = false
+          console.log(err)
+        })
+    },
+    /**
+     * @description 提交重置密码信息
+     */
+    submitResetPwd () {
+      let _this = this
+      if (_this.inClickProcess) {
+        return false
+      }
+      if (!_this.newPassword || !_this.repeatPassword) {
+        _this.AlertWarning('请输入新密码')
+        return false
+      }
+      if (_this.newPassword !== _this.repeatPassword) {
+        _this.AlertWarning('输入的密码不一致')
+        return false
+      }
+      _this.inClickProcess = true
+      let url = '/api/forgotpwd/step3'
+      var params = {
+        VCode: _this.vcode,
+        Password: _this.newPassword,
+        Token: _this.token
+      }
+      _this.$https
+        .fetchPost(url, _this.secret(params))
+        .then(res => {
+          if (res.data.Success === true) {
+            _this.inClickProcess = false
+            _this.step = 6
+          } else {
+            _this.inClickProcess = false
+            _this.AlertError(res.data.Message)
+          }
+        })
+        .catch(err => {
+          _this.inClickProcess = false
+          console.log(err)
+        })
+    },
+    openSide () {
+      this.$router.back(-1)
+    },
+    // 下一步
+    nextStep (n) {
+      switch (n) {
+        case 'a':
+          this.submitInputAccount()
+          break
+        case 'b1':
+          this.pageFindByPhone()
+          break
+        case 'b2':
+          this.pageFindByEmail()
+          break
+        case 'b3':
+          this.pageFindBySafety()
+          break
+        case 'c':
+          this.pageResetPwd()
+          break
+        default:
+          this.submitResetPwd()
+          break
+      }
+    },
+    // 上一步
+    prevStep (p) {
+      if (p === 'a') {
+        this.step = 0
+      } else {
+        this.step = 1
+      }
+    },
+    // 返回登录页
+    backLogin () {
+      this.$router.push('/')
+    }
+  },
+  //  生命周期 - 创建完成（可以访问当前this实例）
+  created () {},
+  //  生命周期 - 挂载完成（可以访问DOM元素）
+  mounted () {}
+}
+</script>
+<style scoped>
+.forget {
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: url(../../assets/images/allpage_bg@2x.jpg);
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+.forget .forget-main {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 0.3rem;
+  box-sizing: border-box;
+  position: absolute;
+  top: 1.08rem;
+  bottom: 0;
+  z-index: 99;
+}
+.forget .forget-main .forget-main-step {
+  width: 100%;
+  overflow: hidden;
+}
+.forget .forget-main .forget-main-step span {
+  display: block;
+  font-size: 0.2rem;
+  color: #6b6b6b;
+  margin-bottom: 0.2rem;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 0.3rem 0.3rem 0.3rem;
+  border-radius: 0.06rem;
+  background: #fff;
+  overflow: hidden;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box span {
+  display: block;
+  text-align: center;
+  font-size: 0.2rem;
+  color: #6b6b6b;
+  margin-top: 0.4rem;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box ul {
+  width: 100%;
+  overflow: hidden;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box ul li {
+  width: 100%;
+  height: 0.98rem;
+  border-bottom: 0.02rem solid #ddd;
+  position: relative;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box ul li.hideline {
+  border-bottom: none;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box ul li i {
+  display: block;
+  width: 0.3rem;
+  height: 0.3rem;
+  float: right;
+  margin-top: 0.4rem;
+  background: url(../../assets/images/login/user_fogotpassword_arrow_ico@2x.png);
+  background-size: 100% 100%;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box ul li em {
+  line-height: 0.98rem;
+  font-size: 0.3rem;
+  color: #6b6b6b;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box ul li b {
+  width: 1.82rem;
+  height: 0.62rem;
+  background: #0088ff;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0.2rem;
+  text-align: center;
+  line-height: 0.62rem;
+  color: #fff;
+  border-radius: 0.06rem;
+  font-weight: normal;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box ul li b.on {
+  background: rgba(255, 255, 255, 0.226);
+}
+.forget .forget-main .forget-main-step .forget-main-step-box ul li label {
+  line-height: 0.98rem;
+  font-size: 0.3rem;
+  text-align: right;
+  display: block;
+  float: left;
+  width: 1.6rem;
+  color: #6b6b6b;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box ul li input {
+  width: 4.1rem;
+  height: 0.98rem;
+  font-size: 0.3rem;
+  color: #2b2b2b;
+  line-height: 0.98rem;
+}
+.forget
+  .forget-main
+  .forget-main-step
+  .forget-main-step-box
+  ul
+  li
+  input::-webkit-input-placeholder {
+  color: #bbb;
+  font-size: 0.3rem;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box .btn {
+  width: 100%;
+  height: 0.98rem;
+  background: #0088ff;
+  color: #fff;
+  text-align: center;
+  line-height: 0.98rem;
+  font-size: 0.3rem;
+  border-radius: 0.06rem;
+  margin: 0.8rem 0 0.4rem 0;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box .success {
+  width: 2rem;
+  height: 2rem;
+  margin: 0.5rem auto 0 auto;
+  text-align: center;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box .success i {
+  display: block;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 0 auto;
+  background: url(../../assets/images/login/successful_ico@2x.png);
+  background-size: 100% 100%;
+}
+.forget .forget-main .forget-main-step .forget-main-step-box .success h2 {
+  font-size: 0.4rem;
+  color: #0088ff;
+  font-weight: normal;
+}
+</style>

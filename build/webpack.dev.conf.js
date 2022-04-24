@@ -40,7 +40,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     publicPath: config.dev.assetsPublicPath,
     proxy: config.dev.proxyTable,
     quiet: true, // necessary for FriendlyErrorsPlugin
-    disableHostCheck: true,
     watchOptions: {
       poll: config.dev.poll,
     }
@@ -56,7 +55,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // new HtmlWebpackPlugin({
     //   filename: 'index.html',
     //   template: 'index.html',
-    //   inject: true,
+    //   inject: true
     // }),
     // copy custom static assets
     new CopyWebpackPlugin([

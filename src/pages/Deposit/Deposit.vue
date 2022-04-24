@@ -1,11 +1,15 @@
 <template>
-  <div id="App">加载中...</div>
+  <div id="App">
+加载中...
+  </div>
 </template>
 
 <script>
+
 export default {
   name: 'App',
-  components: {},
+  components: {
+  },
   methods: {
     init () {
       // let amount = this.getQueryString('a')
@@ -19,43 +23,23 @@ export default {
         BankCode: this.getQueryString('b'), // 银行代码
         BankCardNo: this.getQueryString('c'),
         AlipayName: this.getQueryString('an'), // 支付宝姓名
-        RealName: this.getQueryString('r'), // 真实银行姓名
-        Token: this.getinfo().token,
+        RealName: this.getQueryString('r'), // 真實姓名
+        'Token': this.getinfo().token,
         Account: this.getinfo().account
       }
-      let _this = this
-      this.$https
-        .fetchPost('/api/deposit/createolorder', this.Secret(params))
-        .then(res => {
+      this.$https.fetchPost('/api/deposit/createolorder', this.secret(params))
+        .then((res) => {
           // debugger
           if (res.data.Success === true) {
             top.document.location.href = res.data.Result
-          } else if (res.data.Status === 'LoginExpire') {
-            // 登录过期
-            if (window.opener) {
-              window.opener.externalLogout()
-              _this
-                .$swal({
-                  text: res.data.Message,
-                  type: 'error',
-                  confirmButtonText: '确定'
-                })
-                .then(r => {
-                  window.close()
-                })
-            } else {
-              top.location.href = 'index.html'
-            }
           } else {
-            _this
-              .$swal({
-                text: res.data.Message,
-                type: 'error',
-                confirmButtonText: '确定'
-              })
+            this.$swal({
+              text: res.data.Message,
+              type: 'error',
+              confirmButtonText: '确定'
+            })
           }
-        })
-        .catch(err => {
+        }).catch(err => {
           console.log(err)
         })
       // console.log(plat)
@@ -71,14 +55,9 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  list-style: none;
   font-size: 14px;
   font-family: "Microsoft YaHei", "arial";
   font-style: normal;
-}
-ul {
-  list-style: none;
-}
-ol {
-  list-style: decimal;
 }
 </style>

@@ -6,19 +6,20 @@ const path = require('path')
 
 module.exports = {
   dev: {
+
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
         // secure: false,  // 如果是https接口，需要配置这个参数
-        target:'http://web-beta.newzx365.com/data/', // 你请求的第三方接口
-        // target:'http://localhost:61601/', // 你请求的第三方接口
+        target:'http://web.zxin1258.com/data/', // 你请求的第三方接口
+        // target:'https://gb258.site/', // 你请求的第三方接口 
         changeOrigin:true, // 在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
         pathRewrite:{  // 路径重写，
           '^/api': '/'  // 替换target中的请求地址，也就是说以后你在请求这个地址的时候直接写成/api即可。
         }
-      }
+    }
     },
 
     // Various Dev Server settings
@@ -28,8 +29,7 @@ module.exports = {
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-    https: true,
-    hotOnly: false,
+
     // Use Eslint Loader?
     // If true, your code will be linted during bundling and
     // linting errors and warnings will be shown in the console.
@@ -56,6 +56,7 @@ module.exports = {
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
+
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',

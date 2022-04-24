@@ -22,18 +22,11 @@ export default {
         params.GameCode = gameCode// 有游戏编码就加上
       }
       let _this = this
-      this.$https.fetchPost(url, this.Secret(params))
+      this.$https.fetchPost(url, this.secret(params))
         .then((res) => {
+          // debugger
           if (res.data.Success === true) {
             top.document.location.href = res.data.Result
-          } else if (res.data.Status === 'LoginExpire') {
-            // 登录过期
-            if (window.opener) {
-              window.opener.externalLogout()
-              window.close()
-            } else {
-              top.location.href = 'index.html'
-            }
           } else {
             _this.$swal({
               text: res.data.Message,
@@ -41,7 +34,6 @@ export default {
               confirmButtonText: '确定'
             })
           }
-          // window.externalLogout()
         }).catch(err => {
           console.log(err)
         })
@@ -57,14 +49,9 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  list-style: none;
   font-size: 14px;
   font-family: "Microsoft YaHei", "arial";
   font-style: normal;
-}
-ul{
-  list-style: none;
-}
-ol{
-  list-style: decimal;
 }
 </style>

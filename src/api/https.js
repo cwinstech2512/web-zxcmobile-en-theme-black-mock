@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import axios from 'axios'
 import store from '../store/store'
 // import qs from 'qs'
@@ -39,7 +40,18 @@ axios.interceptors.response.use((res) => {
   }
   return res
 }, (error) => {
-  console.log('网络异常')
+  // debugger
+  // console.log(error)
+  if (error.response.status === 400) {
+    // 模型验证没有通过
+    top.location.href = (process.env.NODE_ENV === 'development') ? '/' : '/Mobile'
+    return
+  }
+  Vue.prototype.$swal({
+    text: '网络异常！',
+    type: 'error',
+    confirmButtonText: '确定'
+  })
   return Promise.reject(error)
 })
 
@@ -60,7 +72,7 @@ export function fetchPost (url, params) {
 /// /返回一个Promise(发送get请求)
 export function fetchGet (url, param) {
   return new Promise((resolve, reject) => {
-    axios.get(url, { params: param })
+    axios.get(url, {params: param})
       .then(response => {
         resolve(response)
       }, err => {
