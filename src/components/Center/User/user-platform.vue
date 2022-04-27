@@ -2,7 +2,7 @@
 <div class='PlatBalance'>
   <div class="box">
     <ul>
-      <li><span>众鑫账户</span><em>{{zxcBalance}}</em></li>
+      <li><span>18SLOT A/C</span><em>{{zxcBalance}}</em></li>
     </ul>
   </div>
   <div class="box">
@@ -93,7 +93,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '平台余额', 'back', 'hide', true)
+    this.$emit('getStatus', 'Platform Balance', 'back', 'hide', true)
     for (let index = 0; index < this.plats.length; index++) {
       this.getPlatBalance(index)
     }

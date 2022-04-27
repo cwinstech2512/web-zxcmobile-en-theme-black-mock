@@ -3,21 +3,21 @@
   <select v-model="info.chainname">
     <option v-for="(banks, index) in bank" :key="index" :value="banks">{{banks}}</option>
   </select>
-  <p>*虚拟钱包填写后不可修改，请填写正确的钱包信息。</p>
+  <p>*Please enter your USDT full address</p>
   <div class="box">
      <ul>
        <li>
-        <input type="text" v-model="info.walletaddr" placeholder="请填写完整钱包地址">
+        <input type="text" v-model="info.walletaddr" placeholder="USDT Address">
        </li>
        <li>
-        <input type="text" v-model="info.Exange" placeholder="所属交易所">
+        <input type="text" v-model="info.Exange" placeholder="Exchanges">
        </li>
        <li v-show="showAnswer">
-        <input type="text"  v-model.trim="info.Answer" placeholder="安保答案">
+        <input type="text"  v-model.trim="info.Answer" placeholder="Security PIN">
        </li>
      </ul>
      <p v-show="showAnswer">*填写任意一个安保答案（第一次绑定可不填）</p>
-     <button @click="dbAddCard" :disabled="inClickProcess">确认</button>
+     <button @click="dbAddCard" :disabled="inClickProcess">Confirm</button>
   </div>
 </div>
 </template>
@@ -156,7 +156,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '添加虚拟钱包', 'back', 'hide', true)
+    this.$emit('getStatus', 'Add a Crypto', 'back', 'hide', true)
   }
 }
 </script>

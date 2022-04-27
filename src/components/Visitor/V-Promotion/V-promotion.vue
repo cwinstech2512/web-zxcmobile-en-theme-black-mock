@@ -32,7 +32,7 @@
             </div>
             <div class="tit">
                <h2>{{proboxs.Title}}</h2>
-              <time>发布时间：{{moment(proboxs.CreateTime).format('YYYY/MM/DD HH:mm:ss')}}</time><span>查看详情</span>
+              <time>Post Date：{{moment(proboxs.CreateTime).format('YYYY/MM/DD HH:mm:ss')}}</time><span>Details</span>
             </div>
           </div>
         </div>
@@ -154,7 +154,7 @@ export default {
   //  生命周期 - 创建完成（可以访问当前this实例）
   created () {
     this.$bus.$emit('loadingShow')
-    this.$emit('getStatus', '优惠活动', 'hide', false, false, false)
+    this.$emit('getStatus', 'Promotion', 'hide', false, false, false)
     this.loadData()
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）

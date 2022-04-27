@@ -17,7 +17,7 @@
       <div class="no_message"
            v-show="currentPageData.length<1">
         <i></i>
-        <p>您还没有提款记录哦！</p>
+        <p>You haven't withdrawal record yet!</p>
       </div>
     </div>
   </div>

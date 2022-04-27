@@ -1,8 +1,8 @@
 <template>
 <div class="bankSelect">
   <div class="redirect_group">
-    <div class="redirectBtn" @click="redirect(0)">银行卡</div>
-    <div class="redirectBtn" @click="redirect(1)">虚拟钱包</div>
+    <div class="redirectBtn" @click="redirect(0)">Bank Card</div>
+    <div class="redirectBtn" @click="redirect(1)">Crypto</div>
     <!-- <div class="normalBtn redirectBtn">虚拟钱包</div> -->
   </div>
 </div>
@@ -52,13 +52,13 @@ export default {
     var title = ''
     switch (this.select) {
       case 'bankSelect':
-        title = '银行卡&钱包绑定'
+        title = 'Bank Card & Crypto For Bind'
         break
       case 'withdrawalSelect':
-        title = '银行卡&钱包提款'
+        title = 'Bank Card & Crypto'
         break
       default:
-        title = '银行卡&钱包'
+        title = 'Bank Card & Crypto'
         break
     }
     this.$emit('getStatus', title, 'back', 'hide', true)

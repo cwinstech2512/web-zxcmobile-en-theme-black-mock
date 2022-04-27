@@ -3,7 +3,7 @@
     <div class="changePW-bar">
       <ul>
         <li>
-          <label>选择平台：</label>
+          <label>Platform:</label>
           <select v-model="modifyModel.Plat">
             <option v-for="(plat, index) in plats"
                     :key="index"
@@ -11,14 +11,14 @@
           </select>
         </li>
         <li v-show="modifyModel.Plat==='ZXC'">
-          <label>手机号码：</label>
+          <label>Mobile:</label>
           <input type="text"
                  :value="VerifyPhone"
                  readonly="readonly"
                  placeholder="请绑定手机" />
         </li>
         <li v-show="modifyModel.Plat==='ZXC'">
-          <label>验证码：</label>
+          <label>Verify Code:</label>
           <input type="text"
                  maxlength="8"
                  v-model="modifyModel.Code" />
@@ -26,22 +26,22 @@
              :class="{on:codeBtnInClick}">{{codeBtnText}}</b>
         </li>
         <li>
-          <label>官网密码：</label>
+          <label>Current:</label>
           <input type="password"
                  v-model="modifyModel.Pwd"
-                 placeholder="请输入您现在的密码">
+                 placeholder="Current password">
         </li>
         <li>
-          <label>新的密码：</label>
+          <label>New:</label>
           <input type="password"
                  v-model="modifyModel.NewPwd"
-                 placeholder="请输入您的新密码">
+                 placeholder="New password">
         </li>
         <li>
-          <label>确认密码：</label>
+          <label>Confirm:</label>
           <input type="password"
                  v-model="confirmPwd"
-                 placeholder="请再次确认您的密码">
+                 placeholder="Confirm password">
         </li>
       </ul>
       <button @click="dbSavePwd">{{saveBtnText}}</button>
@@ -67,10 +67,10 @@ export default {
       },
       VerifyPhone: '',
       codeBtnInClick: false,
-      codeBtnText: '发送验证码',
+      codeBtnText: 'Send Code',
       smscountdown: 60,
       confirmPwd: '',
-      saveBtnText: '立即保存',
+      saveBtnText: 'SAVE',
       inClickProcess: false
     }
   },
@@ -171,7 +171,7 @@ export default {
         return false
       }
       _this.inClickProcess = true
-      _this.saveBtnText = '正在保存'
+      _this.saveBtnText = 'SAVING'
       let url = '/api/account/modifyuserpwd'
       let params = {
         Token: _this.getinfo().token
@@ -179,7 +179,7 @@ export default {
       _this.$https.fetchPost(url, _this.secret(Object.assign(_this.modifyModel, params)))
         .then((res) => {
           _this.inClickProcess = false
-          _this.saveBtnText = '立即保存'
+          _this.saveBtnText = 'SAVE'
           if (res.data.Success === true) {
             _this.AlertSuccess('设置成功')
           } else {
@@ -187,7 +187,7 @@ export default {
           }
         }).catch(err => {
           _this.inClickProcess = false
-          _this.saveBtnText = '立即保存'
+          _this.saveBtnText = 'SAVE'
           console.log('error', err)
         })
     },
@@ -212,7 +212,7 @@ export default {
     this.$nextTick(() => {
       this.modifyModel.Plat = 'ZXC'
     })
-    this.$emit('getStatus', '修改密码', 'back', 'hide', true)
+    this.$emit('getStatus', 'Edit Password', 'back', 'hide', true)
   }
 }
 </script>

@@ -1,49 +1,49 @@
 <template>
   <div class="withdrawal">
     <div class="mode">
-      <h2>选择支付方式</h2>
+      <h2>Payment Method</h2>
       <ul class="way">
         <li :class="['onlineTransfer', {on: 'withdrawal' == activeWay}]"
             @click="switchWay('withdrawal')">
           <i></i>
-          <span>銀行卡</span>
+          <span>BANK</span>
         </li>
         <li :class="['usdtTransfer', {on: 'USDT_Withdraw' == activeWay}]"
             @click="switchWay('USDT_Withdraw')">
           <i></i>
-          <span>USDT提币</span>
+          <span>USDT</span>
         </li>
       </ul>
     </div>
     <div v-if="withdrawal.bankCard.length>0 && activeWay == 'withdrawal'">
       <div class="bank">
-        <h2>选择银行卡</h2>
+        <h2>BANK Card</h2>
         <select v-model="withdrawal.bankId">
           <option value
-                  disabled="disabled">请选择提款银行卡</option>
+                  disabled="disabled">Please Select bind bank card</option>
           <option v-for="(bankCards, index) in withdrawal.bankCard"
                   :key="index"
                   :value="bankCards.BankId.toString()">{{bankCards.BankName}}--尾号{{bankCards.CardNumber}}</option>
         </select>
       </div>
       <div class="amount">
-        <h2>提款金额</h2>
+        <h2>Withdrawal Amount</h2>
         <div class="amount-Main">
-          <i>¥</i>
+          <i>₱</i>
           <input type="number"
                  v-model="withdrawal.amount"
                  maxlength="8"
-                 placeholder="输入提款金额"
+                 placeholder="Enter withdrawal amount"
                  @input="changeAmount" />
           <div class="amountAll"
-               @click="withall()">全部提款</div>
+               @click="withall()">All W/D</div>
           <div class="totalBalance">
             <span>
-              账户余额：
-              <em>{{numberFormat(withdrawal.Balance,2)}}</em>元
+              Balance：
+              <em>PHP {{numberFormat(withdrawal.Balance,2)}}</em>
             </span>
             <div class="quickIcon"
-                 @click="quickTransfer()">一键回收</div>
+                 @click="quickTransfer()">Get All</div>
           </div>
           <ul class="amountBtn">
             <li v-for="(abtn, index) in withdrawal.amountBtn"
@@ -51,35 +51,35 @@
                 :class="abtn.code"
                 @click="addAmount(abtn.code)">{{abtn.text}}</li>
           </ul>
-          <span>*提款密码和登录密码一致</span>
+          <span>*Withdrawal PWD must same Sign In PWD.</span>
           <input type="password"
                  v-model="withdrawal.password"
-                 placeholder="输入您的密码" />
+                 placeholder="Your withdrawal PWD" />
           <button :class="withdrawal.sending? 'dis':''"
-                  @click="sendWithdrawal()">立即提款</button>
+                  @click="sendWithdrawal()">Withdrawal Now</button>
         </div>
         <h2>*注：今日提款次数剩余{{withdrawal.RemainDrawCount}}次，单次最高{{numberFormat(withdrawal.MaxLimit,2)}}元，今日提款额度剩余{{numberFormat(withdrawal.RemainDrawSum,2)}}元</h2>
       </div>
     </div>
     <div v-if="USDT_Withdraw.bankCard.length>0 && activeWay == 'USDT_Withdraw'">
       <div class="bank">
-        <h2>请选择钱包</h2>
+        <h2>USDT Wallet</h2>
         <select v-model="USDT_Withdraw.bankId">
           <option value
-                  disabled="disabled">请选择提币钱包</option>
+                  disabled="disabled">Please Select USDT Wallet</option>
           <option v-for="(bankCards, index) in USDT_Withdraw.bankCard"
                   :key="index"
                   :value="bankCards.Id.toString()">{{bankCards.ChainName}}--开头{{strSlice(bankCards.WalletAddr,3)}}</option>
         </select>
       </div>
       <div class="amount">
-        <h2>提币金额</h2>
+        <h2>Withdrawal Amount</h2>
         <div class="amount-Main">
-          <i>¥</i>
+          <i>₱</i>
           <input type="number"
                  v-model="USDT_Withdraw.amount"
                  maxlength="8"
-                 placeholder="输入提币金额"
+                 placeholder="Withdrawal amount"
                  @input="changeAmount" />
           <!-- <div class="amountAll"
                @click="withall()">全部提币</div> -->
@@ -99,18 +99,18 @@
           </ul>
           <div class="amountBlock">
             <h3>
-              到币数量：{{USDT_Withdraw.amountUSDT}} USDT
+              Received：{{USDT_Withdraw.amountUSDT}} USDT
             </h3>
             <h4>
-              <em>当前汇率：{{ toDecimal2(USDT_Withdraw.USDTRate) }} CNY/USDT</em>
+              <em>Current exchange rate：{{ toDecimal2(USDT_Withdraw.USDTRate) }} PHP/USDT</em>
             </h4>
           </div>
-          <span>*提币密码和登录密码一致</span>
+          <span>*Withdrawal PWD must same Sign In PWD.</span>
           <input type="password"
                  v-model="USDT_Withdraw.password"
-                 placeholder="输入您的密码" />
+                 placeholder="Your withdrawal PWD" />
           <button :class="USDT_Withdraw.sending? 'dis':''"
-                  @click="sendUsdtWithdrawal()">立即提币</button>
+                  @click="sendUsdtWithdrawal()">Withdrawal Now</button>
         </div>
         <h2>*注：今日提款次数剩余{{withdrawal.RemainDrawCount}}次，单次最高{{numberFormat(withdrawal.MaxLimit,2)}}元，今日提款额度剩余{{numberFormat(withdrawal.RemainDrawSum,2)}}元</h2>
       </div>
@@ -153,7 +153,7 @@ export default {
           },
           {
             code: 'clear',
-            text: '清除'
+            text: 'Reset'
           }
         ],
         bankCard: [],
@@ -201,7 +201,7 @@ export default {
           },
           {
             code: 'clear',
-            text: '清除'
+            text: 'Reset'
           }
         ],
         amount: '',

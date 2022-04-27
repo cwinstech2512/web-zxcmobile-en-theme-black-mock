@@ -5,7 +5,7 @@
   </div>
   <div class="hd">
     <h2>{{$route.params.title}}</h2>
-    <time>发布时间：{{moment($route.params.time).format('YYYY/MM/DD HH:mm:ss')}}</time>
+    <time>Post Date：{{moment($route.params.time).format('YYYY/MM/DD HH:mm:ss')}}</time>
   </div>
   <div class="bd">
     <p v-html="$route.params.content"></p>

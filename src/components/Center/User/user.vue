@@ -14,10 +14,10 @@
     <ul class="balanceBar">
       <li>
         <i/>
-        <em>我的钱包</em>
+        <em>My Wallet</em>
       </li>
       <li>
-        <h2>余额</h2>
+        <h2></h2>
         <countTo :endVal='parseFloat(zxc)' :duration=1000 :decimals=2></countTo>
       </li>
     </ul>
@@ -56,7 +56,7 @@
         <em>{{mbars3.Name}}</em>
       </li>
     </ul>
-    <div class="signOut" @click="signOut">退出账号</div>
+    <div class="signOut" @click="signOut">Logout</div>
   </div>
   <div class="avatarBar" v-show="avatarShow" @click.self="toggleAvatar">
     <ul>
@@ -146,61 +146,61 @@ export default {
       mainBar1: [
         {
           code: 'deposit',
-          name: '充值'
+          name: 'Deposit'
         },
         {
           code: 'transfer',
-          name: '转账'
+          name: 'Transfer'
         },
         {
           code: 'withdrawal',
-          name: '提款'
+          name: 'W/D'
         }
       ],
       mainBar2: [
         {
           code: 'betting',
-          name: '投注记录'
+          name: 'Wager Record'
         },
         {
           code: 'transaction',
-          name: '交易记录'
+          name: 'TXN Record'
         },
         {
           code: 'bankSelect',
-          name: '银行卡',
+          name: 'Bank Info',
           intro_step: 1
         },
         {
           code: 'information',
-          name: '个人资料'
+          name: 'Personal'
         },
         {
           code: 'phone',
-          name: '手机验证',
+          name: 'Mobile Verify',
           intro_step: 2
         },
         {
           code: 'platform',
-          name: '平台余额'
+          name: 'Platform Bal.'
         }
       ],
       mainBar3: [
         {
           Code: 'feedback',
-          Name: '返水领取',
+          Name: 'Rebate Offer',
           IconUrl: '',
           LinkUrl: ''
         },
         {
           Code: 'VIPmember',
-          Name: 'VIP会员',
+          Name: 'VIP',
           IconUrl: '',
           LinkUrl: ''
         },
         {
           Code: 'VIPoffer',
-          Name: 'VIP优惠',
+          Name: 'VIP Offer',
           IconUrl: '',
           LinkUrl: ''
         },
@@ -212,7 +212,7 @@ export default {
         // },
         {
           Code: 'selfHelp',
-          Name: '自助活动',
+          Name: 'DIY Offer',
           IconUrl: '',
           LinkUrl: ''
         }
@@ -804,7 +804,7 @@ export default {
   text-align: center;
 }
 .user .user-bottom .financialBar li em{
-  font-size: 0.32rem;
+  font-size: 0.25rem;
   float: left;
   line-height: 1.1rem;
   margin-left: 0.2rem;
@@ -817,7 +817,7 @@ export default {
   height: 0.64rem;
   background: #000;
   margin-top: 0.24rem;
-  margin-left: 0.4rem;
+  margin-left: 0.2rem;
 }
 .user .user-bottom .financialBar li.deposit i{
   background: url(../../../assets/images/account/account_top-up_ico@2x.png);

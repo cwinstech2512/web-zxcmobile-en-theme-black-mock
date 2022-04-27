@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="balanceBar">
-          <span>账户余额：<em>{{balance}}</em></span>
+          <span>Balance：<em>{{balance}}</em></span>
         </div>
         <ul class="financialBar">
           <li v-for="(financial, index) in financialBar"
@@ -27,7 +27,7 @@
         <ul class="itemBar">
           <li class="record"
               @click="recordJump">
-            <i /><em>交易记录</em>
+            <i /><em>TXN Record</em>
           </li>
           <li v-for="(activitys, index) in activity"
               :key="index"
@@ -37,11 +37,11 @@
           </li>
           <li class="download">
             <a target="_blank"
-               :href="downUrl"><i /><em>下载APP</em></a>
+               :href="downUrl"><i /><em>Download APP</em></a>
           </li>
           <li class="out"
               @click="logout">
-            <i /><em>退出</em>
+            <i /><em>Logout</em>
           </li>
         </ul>
       </div>
@@ -73,15 +73,15 @@ export default {
       financialBar: [
         {
           code: 'deposit',
-          name: '充值'
+          name: 'Deposit'
         },
         {
           code: 'transfer',
-          name: '转账'
+          name: 'Transfer'
         },
         {
           code: 'withdrawal',
-          name: '提款'
+          name: 'W/D'
         }
       ],
       activity: [],
@@ -425,7 +425,7 @@ export default {
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .financialBar li i {
   display: block;
   float: left;
-  margin: 0.25rem 0.15rem 0 0.3rem;
+  margin: 0.25rem 0.05rem 0 0.11rem;
   width: 0.44rem;
   height: 0.44rem;
 }

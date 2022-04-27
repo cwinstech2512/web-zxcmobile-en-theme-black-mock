@@ -2,43 +2,43 @@
   <div>
     <div class="bank"
          v-if="bank">
-      <h2>选择USDT链名称</h2>
+      <h2>Chain Name For USDT</h2>
       <select v-model="bankName">
         <option value
-                  disabled="disabled">请选择USDT链名称</option>
+                  disabled="disabled">Select chain name for USDT</option>
         <option v-for="(banks, index) in bank"
                 :key="index">{{banks}}</option>
       </select>
     </div>
     <div class="amount">
-      <h2>充值金额</h2>
+      <h2>Deposit Amount</h2>
       <div class="amount-Main">
-        <i>¥</i>
+        <i>₱</i>
         <div v-if="fixAmount.length === 0">
           <input type="number"
                  v-model="amount"
                  maxlength="8"
-                 placeholder="输入充值金额"
+                 placeholder="Enter a deposit amount"
                  @keyup="inputChange" />
           <ul class="amountBtn">
             <li v-for="(abtn, index) in amountBtn"
                 :key="index"
-                @click="addAmount(abtn)">{{ abtn==-1 ? '清除':abtn}}</li>
+                @click="addAmount(abtn)">{{ abtn==-1 ? 'Reset':abtn}}</li>
           </ul>
           <textarea
             type="text"
             v-model="walletAddr"
-            placeholder="填入转出钱包地址才能自动上分"
+            placeholder="Please enter a full transfer-out wallet address"
           ></textarea>
           <div class="amountBlock">
             <h3>
-              请转入USDT：{{amountUSDT}} USDT
+              Transfer：{{amountUSDT}} USDT
             </h3>
             <h4>
-              <em>当前汇率：{{ toDecimal2(USDTRate) }} CNY/USDT</em>
+              <em>Current exchange rate：{{ toDecimal2(USDTRate) }} PHP/USDT</em>
             </h4>
           </div>
-          <button @click="deposit()">立即充值</button>
+          <button @click="deposit()">Deposit Now</button>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="deposit">
     <div class="mode">
-      <h2>选择支付方式</h2>
+      <h2>Payment Method</h2>
       <ul class="way">
         <li v-for="(methods, index) in depositMethod"
             :key="index"

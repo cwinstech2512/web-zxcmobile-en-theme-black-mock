@@ -44,7 +44,7 @@ export default {
   //  这里存放数据
     return {
       active: 0,
-      feedbackNav: ['平台返水', '高返水'],
+      feedbackNav: ['Platform Rebate', 'High Rebate'],
       swiperfeedbackMain: null
     }
   },
@@ -82,7 +82,7 @@ export default {
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     this.feedbackMain()
-    this.$emit('setExternalBar', '返水领取', 'back', this.showExternalBar)
+    this.$emit('setExternalBar', 'Rebate Offer', 'back', this.showExternalBar)
   }
 }
 </script>

@@ -19,11 +19,11 @@
       <input type="date" id="beginDate" v-model="startDate">
         至
       <input type="date" id="endDate" v-model="nextDate">
-      <input type="button" value="查询" @click="dbGetSearch">
+      <input type="button" value="Search" @click="dbGetSearch">
     </div>
     <div class="fbottom">
-      <span>总存款：<em>{{totalDepAmount}}</em></span>
-      <span>总流水：<em>{{totalBetAmount}}</em></span>
+      <span>Tot Deposit：<em>{{totalDepAmount}}</em></span>
+      <span>Tot Wager：<em>{{totalBetAmount}}</em></span>
     </div>
   </div>
 </div>
@@ -93,7 +93,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '投注记录', 'back', 'hide', true)
+    this.$emit('getStatus', 'Wager Record', 'back', 'hide', true)
   }
 }
 </script>

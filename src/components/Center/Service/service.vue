@@ -1,8 +1,8 @@
 <template>
 <div class='service'>
   <div class="service-box">
-    <button class="first" @click="serv1">主线客服</button>
-    <button class="second" @click="serv2">次线客服</button>
+    <button class="first" @click="serv1">LINE1</button>
+    <button class="second" @click="serv2">LINE2</button>
   </div>
 </div>
 </template>
@@ -43,7 +43,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '客服', 'menu', 'message')
+    this.$emit('getStatus', '24/7 Chat', 'menu', 'message')
   }
 }
 </script>

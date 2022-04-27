@@ -3,7 +3,7 @@
   <div class="phone-step" v-if="!already">
     <ul>
       <li>
-        <label>手机号：</label>
+        <label>Mobile:</label>
         <input
           type="text"
           name="readonly"
@@ -14,24 +14,24 @@
         >
       </li>
       <li>
-        <label>验证码：</label>
+        <label>Code:</label>
         <input
           type="text"
           name="readonly"
           maxlength="8"
           v-model="mobileCode"
-          placeholder="请输入短信验证码"
+          placeholder="Enter Code"
         >
         <b @click="sendPhoneCode" :disabled="inSending" :class="{on:inSending}">{{codeBtnText}}</b>
       </li>
     </ul>
-    <button @click="dbPhoneVerify" :disabled="inClickProcess">开始验证</button>
+    <button @click="dbPhoneVerify" :disabled="inClickProcess">Verify</button>
   </div>
   <div class="phone-step" v-if="already">
     <i></i>
-    <p>手机号已经绑定</p>
+    <p>Mobile number is already bind</p>
     <span>({{verifyPhone}})</span>
-    <button @click="unbindPhone">解除绑定</button>
+    <button @click="unbindPhone">Unbind</button>
   </div>
 </div>
 </template>
@@ -45,7 +45,7 @@ export default {
   data () {
   //  这里存放数据
     return {
-      codeBtnText: '发送验证码',
+      codeBtnText: 'Send code',
       already: false,
       userInfo: null,
       hasPhone: false,
@@ -113,7 +113,7 @@ export default {
         _this.$swal({
           text: '请输入正确的手机号码',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'Confirm'
         })
         return false
       }
@@ -134,7 +134,7 @@ export default {
               } else {
                 window.clearInterval(_this.clock)
                 _this.inSending = false
-                _this.codeBtnText = '发送验证码'
+                _this.codeBtnText = 'Send code'
                 _this.countdown = 60
               }
             }, 1000)
@@ -227,7 +227,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '绑定手机', 'back', 'hide', true)
+    this.$emit('getStatus', 'Bind Mobile', 'back', 'hide', true)
   }
 }
 </script>

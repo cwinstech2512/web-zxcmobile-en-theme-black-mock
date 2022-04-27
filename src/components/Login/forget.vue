@@ -9,106 +9,106 @@
         <div class="forget-main-step-box">
           <ul>
             <li>
-              <label>游戏账户：</label>
+              <label>Username：</label>
               <input
                 type="text"
                 name="readonly"
                 maxlength="12"
                 v-model="gameName"
-                placeholder="请输入用户名"
+                placeholder=""
               />
             </li>
           </ul>
-          <div class="btn" :disabled="inClickProcess" @click="nextStep('a')">下一步</div>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('a')">NEXT</div>
         </div>
       </div>
       <!-- 第二步 -->
       <div class="forget-main-step" v-show="step==1">
-        <span>请选择找回密码方式</span>
+        <span>Select reset password method</span>
         <div class="forget-main-step-box">
           <ul>
             <li @click="nextStep('b1')">
-              <em>使用手机找回密码</em>
+              <em>Mobile to retrieve your password</em>
               <i></i>
             </li>
             <li @click="nextStep('b2')">
-              <em>使用邮箱找回密码</em>
+              <em>Email to retrieve your password</em>
               <i></i>
             </li>
             <li @click="nextStep('b3')">
-              <em>使用安保找回密码</em>
+              <em>Security PIN to retrieve your password</em>
               <i></i>
             </li>
           </ul>
-          <span @click="prevStep('a')">返回上一步</span>
+          <span @click="prevStep('a')">Back to previous step</span>
         </div>
       </div>
       <!-- 第三步 -->
       <div class="forget-main-step" v-show="step==2">
-        <span>通过手机找回密码</span>
+        <span>Mobile to retrieve your password</span>
         <div class="forget-main-step-box">
           <ul>
             <li>
-              <label>手机号码：</label>
-              <input type="text" name="readonly" v-model="phone" placeholder="请输入手机号码" />
+              <label>Mobile：</label>
+              <input type="text" name="readonly" v-model="phone" placeholder="Enter your mobile number" />
             </li>
             <li>
-              <label>验证码：</label>
+              <label>Code：</label>
               <input type="text" name="readonly" maxlength="8" v-model="phoneCode" />
               <b @click="sendPhoneCode" :class="{on:codeBtnInClick}">{{codeBtnText}}</b>
             </li>
           </ul>
-          <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">下一步</div>
-          <span @click="prevStep('b')">返回上一步</span>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">NEXT</div>
+          <span @click="prevStep('b')">Back to previous step</span>
         </div>
       </div>
       <div class="forget-main-step" v-show="step==3">
-        <span>通过邮箱找回密码</span>
+        <span>Email to retrieve your password</span>
         <div class="forget-main-step-box">
           <ul>
             <li>
-              <label>邮箱号码：</label>
+              <label>Email：</label>
               <input type="text" name="readonly" v-model="email" />
             </li>
             <li>
-              <label>验证码：</label>
+              <label>Code：</label>
               <input type="text" name="readonly" maxlength="8" v-model="emailCode" />
               <b @click="sendEmailCode" :class="{on:codeBtnInClick}">{{codeBtnText}}</b>
             </li>
           </ul>
-          <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">下一步</div>
-          <span @click="prevStep('b')">返回上一步</span>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">NEXT</div>
+          <span @click="prevStep('b')">Back to previous step</span>
         </div>
       </div>
       <div class="forget-main-step" v-show="step==4">
-        <span>通过安保找回密码</span>
+        <span>Security PIN to retrieve your password</span>
         <div class="forget-main-step-box">
           <ul>
             <li>
-              <label>问题一：</label>
+              <label>Question1：</label>
               <input type="text" name="readonly" v-model="question1" disabled="disabled" />
             </li>
             <li>
-              <label>答案一：</label>
+              <label>Answer1：</label>
               <input type="text" name="readonly" v-model="answer1" />
             </li>
             <li>
-              <label>问题二：</label>
+              <label>Question2：</label>
               <input
                 type="text"
                 name="readonly"
                 v-model="question2"
                 disabled="disabled"
-                placeholder="您向未设置安保问题"
+                placeholder=""
               />
             </li>
             <li>
-              <label>答案二：</label>
+              <label>Answer2：</label>
               <input type="text" name="readonly" v-model="answer2" />
             </li>
           </ul>
-          <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">下一步</div>
-          <span @click="prevStep('b')">返回上一步</span>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">NEXT</div>
+          <span @click="prevStep('b')">Back to previous step</span>
         </div>
       </div>
       <!-- 第四步 -->
@@ -133,9 +133,9 @@
         <div class="forget-main-step-box">
           <div class="success">
             <i></i>
-            <h2>修改成功</h2>
+            <h2>Success!!</h2>
           </div>
-          <div class="btn" :disabled="inClickProcess" @click="backLogin">立即登录</div>
+          <div class="btn" :disabled="inClickProcess" @click="backLogin">Login Now</div>
         </div>
       </div>
     </div>
@@ -152,7 +152,7 @@ export default {
   data () {
     //  这里存放数据
     return {
-      navBarName: '忘记密码',
+      navBarName: 'Forgot Password',
       navLeft: 'back',
       navRight: 'hide',
       step: 0,
@@ -170,7 +170,7 @@ export default {
       token: '',
       vcode: '',
       codeBtnInClick: false,
-      codeBtnText: '发送验证码',
+      codeBtnText: 'Send Code',
       totalTimespan: 60,
       timerName: 'countdown',
       inClickProcess: false

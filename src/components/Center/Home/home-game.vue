@@ -43,29 +43,29 @@ export default {
     return {
       active: 0,
       gameNav: [
-        {
-          code: 'Sports',
-          name: '体育',
-          list: []
-        },
-        {
-          code: 'Live',
-          name: '娱乐场',
-          list: []
-        },
-        {
-          code: 'Lotto',
-          name: '彩票',
-          list: []
-        },
+        // {
+        //   code: 'Sports',
+        //   name: '体育',
+        //   list: []
+        // },
+        // {
+        //   code: 'Live',
+        //   name: '娱乐场',
+        //   list: []
+        // },
+        // {
+        //   code: 'Lotto',
+        //   name: '彩票',
+        //   list: []
+        // },
         {
           code: 'Slots',
-          name: '老虎机',
+          name: 'Slots',
           list: []
         },
         {
           code: 'Fish',
-          name: '捕鱼王',
+          name: 'Fish',
           list: []
         }
       ],

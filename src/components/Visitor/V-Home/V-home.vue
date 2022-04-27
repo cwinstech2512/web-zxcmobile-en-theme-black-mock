@@ -199,7 +199,7 @@ export default {
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     this.$bus.$emit('loadingShow')
-    this.$emit('getStatus', '众鑫娱乐', 'hide', false, false, false)
+    this.$emit('getStatus', '18SLOT', 'hide', false, false, false)
     this.getBannerList()
   }
 }

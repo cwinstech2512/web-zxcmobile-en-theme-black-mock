@@ -4,21 +4,21 @@
     <option v-for="(banks, index) in bank" :key="index" :value="banks">{{banks}}</option>
   </select>
   <input type="text" maxlength="8" v-model.trim="info.Name" :disabled="!editName" :name="editName?'':'readonly'" placeholder="请填写真实姓名">
-  <p>*提款卡填写后不可修改，请填写真实姓名。</p>
+  <p>*Please enter your bank real info</p>
   <div class="box">
      <ul>
        <li>
-        <input type="number" v-model="info.BankCardNo" placeholder="请填写银行卡号">
+        <input type="number" v-model="info.BankCardNo" placeholder="Bank Account">
        </li>
        <li>
-        <input type="text" v-model="info.Branch" placeholder="开户网点">
+        <input type="text" v-model="info.Branch" placeholder="Bank Branch">
        </li>
        <li v-show="showAnswer">
-        <input type="text"  v-model.trim="info.Answer" placeholder="安保答案">
+        <input type="text"  v-model.trim="info.Answer" placeholder="Security PIN">
        </li>
      </ul>
      <p v-show="showAnswer">*填写任意一个安保答案（第一次绑定可不填）</p>
-     <button @click="dbAddCard" :disabled="inClickProcess">确认</button>
+     <button @click="dbAddCard" :disabled="inClickProcess">Confirm</button>
   </div>
 </div>
 </template>
@@ -154,7 +154,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '添加银行卡', 'back', 'hide', true)
+    this.$emit('getStatus', 'Add a Bank Card', 'back', 'hide', true)
   }
 }
 </script>

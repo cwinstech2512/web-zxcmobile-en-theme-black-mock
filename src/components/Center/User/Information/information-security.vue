@@ -3,19 +3,19 @@
   <div class="security-bar">
     <ul>
       <li>
-        <label>问题一：</label>
+        <label>Question1:</label>
         <input type="text" v-model="question1" :readonly="isReadonly"  placeholder="由6-15个字符组成">
       </li>
       <li>
-        <label>答案一：</label>
+        <label>Answer1:</label>
         <input type="text" v-model="answer1" :readonly="isReadonly" placeholder="由3-15个字符组成">
       </li>
       <li>
-        <label>问题二：</label>
+        <label>Question2:</label>
         <input type="text" v-model="question2"  :readonly="isReadonly"  placeholder="由6-15个字符组成">
       </li>
       <li>
-        <label>答案二：</label>
+        <label>Answer2:</label>
         <input type="text" v-model="answer2" :readonly="isReadonly" placeholder="由3-15个字符组成">
       </li>
     </ul>
@@ -142,9 +142,9 @@ export default {
       this.answer2 = '*******'
       this.unbindUrl = this.$route.params.unbindUrl
       this.unbindMsg = this.$route.params.unbindMsg
-      this.saveBtnText = '解绑更改'
+      this.saveBtnText = 'Unbind'
     }
-    this.$emit('getStatus', '安全密保', 'back', 'hide', true)
+    this.$emit('getStatus', 'Security Info', 'back', 'hide', true)
   }
 }
 </script>

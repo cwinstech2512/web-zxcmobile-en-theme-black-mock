@@ -9,7 +9,7 @@
     <ul class="platform">
       <li>
         <select v-model="Outval" @change="changeAcc('out',Outval)">
-          <option value="out" disabled="disabled">转出账户</option>
+          <option value="out" disabled="disabled">FROM</option>
           <option
             v-for="(item, index) in GamePlats"
             :key="index"
@@ -22,7 +22,7 @@
       </li>
       <li>
         <select v-model="Inval" @change="changeAcc('in',Inval)">
-          <option value="in" disabled="disabled">转入账户</option>
+          <option value="in" disabled="disabled">TO</option>
           <option
             v-for="(item, index) in GamePlats"
             :key="index"
@@ -33,8 +33,8 @@
     </ul>
     <div class="amount">
       <div class="amount-Main">
-        <i>¥</i>
-        <input type="number" v-model="amount" maxlength="8" placeholder="输入转账金额" />
+        <i>₱</i>
+        <input type="number" v-model="amount" maxlength="8" placeholder="Enter amount" />
         <ul class="amountBtn">
           <li
             v-for="(abtn, index) in amountBtn"
@@ -46,8 +46,8 @@
         <button
           :class="['quick',{dis:!quickBtn||(quickok<1||quickok<GamePlats.length)}]"
           @click="quickTransfer()"
-        >一键回收</button>
-        <button :class="['half',sending? 'dis':'']" @click="send()">立即转账</button>
+        >All Reversal</button>
+        <button :class="['half',sending? 'dis':'']" @click="send()">Transfer Now</button>
       </div>
       <h2>*注：一键回收功能会一次性把所有游戏平台上的余额转账回众鑫账户</h2>
     </div>
@@ -86,7 +86,7 @@ export default {
         },
         {
           code: 'all',
-          text: '全部'
+          text: 'All'
         }
         // ,
         // {

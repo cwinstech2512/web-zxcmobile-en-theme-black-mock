@@ -9,12 +9,12 @@
         <ul class="login-main-box">
           <li class="user">
             <i /><input type="text"
-                   placeholder="输入会员账号"
+                   placeholder="Username"
                    v-model.trim="loginForm.username">
           </li>
           <li class="key">
             <i /><input type="password"
-                   placeholder="输入登录密码"
+                   placeholder="Password"
                    v-model.trim="loginForm.password">
           </li>
           <li class="vcode" style="display: none;">
@@ -30,17 +30,17 @@
           <li class="forget">
             <i @click="remember =!remember"
                :class="{'on':remember}" />
-            <span @click="remember =!remember">记住密码</span><em @click="forget">忘记密码？</em>
+            <span @click="remember =!remember">Remember Me</span><em @click="forget">Forgot password?</em>
           </li>
           <li class="btn">
             <button @click="login">{{loginBtnText}}</button>
           </li>
           <li class="text">
-            <span>没有账号?<em @click="goRegistered">前往注册</em></span>
+            <span>New User?<em @click="goRegistered">Join Now</em></span>
           </li>
         </ul>
         <div class="visitor"
-             @click="visitor">暂不登录，先去看看</div>
+             @click="visitor">Looking at the moment</div>
       </div>
     </div>
     <!-- 注册 -->
@@ -52,13 +52,13 @@
     <div class="service-box">
       <div class="img"
            @click="service = !service">
-        <i></i><span>客服</span>
+        <i></i><span>24/7</span>
       </div>
       <transition name="slide-fade">
         <ul class="service"
             v-show="service">
-          <li @click="serv1">主线客服</li>
-          <li @click="serv2">次线客服</li>
+          <li @click="serv1">LINE1</li>
+          <li @click="serv2">LINE2</li>
         </ul>
       </transition>
     </div>
@@ -112,7 +112,7 @@ export default {
       },
       remember: false,
       inClickProcess: false,
-      loginBtnText: '立即登录',
+      loginBtnText: 'Login',
       appDown: false,
       vcodesrc: '',
       downUrl: 'https://app.zxapp.net/'
@@ -226,7 +226,7 @@ export default {
             _this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: '确定'
+              confirmButtonText: 'Confirm'
             })
           }
         })
@@ -246,7 +246,7 @@ export default {
       _this.inClickProcess = true
       if (_this.loginForm.username === '' || _this.loginForm.password === '') {
         _this.AlertWarning('用户名或密码不能为空！')
-        _this.loginBtnText = '立即登录'
+        _this.loginBtnText = 'Login'
         _this.inClickProcess = false
         return false
       }
@@ -268,8 +268,8 @@ export default {
       //   _this.inClickProcess = false
       //   return false
       // }
-      _this.loginBtnText = '正在登录中'
-      _this.$bus.$emit('loadingShow', '正在登录')
+      _this.loginBtnText = 'Loading'
+      _this.$bus.$emit('loadingShow', 'Loading')
       let initGeetestUrl = '/api/Geetest/initGeetest'
       this.$https
         .fetchGet(initGeetestUrl, {})
@@ -306,7 +306,7 @@ export default {
                 .then(res => {
                   _this.$bus.$emit('loadingHide')
                   if (res.data.Success === true) {
-                    _this.$bus.$emit('loadingShow', '登录成功')
+                    _this.$bus.$emit('loadingShow', 'Loading Success')
                     setTimeout(function () {
                       if (_this.$route.query.m) {
                         let index = 0
@@ -351,7 +351,7 @@ export default {
                     _this.$swal({
                       text: res.data.Message,
                       type: 'error',
-                      confirmButtonText: '确定'
+                      confirmButtonText: 'Confirm'
                     })
                   } else if (res.data.Message == null || res.data.Message === '' ||
                     res.data.Message === '发生一个意外错误，请联系在线客服。错误：102' ||
@@ -368,18 +368,18 @@ export default {
                     _this.AlertError(res.data.Message)
                     captchaObj.reset()
                   }
-                  _this.loginBtnText = '立即登录'
+                  _this.loginBtnText = 'Login'
                   _this.inClickProcess = false
                 })
                 .catch(err => {
-                  _this.loginBtnText = '立即登录'
+                  _this.loginBtnText = 'Login'
                   _this.inClickProcess = false
                   _this.$bus.$emit('loadingHide')
                   captchaObj.reset()
                   console.log(err)
                 })
             }).onError(function () {
-              _this.loginBtnText = '立即登录'
+              _this.loginBtnText = 'Login'
               _this.inClickProcess = false
               _this.$bus.$emit('loadingHide')
               captchaObj.reset()

@@ -3,7 +3,7 @@
   <div class="loading-box">
     <div class="outside"></div>
     <div class="inside"></div>
-    <span>{{loadingText? loadingText:'正在加载中'}}</span>
+    <span>{{loadingText? loadingText:'Loading'}}</span>
   </div>
 </div>
 </template>

@@ -1,16 +1,16 @@
 <template>
 <div class='plat'>
-  <button class="getAll" v-show="feedInfo.length>0" @click="backwaterGetAll" :disabled="totalFee===0 || inClickProcess">一键领取<span> ( 可领取 <em>{{numberFormat(totalFee,2)}}</em> 元 )</span></button>
+  <button class="getAll" v-show="feedInfo.length>0" @click="backwaterGetAll" :disabled="totalFee===0 || inClickProcess">Get All<span> ( Available ₱<em>{{numberFormat(totalFee,2)}}</em> )</span></button>
   <template v-for="(plats, index) in feedInfo">
     <div class="box"
       v-if="plats.Plat !== 'SP'"
       :key="index"
     >
       <ul>
-        <li>{{plats.PlatText}}<b>返水比例：{{pointToPercent(plats.Rete)}}</b></li>
+        <li>{{plats.PlatText}}<b>Rebate rate:{{pointToPercent(plats.Rete)}}</b></li>
         <li>
-          <div class="info"><em>{{numberFormat(plats.RebateStake,2)}}</em><p>投注金额</p></div>
-          <div class="info"><em class="blue">{{numberFormat(plats.RebateFactAmount,2) >= 1.0 ? numberFormat(plats.RebateFactAmount,2) : '0.00'}}</em><p>返水金额</p></div>
+          <div class="info"><em>{{numberFormat(plats.RebateStake,2)}}</em><p>Wager Amount</p></div>
+          <div class="info"><em class="blue">{{numberFormat(plats.RebateFactAmount,2) >= 1.0 ? numberFormat(plats.RebateFactAmount,2) : '0.00'}}</em><p>Rebate Amount</p></div>
         </li>
       </ul>
       <button @click="dbGetBackwater(index)" :class="{on:plats.RebateFactAmount>=1.0}" :disabled="plats.RebateFactAmount<1.0 || inClickProcess"></button>

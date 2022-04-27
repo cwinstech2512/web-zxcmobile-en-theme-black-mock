@@ -90,7 +90,7 @@ export default {
             this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: '确定'
+              confirmButtonText: 'Confirm'
             })
           }
         })
@@ -199,7 +199,7 @@ export default {
         this.$swal({
           text: '请先登录',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'Confirm'
         })
         return false
       }
@@ -297,7 +297,7 @@ export default {
             text: '请重新登录！',
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: '确认',
+            confirmButtonText: 'Confirm',
             cancelButtonText: '取消'
             // closeOnConfirm: false,
             // closeOnClickOutside: false
@@ -313,14 +313,14 @@ export default {
           this.$swal({
             text: data.Message,
             type: 'error',
-            confirmButtonText: '确定'
+            confirmButtonText: 'Confirm'
           })
         }
       } else {
         this.$swal({
           text: data.Message,
           type: 'error',
-          confirmButtonText: '确定'
+          confirmButtonText: 'Confirm'
         })
       }
     }
@@ -334,7 +334,7 @@ export default {
           text: '登录已超时，请重新登录！',
           type: 'warning',
           // showCancelButton: true,
-          confirmButtonText: '确认'
+          confirmButtonText: 'Confirm'
           // cancelButtonText: '取消'
           // closeOnConfirm: false,
           // closeOnClickOutside: false
@@ -352,7 +352,7 @@ export default {
         this.$swal({
           text: data.Message,
           type: 'error',
-          confirmButtonText: '确定'
+          confirmButtonText: 'Confirm'
         })
       }
     }
@@ -363,7 +363,7 @@ export default {
       this.$swal({
         text: msg,
         type: 'warning',
-        confirmButtonText: '确定'
+        confirmButtonText: 'Confirm'
       })
     }
     /**
@@ -373,7 +373,7 @@ export default {
       this.$swal({
         text: msg,
         type: 'error',
-        confirmButtonText: '确定'
+        confirmButtonText: 'Confirm'
       })
     }
     /**
@@ -383,7 +383,7 @@ export default {
       this.$swal({
         text: msg,
         type: 'success',
-        confirmButtonText: '确定'
+        confirmButtonText: 'Confirm'
       })
     }
   }

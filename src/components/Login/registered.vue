@@ -4,18 +4,20 @@
     <div class="reg-main"
          v-show="!def">
       <ul class="reg-main-nav">
-        <li v-for="(navs, index) in regNav"
-            :key="index"
-            :class="{'on': index==active}"
-            @click="cutoverNav(index)">{{navs}}</li>
+        <template v-for="(navs, index) in regNav">
+          <li :key="index"
+              v-if="index > 0"
+              :class="{'on': index==active}"
+              @click="cutoverNav(index)">{{navs}}</li>
+        </template>
       </ul>
       <ul class="reg-main-box"
           v-show="active ==0">
           <li>
-          <label>游戏账号：</label>
+          <label>Username：</label>
           <input v-model.trim="phoneReg.UserName"
                  type="text"
-                 placeholder="用户名由6-10个字符组成"
+                 placeholder="6-10 characters."
                  minlength="6"
                  maxlength="10">
         </li>
@@ -65,37 +67,43 @@
       <ul class="reg-main-box"
           v-show="active ==1">
         <li>
-          <label>游戏账号：</label>
+          <label>Username：</label>
           <input v-model.trim="accountReg.UserName"
                  type="text"
-                 placeholder="用户名由6-10个字符组成"
+                 placeholder="6-10 characters."
                  minlength="6"
                  maxlength="10">
         </li>
         <li>
-          <label>真实姓名：</label>
+          <label>First Name：</label>
           <input v-model.trim="accountReg.Fullname"
                  type="text"
-                 placeholder="请填写真实姓名">
+                 placeholder="Please enter first name">
         </li>
         <li>
-          <label>手机号码：</label>
+          <label>Last Name：</label>
+          <input v-model.trim="accountReg.Fullname"
+                 type="text"
+                 placeholder="Please enter last name">
+        </li>
+        <li>
+          <label>Mobile number：</label>
           <input v-model.trim="accountReg.Phone"
                  type="text"
-                 placeholder="请填手机号码"
+                 placeholder="Please enter an 11-digit mobile number."
                  oninput="if(value.length > 11)value = value.slice(0, 11)">
         </li>
         <li>
-          <label>设置密码：</label>
+          <label>Password：</label>
           <input v-model="accountReg.Pwd"
                  type="password"
-                 placeholder="请设置账号密码">
+                 placeholder="More than 6 letters, numbers, and case sensitive.">
         </li>
         <li>
-          <label>确认密码：</label>
+          <label>Confirm password：</label>
           <input v-model="pwdConfirm"
                  type="password"
-                 placeholder="请再次输入账号密码">
+                 placeholder="Please enter a password again.">
         </li>
         <li v-show="!hasRaid">
           <label>邀请码：</label>
@@ -115,13 +123,13 @@
                style="cursor:pointer" />
         </li>
         <li class="text">
-          <span>注册即代表您已经阅读并同意众鑫<em @click="goRule">规则条款</em></span>
+          <span>I have read and accept the<em @click="goRule">T&C</em></span>
         </li>
         <li class="btn">
-          <button @click="debounceSubmitAccountReg">立即注册</button>
+          <button @click="debounceSubmitAccountReg">Sign Up</button>
         </li>
         <li class="text">
-          <span>已有账号?<em @click="goLogin">前往登录</em></span>
+          <span>Already an account?<em @click="goLogin">Play now</em></span>
         </li>
       </ul>
     </div>
@@ -152,9 +160,9 @@ export default {
   data () {
     //  这里存放数据
     return {
-      active: 0,
+      active: 1,
       hasRaid: false,
-      regNav: ['手机号注册', '用户名注册'],
+      regNav: ['手机号注册', 'Open Account'],
       phoneReg: {
         UserName: '',
         Phone: '',
@@ -554,7 +562,7 @@ export default {
 .registered .reg-main,
 .registered .reg-end {
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 26, 18, 0.46);
   border-radius: 0.06rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
@@ -589,17 +597,17 @@ export default {
 }
 .registered .reg-main .reg-main-box li label {
   display: block;
-  width: 1.6rem;
+  width: 33vw;
   float: left;
-  font-size: 0.3rem;
+  font-size: 0.1rem;
   color: #fff;
   line-height: 1.1rem;
   text-align: right;
 }
 .registered .reg-main .reg-main-box li input {
-  width: 4.5rem;
+  width: 50vw;
   height: 100%;
-  font-size: 0.3rem;
+  font-size: 0.1rem;
   color: #fff;
 }
 .registered .reg-main .reg-main-box li input::-webkit-input-placeholder {

@@ -1,6 +1,6 @@
 <template>
 <div class="tabBar-box" :class="[sub? 'hide':'',tabHide? 'Transparent':'']">
-  <div class="login" @click="loginback">登录</div>
+  <div class="login" @click="loginback">Login</div>
   <ul class='tabBar'>
       <li
         :class="[tabBars.code,{on: index == active}]"
@@ -39,11 +39,11 @@ export default {
       tabBar: [
         {
           code: 'v_home',
-          name: '首页'
+          name: 'Home'
         },
         {
           code: 'v_promotion',
-          name: '活动'
+          name: 'Promos'
         }
       ]
     }

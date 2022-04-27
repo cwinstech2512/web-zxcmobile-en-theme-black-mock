@@ -16,7 +16,7 @@
       </ul>
     </div>
     <div class="no_message" v-show="currentPageData.length<1">
-     <i></i><p>您还没有充值记录哦！</p>
+     <i></i><p>You haven't deposit record yet!</p>
     </div>
   </div>
   </div>

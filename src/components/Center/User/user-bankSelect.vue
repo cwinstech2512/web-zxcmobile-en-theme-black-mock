@@ -1,8 +1,8 @@
 <template>
 <div class="bankSelect">
   <div class="redirect_group">
-    <div class="redirectBtn" @click="redirect('bankCard')">银行卡</div>
-    <div class="redirectBtn" @click="redirect('virtualWallet')">虛擬錢包</div>
+    <div class="redirectBtn" @click="redirect('bankCard')">Bank Card</div>
+    <div class="redirectBtn" @click="redirect('virtualWallet')">Crypto</div>
   </div>
 </div>
 </template>

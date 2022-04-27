@@ -61,7 +61,7 @@ export default {
   //  这里存放数据
     return {
       active: 0,
-      traNav: ['充值记录', '提款记录', '转账记录', '优惠记录', '优惠代码'],
+      traNav: ['Deposit', 'Withdrawal', 'Transfer', 'Offer', 'Offer Code'],
       transactionNav: null,
       transactionMain: null
     }
@@ -120,7 +120,7 @@ export default {
   mounted () {
     this.traNavSwiper()
     this.traMaiSwipern()
-    this.$emit('getStatus', '交易记录', 'back', 'hide', true)
+    this.$emit('getStatus', 'TXN Record', 'back', 'hide', true)
   }
 }
 </script>

@@ -30,11 +30,11 @@
             </div>
             <div class="tit">
               <h2>{{proboxs.Title}}</h2>
-              <time>发布时间：{{moment(proboxs.CreateTime).format('YYYY/MM/DD HH:mm:ss')}}</time>
+              <time>Post Date：{{moment(proboxs.CreateTime).format('YYYY/MM/DD HH:mm:ss')}}</time>
               <span
                 v-show="!!proboxs.UrlMobile"
                 @click="btnEvent (proboxs.UrlMobile)"
-              >了解详情</span>
+              >Details</span>
             </div>
           </div>
         </div>
@@ -192,7 +192,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '活动', 'menu', 'message')
+    this.$emit('getStatus', 'Promotion', 'menu', 'message')
   }
 }
 </script>

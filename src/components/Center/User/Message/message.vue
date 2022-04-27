@@ -28,7 +28,7 @@
             </div>
           </div>
           <div class="no_message" v-show="unreadMsg.length<1">
-            <i></i><p>您还没有消息哦！</p>
+            <i></i><p>This folder is empty!</p>
           </div>
         </div>
         <div class="swiper-slide">
@@ -66,11 +66,11 @@ export default {
       msgNav: [
         {
           code: 'unread',
-          name: '未读'
+          name: 'Unread'
         },
         {
           code: 'read',
-          name: '已读'
+          name: 'Read'
         }
       ],
       msgMain: [],

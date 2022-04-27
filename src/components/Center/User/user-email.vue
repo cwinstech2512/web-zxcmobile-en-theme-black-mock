@@ -3,34 +3,34 @@
   <div class="email-step" v-if="!already">
     <ul>
       <li>
-        <label>邮箱号：</label>
+        <label>Email:</label>
         <input
           type="text"
           name="readonly"
           v-model="mobileEmail"
           :readonly="hasEmail"
-          placeholder="请输入您绑定的邮箱号"
+          placeholder="Enter your email address."
         >
       </li>
       <li>
-        <label>验证码：</label>
+        <label>Code:</label>
         <input
           type="text"
           name="readonly"
           maxlength="8"
           v-model="mobileCode"
-          placeholder="请输入短信验证码"
+          placeholder="SMS verification code."
         >
         <b @click="sendEmailCode" :disabled="inSending" :class="{on:inSending}">{{codeBtnText}}</b>
       </li>
     </ul>
-    <button @click="dbEmailVerify" :disabled="inClickProcess">开始验证</button>
+    <button @click="dbEmailVerify" :disabled="inClickProcess">Send Code</button>
   </div>
   <div class="email-step" v-if="already">
     <i></i>
     <p>邮箱已经绑定</p>
     <span>({{verifyEmail}})</span>
-    <button @click="unbindEmail">解除绑定</button>
+    <button @click="unbindEmail">Unbind</button>
   </div>
 </div>
 </template>
@@ -44,7 +44,7 @@ export default {
   data () {
   //  这里存放数据
     return {
-      codeBtnText: '发送验证码',
+      codeBtnText: 'Send Code',
       already: false,
       userInfo: null,
       hasEmail: false,
@@ -128,7 +128,7 @@ export default {
               } else {
                 window.clearInterval(_this.clock)
                 _this.inSending = false
-                _this.codeBtnText = '发送验证码'
+                _this.codeBtnText = 'Send Code'
                 _this.countdown = 180
               }
             }, 1000)
@@ -221,7 +221,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '绑定邮箱', 'back', 'hide', true)
+    this.$emit('getStatus', 'Bind Email', 'back', 'hide', true)
   }
 }
 </script>

@@ -3,20 +3,20 @@
     <div class="information-bar">
       <ul>
         <li>
-          <label>游戏账号：</label>
+          <label>Username:</label>
           <em>{{userName}}</em>
         </li>
         <li class="hide"
             @click="changePW()">
-          <label>密码：</label>
-          <em class="active">修改密码</em>
+          <label>Password:</label>
+          <em class="active">Edit</em>
         </li>
       </ul>
     </div>
     <div class="information-bar">
       <ul>
         <li>
-          <label>真实姓名：</label>
+          <label>First name：</label>
           <em class="active"
               @click="modifyName"
               v-show="!VerifyRealName && userModel.RealName!==null && !haveChangedRealName">{{VerifyText}}</em>
@@ -25,18 +25,18 @@
                  value=""
                  v-model="userModel.RealName"
                  v-show="!VerifyRealName"
-                 placeholder="填写您的真实姓名" />
+                 placeholder="" />
           <em v-if="VerifyRealName">{{VerifyRealName}}</em>
         </li>
         <li>
-          <label>性别：</label>
+          <label>Title:</label>
           <select v-model="userModel.Gender">
             <option v-bind:value="1">男</option>
             <option v-bind:value="0">女</option>
           </select>
         </li>
         <li>
-          <label>生日：</label>
+          <label>Birthday:</label>
           <input type="date"
                  value=""
                  v-model="userModel.BirthDay"
@@ -44,17 +44,17 @@
           <em v-show="userModel.BirthDay!==''">{{userModel.BirthDay}}</em>
         </li>
         <li>
-          <label>QQ：</label>
+          <label>Messenger:</label>
           <input type="text"
                  value=""
                  v-model="userModel.QQ"
-                 placeholder="填写您的QQ号码" />
+                 placeholder="" />
         </li>
         <li>
-          <label>绑定手机：</label>
+          <label>Mobile:</label>
           <em v-show="!VerifyPhone"
               class="active"
-              @click="modifyPhone">去绑定</em>
+              @click="modifyPhone">Bind</em>
           <input type="text"
                  value=""
                  v-model="userModel.Phone"
@@ -64,10 +64,10 @@
               @click="modifyPhone">{{VerifyPhone}}</em>
         </li>
         <li>
-          <label>绑定邮箱：</label>
+          <label>Email:</label>
           <em class="active"
               v-if="!VerifyEmail"
-              @click="modifyMail">去绑定</em>
+              @click="modifyMail">Bind</em>
           <input type="text"
                  value=""
                  v-model="userModel.Email"
@@ -77,9 +77,9 @@
               @click="modifyMail">{{VerifyEmail}}</em>
         </li>
         <li>
-          <label>安全密保：</label>
+          <label>Security PIN:</label>
           <em class="active"
-              @click="security">更改</em>
+              @click="security">Edit</em>
         </li>
       </ul>
       <button @click="dbSaveInfo">{{saveBtnText}}</button>
@@ -110,13 +110,13 @@ export default {
       VerifyRealName: '',
       VerifyPhone: '',
       VerifyEmail: '',
-      VerifyText: '去验证',
+      VerifyText: 'Verify',
       tempRealName: '',
       haveChangedRealName: false,
       editPwdPlats: [],
       safeQuestions: [],
       inClickProcess: false,
-      saveBtnText: '立即保存'
+      saveBtnText: 'SAVE'
     }
   },
   //  监听属性 类似于data概念
@@ -180,12 +180,12 @@ export default {
         Token: _this.getinfo().token
       }
       _this.inClickProcess = true
-      _this.VerifyText = '正在验证...'
+      _this.VerifyText = 'Verifing...'
       _this.$https
         .fetchPost(url, _this.secret(params))
         .then(res => {
           _this.inClickProcess = false
-          _this.VerifyText = '去验证'
+          _this.VerifyText = 'Verify'
           if (res.data.Success === true) {
             _this.VerifyRealName = res.data.Result
             _this.AlertSuccess('验证成功')
@@ -195,7 +195,7 @@ export default {
         })
         .catch(err => {
           _this.inClickProcess = false
-          _this.VerifyText = '去验证'
+          _this.VerifyText = 'Verify'
           console.log('error', err)
         })
     },
@@ -220,7 +220,7 @@ export default {
         return false
       }
       _this.inClickProcess = true
-      _this.saveBtnText = '正在保存'
+      _this.saveBtnText = 'SAVING'
       let url = '/api/account/saveinfo'
       let params = {
         Token: _this.getinfo().token
@@ -228,7 +228,7 @@ export default {
       _this.$https.fetchPost(url, _this.secret(Object.assign(_this.userModel, params)))
         .then((res) => {
           _this.inClickProcess = false
-          _this.saveBtnText = '立即保存'
+          _this.saveBtnText = 'SAVE'
           if (res.data.Success === true) {
             _this.AlertSuccess('保存成功')
           } else {
@@ -236,7 +236,7 @@ export default {
           }
         }).catch(err => {
           _this.inClickProcess = false
-          _this.saveBtnText = '立即保存'
+          _this.saveBtnText = 'SAVE'
           console.log('error', err)
         })
     },
@@ -311,7 +311,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '个人资料', 'back', 'hide', true)
+    this.$emit('getStatus', 'Personal', 'back', 'hide', true)
     if (this.$route.params.data) {
       this.infoData = this.$route.params.data
       this.userName = this.infoData.UserName

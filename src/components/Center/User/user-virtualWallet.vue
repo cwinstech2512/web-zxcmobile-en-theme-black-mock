@@ -58,7 +58,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '我的虚拟钱包', 'back', 'virtualadd', true)
+    this.$emit('getStatus', 'My Crypto', 'back', 'virtualadd', true)
   }
 }
 </script>

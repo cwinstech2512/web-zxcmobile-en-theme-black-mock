@@ -4,7 +4,7 @@
     :class="[navLeft,'navLeft']"
     @click="leftEvent()"
   ></div>
-  <div class="navName">{{navBarName? navBarName:'众鑫娱乐'}}</div>
+  <div class="navName">{{navBarName? navBarName:'18SLOT'}}</div>
 </div>
 </template>
 

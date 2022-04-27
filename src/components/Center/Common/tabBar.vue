@@ -34,24 +34,24 @@ export default {
       tabBar: [
         {
           code: 'home',
-          name: '首页'
+          name: 'Home'
         },
         {
           // code: 'select',
           code: 'wallet',
-          name: '钱包'
+          name: 'Wallet'
         },
         {
           code: 'service',
-          name: '客服'
+          name: '24/7 Chat'
         },
         {
           code: 'promotion',
-          name: '活动'
+          name: 'Promos'
         },
         {
           code: 'user',
-          name: '我的'
+          name: 'Me'
         }
       ]
     }
