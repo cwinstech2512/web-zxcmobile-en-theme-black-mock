@@ -52,7 +52,7 @@ export default {
     var title = ''
     switch (this.select) {
       case 'bankSelect':
-        title = 'Bank Card & Crypto For Bind'
+        title = 'Wallet To Bind'
         break
       case 'withdrawalSelect':
         title = 'Bank Card & Crypto'

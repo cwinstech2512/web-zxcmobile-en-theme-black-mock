@@ -24,7 +24,7 @@
         <b @click="sendEmailCode" :disabled="inSending" :class="{on:inSending}">{{codeBtnText}}</b>
       </li>
     </ul>
-    <button @click="dbEmailVerify" :disabled="inClickProcess">Send Code</button>
+    <button @click="dbEmailVerify" :disabled="inClickProcess">Verify Now</button>
   </div>
   <div class="email-step" v-if="already">
     <i></i>

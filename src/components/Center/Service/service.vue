@@ -28,13 +28,13 @@ export default {
      * @description 主线客服
      */
     serv1 () {
-      this.sliaonow()
+      // this.sliaonow()
     },
     /**
      * @description 次线客服
      */
     serv2 () {
-      this.sliaonow2()
+      // this.sliaonow2()
     }
   },
   //  生命周期 - 创建完成（可以访问当前this实例）

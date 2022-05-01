@@ -194,13 +194,13 @@ export default {
      * @description 主线客服
      */
     serv1 () {
-      this.sliaonow()
+      // this.sliaonow()
     },
     /**
      * @description 次线客服
      */
     serv2 () {
-      this.sliaonow2()
+      // this.sliaonow2()
     },
     /**
      * @description 检查是否登录
@@ -245,7 +245,7 @@ export default {
       }
       _this.inClickProcess = true
       if (_this.loginForm.username === '' || _this.loginForm.password === '') {
-        _this.AlertWarning('用户名或密码不能为空！')
+        _this.AlertWarning('Username or password can\'t be empty!')
         _this.loginBtnText = 'Login'
         _this.inClickProcess = false
         return false
@@ -486,7 +486,7 @@ export default {
           } else if (res.data.Status === 'LoginExpire') {
             localStorage.removeItem('account')
             // 没有登录 获取验证码
-            this.getVcode()
+            // this.getVcode()
           }
         }).catch(err => {
           console.log(err)
@@ -495,7 +495,7 @@ export default {
       // this.$router.push('/center/home')
     } else {
       // 没有登录 获取验证码
-      this.getVcode()
+      // this.getVcode()
     }
     // 检查是否记住密码
     if (localStorage.getItem('remember_pwd') === 'true') {

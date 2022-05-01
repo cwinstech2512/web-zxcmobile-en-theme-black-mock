@@ -341,7 +341,7 @@ export default {
         }).then(res => {
           if (res.value) {
             this.removeinfo()
-            this.$router.push('/')
+            this.$router.push('/login')
             this.pageInit()
           }
         })

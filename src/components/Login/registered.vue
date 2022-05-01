@@ -516,7 +516,7 @@ export default {
   },
   //  生命周期 - 创建完成（可以访问当前this实例）
   created () {
-    this.getVcode()
+    // this.getVcode()
     this.$nextTick(function () {
       let mandat = sessionStorage.getItem('mandat')
       let raid = localStorage['raid']

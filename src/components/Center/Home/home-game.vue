@@ -65,7 +65,7 @@ export default {
         },
         {
           code: 'Fish',
-          name: 'Fish',
+          name: 'Fishing',
           list: []
         }
       ],

@@ -4,19 +4,19 @@
     <ul>
       <li>
         <label>Question1:</label>
-        <input type="text" v-model="question1" :readonly="isReadonly"  placeholder="由6-15个字符组成">
+        <input type="text" v-model="question1" :readonly="isReadonly"  placeholder="">
       </li>
       <li>
         <label>Answer1:</label>
-        <input type="text" v-model="answer1" :readonly="isReadonly" placeholder="由3-15个字符组成">
+        <input type="text" v-model="answer1" :readonly="isReadonly" placeholder="">
       </li>
       <li>
         <label>Question2:</label>
-        <input type="text" v-model="question2"  :readonly="isReadonly"  placeholder="由6-15个字符组成">
+        <input type="text" v-model="question2"  :readonly="isReadonly"  placeholder="">
       </li>
       <li>
         <label>Answer2:</label>
-        <input type="text" v-model="answer2" :readonly="isReadonly" placeholder="由3-15个字符组成">
+        <input type="text" v-model="answer2" :readonly="isReadonly" placeholder="">
       </li>
     </ul>
     <button v-if="isReadonly" :disabled="inClickProcess" @click="unbindQA">{{saveBtnText}}</button>
@@ -181,7 +181,7 @@ export default {
   border-bottom: 0.02rem solid #ddd;
 }
 .security .security-bar ul li label{
-  font-size: 0.3rem;
+  font-size: 0.25rem;
   color: #6b6b6b;
 }
 .security .security-bar ul li input{

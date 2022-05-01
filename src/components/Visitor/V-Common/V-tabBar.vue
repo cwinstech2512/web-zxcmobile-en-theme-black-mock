@@ -63,7 +63,7 @@ export default {
       this.active = index
     },
     loginback () {
-      this.$router.push('/')
+      this.$router.push('/login')
     }
   },
   //  生命周期 - 创建完成（可以访问当前this实例）

@@ -17,7 +17,7 @@
         <em>My Wallet</em>
       </li>
       <li>
-        <h2></h2>
+        <h2>Balance</h2>
         <countTo :endVal='parseFloat(zxc)' :duration=1000 :decimals=2></countTo>
       </li>
     </ul>
@@ -622,7 +622,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', '账户', 'menu', 'message')
+    this.$emit('getStatus', 'Account', 'menu', 'message')
     let sidemenuVm = this.$parent.$parent.$children[0]
     this.updateSidebarBalacne(sidemenuVm)
     this.updateHighLight(this.$refs['box_mainBar2'].getBoundingClientRect())

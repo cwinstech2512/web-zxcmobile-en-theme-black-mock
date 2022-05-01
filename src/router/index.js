@@ -11,6 +11,12 @@ const router = new Router({
     // 登录页
     {
       path: '/',
+      name: 'home',
+      // component: Login,
+      redirect: { name: 'v_home' }
+    },
+    {
+      path: '/login',
       name: 'login',
       component: Login
     },

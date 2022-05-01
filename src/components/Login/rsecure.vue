@@ -240,7 +240,7 @@ export default {
     },
     // 返回登录页
     backLogin () {
-      this.$router.push('/')
+      this.$router.push('/login')
     }
   },
   //  生命周期 - 创建完成（可以访问当前this实例）
