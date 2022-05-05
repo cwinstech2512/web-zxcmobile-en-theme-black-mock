@@ -38,9 +38,18 @@
           <li class="text">
             <span>New User?<em @click="goRegistered">Join Now</em></span>
           </li>
+          <li class="btn">
+            <div class="RtdFacebookBtn">
+              <span></span>
+              <div
+                type="button"
+                @click="sendFacebook()">Sign up with Facebook</div>
+            </div>
+          </li>
         </ul>
         <div class="visitor"
-             @click="visitor">Looking at the moment</div>
+             @click="visitor">Looking at the moment
+        </div>
       </div>
     </div>
     <!-- 注册 -->
@@ -736,6 +745,28 @@ export default {
 }
 .loginbar .service-box .service li:last-child {
   border-right: none;
+}
+.login .RtdFacebookBtn span{
+  background: url(../../assets/images/login/fb_icon.png) no-repeat !important;
+  float: left;
+  width: 35px;
+  height: 35px;
+  margin-right: 3%;
+}
+.login .RtdFacebookBtn {
+  display: flex;
+  background-color: #4267b2;
+  height: 0.98rem;
+  /* margin-top: 30px; */
+  border-radius: 0.06rem;
+  justify-content: center;
+  align-items: center;
+}
+.login .RtdFacebookBtn div{
+  color: white;
+  line-height: 0.98rem;
+  text-align: center;
+  font-size: 0.3rem;
 }
 .slide-fade-enter-active {
   transition: all 0.3s ease;

@@ -67,43 +67,43 @@
       <ul class="reg-main-box"
           v-show="active ==1">
         <li>
-          <label>Username：</label>
+          <!-- <label>Username：</label> -->
           <input v-model.trim="accountReg.UserName"
                  type="text"
-                 placeholder="6-10 characters."
+                 placeholder="Username"
                  minlength="6"
                  maxlength="10">
         </li>
         <li>
-          <label>First Name：</label>
+          <!-- <label>First Name：</label> -->
           <input v-model.trim="accountReg.Fullname"
                  type="text"
-                 placeholder="Please enter first name">
+                 placeholder="First Name">
         </li>
         <li>
-          <label>Last Name：</label>
+          <!-- <label>Last Name：</label> -->
           <input v-model.trim="accountReg.Fullname"
                  type="text"
-                 placeholder="Please enter last name">
+                 placeholder="Last Name">
         </li>
         <li>
-          <label>Mobile number：</label>
+          <!-- <label>Mobile number：</label> -->
           <input v-model.trim="accountReg.Phone"
                  type="text"
-                 placeholder="Please enter an 11-digit mobile number."
+                 placeholder="Mobile number"
                  oninput="if(value.length > 11)value = value.slice(0, 11)">
         </li>
         <li>
-          <label>Password：</label>
+          <!-- <label>Password：</label> -->
           <input v-model="accountReg.Pwd"
                  type="password"
-                 placeholder="More than 6 letters, numbers, and case sensitive.">
+                 placeholder="Password">
         </li>
         <li>
-          <label>Confirm password：</label>
+          <!-- <label>Confirm password：</label> -->
           <input v-model="pwdConfirm"
                  type="password"
-                 placeholder="Please enter a password again.">
+                 placeholder="Confirm password">
         </li>
         <li v-show="!hasRaid">
           <label>邀请码：</label>
@@ -130,6 +130,14 @@
         </li>
         <li class="text">
           <span>Already an account?<em @click="goLogin">Play now</em></span>
+        </li>
+        <li>
+          <div class="RtdFacebookBtn">
+            <span></span>
+            <div
+              type="button"
+              @click="sendFacebook()">Sign up with Facebook</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -602,12 +610,12 @@ export default {
   font-size: 0.1rem;
   color: #fff;
   line-height: 1.1rem;
-  text-align: right;
+  text-align: left;
 }
 .registered .reg-main .reg-main-box li input {
-  width: 50vw;
+  width: 80vw;
   height: 100%;
-  font-size: 0.1rem;
+  font-size: 0.3rem;
   color: #fff;
 }
 .registered .reg-main .reg-main-box li input::-webkit-input-placeholder {
@@ -692,5 +700,27 @@ export default {
 }
 .registered .reg-end .btn {
   margin-top: 1rem;
+}
+.registered .RtdFacebookBtn span{
+  background: url(../../assets/images/login/fb_icon.png) no-repeat !important;
+  float: left;
+  width: 35px;
+  height: 35px;
+  margin-right: 3%;
+}
+.registered .RtdFacebookBtn {
+  display: flex;
+  background-color: #4267b2;
+  height: 0.98rem;
+  margin-top: 30px;
+  border-radius: 0.06rem;
+  justify-content: center;
+  align-items: center;
+}
+.registered .RtdFacebookBtn div{
+  color: white;
+  line-height: 0.98rem;
+  text-align: center;
+  font-size: 0.3rem;
 }
 </style>
