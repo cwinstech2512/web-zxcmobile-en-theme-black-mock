@@ -43,7 +43,7 @@
               <span></span>
               <div
                 type="button"
-                @click="sendFacebook()">Sign up with Facebook</div>
+                @click="FBLogin()">Sign up with Facebook</div>
             </div>
           </li>
         </ul>
@@ -53,10 +53,17 @@
       </div>
     </div>
     <!-- 注册 -->
-    <registered v-if="!isLogin"
+    <registered v-if="!isLogin && !isFBLoginToReg"
                 @goLogin='goLogin'
                 @restore='restore'
                 :def='def' />
+
+    <!-- 注册 -->
+    <registeredFB v-if="!isLogin && isFBLoginToReg"
+                @goLogin='goLogin'
+                @restore='restore'
+                :def='def'
+                :FBParams="FBParams" />
     <!-- 客服 -->
     <div class="service-box">
       <div class="img"
@@ -90,12 +97,14 @@
 
 <script>
 import registered from '@/components/Login/registered.vue'
+import registeredFB from '@/components/Login/registered_fb.vue'
 import Verify from '@/components/Login/verify.vue'
+import {initFacebookSdk} from '@/_help/init-facebook-sdk'
 import '../../../static/js/gt/gt.js'
 export default {
   name: 'login',
   //  import引入的组件需要注入到对象中才能使用
-  components: { registered, Verify },
+  components: { registered, registeredFB, Verify },
   data () {
     //  这里存放数据
     return {
@@ -110,6 +119,7 @@ export default {
         LastLoginTime: ''
       },
       isLogin: true,
+      isFBLoginToReg: false,
       service: false,
       def: false,
       loginForm: {
@@ -119,12 +129,18 @@ export default {
         VCode: '',
         cellPhone: ''
       },
+      FBParams: {
+        fb_username: '',
+        fb_email: '',
+        fb_access_token: '',
+        fb_id: ''
+      },
       remember: false,
       inClickProcess: false,
       loginBtnText: 'Login',
       appDown: false,
       vcodesrc: '',
-      downUrl: 'https://app.zxapp.net/'
+      downUrl: 'https://app.18slot.app/'
     }
   },
   //  监听属性 类似于data概念
@@ -135,7 +151,7 @@ export default {
   methods: {
     closeVerifyAndlogin () {
       let _this = this
-      _this.$bus.$emit('loadingShow', '登录成功')
+      _this.$bus.$emit('loadingShow', 'Login Success')
       setTimeout(function () {
         if (_this.$route.query.m) {
           let index = 0
@@ -290,6 +306,7 @@ export default {
             challenge: resMessage.challenge,
             offline: !resMessage.success, // 表示用户后台检测极验服务器是否宕机
             new_captcha: resMessage.new_captcha,
+            lang: 'en',
             product: 'bind'
           }, function (captchaObj) {
             console.log(captchaObj)
@@ -399,6 +416,168 @@ export default {
           console.log(err)
         })
     },
+    FBLogin () {
+      let _this = this
+      window.FB.login(function (response) {
+        if (response.authResponse && response.status && response.status === 'connected') {
+          if (response.authResponse.accessToken) {
+            let fbAccessToken = response.authResponse.accessToken
+            let url = '/api/Login/FBLoginStep3'
+            // eslint-disable-next-line
+            let params = '\"' + fbAccessToken + '\"'
+            _this.$https
+              .fetchPost(url, params)
+              .then(res => {
+                if (res.data.Success === true) {
+                  let msgObj = JSON.parse(res.data.Message)
+                  let UserName = res.data.UserName ? res.data.UserName : ''
+                  _this.isFBLoginToReg = !res.data.isReg
+                  if (!res.data.isReg || UserName.length === 0) {
+                    _this.isLogin = false
+                    _this.FBParams = {
+                      fb_username: msgObj.name,
+                      fb_email: msgObj.email,
+                      fb_access_token: fbAccessToken,
+                      fb_id: msgObj.id
+                    }
+                  } else {
+                    if (res.data.Success !== true) {
+                      _this.$swal({
+                        text: res.data.Message,
+                        type: 'error',
+                        confirmButtonText: 'Confirm'
+                      })
+                      return
+                    }
+                    _this.loginBtnText = 'Loading'
+                    _this.$bus.$emit('loadingShow', 'Loading')
+                    let initGeetestUrl = '/api/Geetest/initGeetest'
+                    this.$https
+                      .fetchGet(initGeetestUrl, {})
+                      .then(res => {
+                        var resMessage = JSON.parse(res.data)
+                        // eslint-disable-next-line
+                        initGeetest({
+                          gt: resMessage.gt,
+                          challenge: resMessage.challenge,
+                          offline: !resMessage.success, // 表示用户后台检测极验服务器是否宕机
+                          new_captcha: resMessage.new_captcha,
+                          lang: 'en',
+                          product: 'bind'
+                        }, function (captchaObj) {
+                          console.log(captchaObj)
+                          captchaObj.onReady(function () {
+                            captchaObj.verify()
+                          }).onSuccess(function () {
+                            var result = captchaObj.getValidate()
+                            let url = '/api/Login/FBLoginBySlidePicture'
+                            let params = {
+                              UserName: UserName,
+                              fbAccessToken: fbAccessToken,
+                              DeviceId: localStorage.getItem('mac'),
+                              Email: msgObj.email,
+                              FacebookID: msgObj.id,
+                              ScreenWidth: window.screen.width,
+                              ScreenHeight: window.screen.height,
+                              seccodeGeetest: result.geetest_seccode,
+                              validateGeetest: result.geetest_validate,
+                              challengeGeetest: result.geetest_challenge + '|gi'
+                            }
+                            _this.$https
+                              .fetchPost(url, _this.Secret(params))
+                              .then(res => {
+                                _this.$bus.$emit('loadingHide')
+                                if (res.data.Success === true) {
+                                  _this.$bus.$emit('loadingShow', 'Loading Success')
+                                  setTimeout(function () {
+                                    if (_this.$route.query.m) {
+                                      let index = 0
+                                      if (_this.$route.query.m === 't') {
+                                        index = 1
+                                      } else if (_this.$route.query.m === 'w') {
+                                        index = 2
+                                      }
+                                      _this.$router.push('/center/home')
+                                      setTimeout(function () {
+                                        _this.$nextTick(function () {
+                                          _this.$router.push({
+                                            name: 'wallet',
+                                            params: {
+                                              index: index
+                                            }
+                                          })
+                                        })
+                                      }, 200)
+                                    }
+                                    _this.$router.push('/center/home')
+                                    _this.$bus.$emit('loadingHide')
+                                  }, 1000)
+                                  if (_this.remember) {
+                                    _this.setCookie(_this.loginForm.username, _this.loginForm.password, 30)
+                                  } else {
+                                    _this.clearCookie()
+                                  }
+                                  localStorage.setItem('remember_pwd', _this.remember)
+                                  // sessionStorage.setItem('remember_pwd', _this.remember)
+                                  _this.saveinfo(
+                                    _this.loginForm.username,
+                                    res.data.Result.Token,
+                                    res.data.Result.Balance,
+                                    res.data.Result.LastLoginTime
+                                  )
+                                } else if (res.data.Status === 'VCodeError') {
+                                  // 验证码错误
+                                  _this.$bus.$emit('loadingHide')
+                                  _this.loginForm.VCode = ''
+                                  _this.getVcode()
+                                  _this.$swal({
+                                    text: res.data.Message,
+                                    type: 'error',
+                                    confirmButtonText: 'Confirm'
+                                  })
+                                } else if (res.data.Message == null || res.data.Message === '' ||
+                                  res.data.Message === '发生一个意外错误，请联系在线客服。错误：102' ||
+                                  res.data.Message === '您的登录发生异常，代码:102，请联系在线客服帮助您！') {
+                                  _this.account.Username = _this.loginForm.username
+                                  _this.account.Password = _this.loginForm.password
+                                  _this.account.VCodeKey = _this.loginForm.VCodeKey
+                                  _this.account.cellPhone = res.data.cellPhone
+                                  _this.account.isShowIpDiffCheckCode = true
+                                  _this.showVerify = true
+                                  _this.$bus.$emit('loadingHide')
+                                } else {
+                                  _this.$bus.$emit('loadingHide')
+                                  _this.AlertError(res.data.Message)
+                                  captchaObj.reset()
+                                }
+                                _this.loginBtnText = 'Login'
+                                _this.inClickProcess = false
+                              })
+                              .catch(err => {
+                                _this.loginBtnText = 'Login'
+                                _this.inClickProcess = false
+                                _this.$bus.$emit('loadingHide')
+                                captchaObj.reset()
+                                console.log(err)
+                              })
+                          }).onError(function () {
+                            _this.loginBtnText = 'Login'
+                            _this.inClickProcess = false
+                            _this.$bus.$emit('loadingHide')
+                            captchaObj.reset()
+                          })
+                        })
+                      })
+                      .catch(err => {
+                        console.log(err)
+                      })
+                  }
+                }
+              })
+          }
+        }
+      })
+    },
     /**
      * @description 设置cookies
      * @param account:账号
@@ -467,7 +646,7 @@ export default {
         scode = ''
       }
       this.appDown = true
-      this.downUrl = 'https://app.zxbet.app/?sc=' + scode + '&url=' + document.domain
+      this.downUrl = 'https://app.18slot.app/?sc=' + scode + '&url=' + document.domain
     }
   },
   // 生命周期 - 创建前
@@ -476,6 +655,7 @@ export default {
   },
   //  生命周期 - 创建完成（可以访问当前this实例）
   created () {
+    initFacebookSdk()
     // this.setDownUrl()
     this.$root.$on('setAPPDownUrl', () => {
       this.setDownUrl()

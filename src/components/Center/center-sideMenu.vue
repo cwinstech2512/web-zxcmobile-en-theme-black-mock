@@ -253,12 +253,12 @@ export default {
      */
     logout () {
       this.$swal({
-        text: '是否退出账号？',
+        text: 'Do you want to Logout？',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: '退出',
-        cancelButtonText: '取消'
+        confirmButtonText: 'logout',
+        cancelButtonText: 'cancel'
         // closeOnConfirm: false,
         // closeOnClickOutside: false
       }).then(res => {

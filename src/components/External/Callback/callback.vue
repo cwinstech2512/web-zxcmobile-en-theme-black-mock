@@ -111,7 +111,7 @@ export default {
         })
         return false
       }
-      var reg = /^[1]+\d{10}$/gi
+      var reg = /^09[0-9]{9}$/gi
       if (_this.phone.length < 1 || !reg.test(_this.phone)) {
         _this.$swal({
           text: '请输入正确的手机号码',

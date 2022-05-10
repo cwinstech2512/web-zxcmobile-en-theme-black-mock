@@ -108,7 +108,7 @@ export default {
       if (_this.inSending) {
         return false
       }
-      var reg = /^[1]+\d{10}$/gi
+      var reg = /^09[0-9]{9}$/gi
       if (_this.mobilePhone.length < 1 || !reg.test(_this.mobilePhone)) {
         _this.$swal({
           text: '请输入正确的手机号码',
@@ -156,7 +156,7 @@ export default {
       if (_this.inClickProcess) {
         return false
       }
-      var reg = /^[1]+\d{10}$/gi
+      var reg = /^09[0-9]{9}$/gi
       if (_this.mobilePhone.length < 1 || !reg.test(_this.mobilePhone)) {
         _this.AlertWarning('请输入正确的手机号码')
         return false

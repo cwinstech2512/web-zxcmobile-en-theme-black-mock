@@ -184,6 +184,7 @@ export default {
             challenge: resMessage.challenge,
             offline: !resMessage.success, // 表示用户后台检测极验服务器是否宕机
             new_captcha: resMessage.new_captcha,
+            lang: 'en',
             product: 'bind'
           }, function (captchaObj) {
             captchaObj.onReady(function () {

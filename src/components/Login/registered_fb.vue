@@ -6,7 +6,6 @@
       <ul class="reg-main-nav">
         <template v-for="(navs, index) in regNav">
           <li :key="index"
-              v-if="index > 0"
               :class="{'on': index==active}"
               @click="cutoverNav(index)">{{navs}}</li>
         </template>
@@ -14,58 +13,61 @@
       <ul class="reg-main-box"
           v-show="active ==0">
           <li>
-          <label>Username：</label>
+          <!-- <label>Username：</label> -->
           <input v-model.trim="phoneReg.UserName"
                  type="text"
-                 placeholder="6-10 characters."
+                 placeholder="Username"
                  minlength="6"
                  maxlength="10">
         </li>
         <li>
-          <label>手机号码：</label>
+          <!-- <label>手机号码：</label> -->
           <input v-model.trim="phoneReg.Phone"
                  type="text"
-                 placeholder="请填写手机号码"
+                 placeholder="Mobile number"
                  oninput="if(value.length > 11)value = value.slice(0, 11)">
         </li>
         <li>
-          <label>短信验证：</label>
-          <input v-model="phoneReg.SMSCode"
+          <!-- <label>First Name：</label> -->
+          <input v-model.trim="phoneReg.FirstName"
                  type="text"
-                 placeholder="请输入验证码">
-          <b @click="debounceSendVerifyCode"
-             :class="{on:inClickBtn}">{{btnText}}</b>
+                 placeholder="First Name">
         </li>
         <li>
-          <label>真实姓名：</label>
-          <input v-model.trim="phoneReg.Fullname"
+          <!-- <label>First Name：</label> -->
+          <input v-model.trim="phoneReg.LastName"
                  type="text"
-                 placeholder="请填写真实姓名">
+                 placeholder="Last Name">
         </li>
         <li>
-          <label>设置密码：</label>
+          <!-- <label>First Name：</label> -->
+          <input v-model.trim="phoneReg.Email"
+                 type="text"
+                 disabled="disabled"
+                 placeholder="Email">
+        </li>
+        <li>
+          <!-- <label>设置密码：</label> -->
           <input v-model="phoneReg.Pwd"
                  type="password"
-                 placeholder="请设置账号密码">
-        </li>
-        <li v-show="!hasRaid">
-          <label>邀请码：</label>
-          <input v-model="phoneReg.Raid"
-                 type="text"
-                 placeholder="邀请码必填">
+                 placeholder="Password">
         </li>
         <li class="text">
-          <span>注册即代表您已经阅读并同意众鑫<em @click="goRule">规则条款</em></span>
+          <span>I have read and accept the<em @click="goRule">T&C</em></span>
         </li>
         <li class="btn">
-          <button @click="debounceSubmitPhoneReg">立即注册</button>
-        </li>
-        <li class="text">
-          <span>已有账号?<em @click="goLogin">前往登录</em></span>
+          <button @click="sendFacebookReg">Finish</button>
         </li>
       </ul>
       <ul class="reg-main-box"
           v-show="active ==1">
+        <li>
+          <!-- <label>Username：</label> -->
+          <input v-model.trim="accountReg.Email"
+                 type="text"
+                 disabled="disabled"
+                 placeholder="Email">
+        </li>
         <li>
           <!-- <label>Username：</label> -->
           <input v-model.trim="accountReg.UserName"
@@ -75,69 +77,16 @@
                  maxlength="10">
         </li>
         <li>
-          <!-- <label>First Name：</label> -->
-          <input v-model.trim="accountReg.FirstName"
-                 type="text"
-                 placeholder="First Name">
-        </li>
-        <li>
-          <!-- <label>Last Name：</label> -->
-          <input v-model.trim="accountReg.LastName"
-                 type="text"
-                 placeholder="Last Name">
-        </li>
-        <li>
-          <!-- <label>Mobile number：</label> -->
-          <input v-model.trim="accountReg.Phone"
-                 type="text"
-                 placeholder="Mobile number"
-                 oninput="if(value.length > 11)value = value.slice(0, 11)">
-        </li>
-        <li>
           <!-- <label>Password：</label> -->
           <input v-model="accountReg.Pwd"
                  type="password"
                  placeholder="Password">
         </li>
-        <li>
-          <!-- <label>Confirm password：</label> -->
-          <input v-model="pwdConfirm"
-                 type="password"
-                 placeholder="Confirm password">
-        </li>
-        <li v-show="!hasRaid">
-          <label>邀请码：</label>
-          <input v-model="accountReg.Raid"
-                 type="text"
-                 placeholder="邀请码必填">
-        </li>
-        <li style="display: none;">
-          <label>验证码：</label>
-          <input v-model.trim="accountReg.VCode"
-                 type="text"
-                 style="width: 3.0rem;"
-                 placeholder="验证码必填">
-          <img :src="vcodesrc"
-               @click="getVcode()"
-               alt="点击刷新图片"
-               style="cursor:pointer" />
-        </li>
         <li class="text">
           <span>I have read and accept the<em @click="goRule">T&C</em></span>
         </li>
         <li class="btn">
-          <button @click="debounceSubmitAccountReg">Sign Up</button>
-        </li>
-        <li class="text">
-          <span>Already an account?<em @click="goLogin">Play now</em></span>
-        </li>
-        <li>
-          <div class="RtdFacebookBtn">
-            <span></span>
-            <div
-              type="button"
-              @click="sendFacebook()">Sign up with Facebook</div>
-          </div>
+          <button @click="bingFacebookReg">Bind</button>
         </li>
       </ul>
     </div>
@@ -162,15 +111,18 @@ export default {
   props: {
     def: {
       type: Boolean
+    },
+    FBParams: {
+      type: Object
     }
   },
   components: {},
   data () {
     //  这里存放数据
     return {
-      active: 1,
+      active: 0,
       hasRaid: false,
-      regNav: ['手机号注册', 'Open Account'],
+      regNav: ['New', 'Exist Account'],
       phoneReg: {
         UserName: '',
         Phone: '',
@@ -178,21 +130,26 @@ export default {
         Fullname: '',
         LastName: '',
         FirstName: '',
+        FacebookID: this.FBParams.fb_id,
+        Email: this.FBParams.fb_email,
         Pwd: '',
         Raid: '',
         Mac: localStorage.getItem('mac'),
+        DeviceID: localStorage.getItem('mac'),
         RefUrl: ''
       },
       accountReg: {
         UserName: '',
         Phone: '',
-        Email: '',
+        Email: this.FBParams.fb_email,
+        FacebookID: this.FBParams.fb_id,
         Pwd: '',
         Fullname: '',
         LastName: '',
         FirstName: '',
         Raid: '',
         Mac: localStorage.getItem('mac'),
+        DeviceID: localStorage.getItem('mac'),
         RefUrl: ''
       },
       pwdConfirm: '',
@@ -238,44 +195,32 @@ export default {
     /**
      * @description 账号注册
      */
-    submitAccountReg () {
+    sendFacebookReg () {
       let _this = this
       if (_this.inClickProcess) {
         return false
       }
-      if (_this.accountReg.UserName.length < 1) {
+      if (_this.phoneReg.UserName.length < 1) {
         _this.AlertWarning('Please enter UserName')
         return false
       }
-      if (_this.accountReg.FirstName.length < 1) {
+      if (_this.phoneReg.FirstName.length < 1) {
         _this.AlertWarning('Please enter FirstName')
         return false
       }
-      if (_this.accountReg.LastName.length < 1) {
+      if (_this.phoneReg.LastName.length < 1) {
         _this.AlertWarning('Please enter LastName')
         return false
       }
       var reg = /^09[0-9]{9}$/gi
-      if (_this.accountReg.Phone.length < 1 || !reg.test(_this.accountReg.Phone)) {
+      if (_this.phoneReg.Phone.length < 1 || !reg.test(_this.phoneReg.Phone)) {
         _this.AlertWarning('Please enter phone number')
         return false
       }
-      if (_this.accountReg.Pwd.length < 6) {
+      if (_this.phoneReg.Pwd.length < 6) {
         _this.AlertWarning('Please enter password')
         return false
       }
-      if (_this.accountReg.Pwd !== _this.pwdConfirm) {
-        _this.AlertWarning('re-password error not match')
-        return false
-      }
-      if (_this.accountReg.Raid.length < 1 && !_this.hasRaid) {
-        _this.AlertWarning('请输入邀请码')
-        return false
-      }
-      // if (_this.accountReg.VCode.length < 1) {
-      //   _this.AlertWarning('请输入验证码')
-      //   return false
-      // }
       _this.inClickProcess = true
       _this.$bus.$emit('loadingShow')
       let initGeetestUrl = '/api/Geetest/initGeetest'
@@ -296,11 +241,13 @@ export default {
               captchaObj.verify()
             }).onSuccess(function () {
               var result = captchaObj.getValidate()
-              _this.accountReg.seccodeGeetest = result.geetest_seccode
-              _this.accountReg.validateGeetest = result.geetest_validate
-              _this.accountReg.challengeGeetest = result.geetest_challenge
-              let params = _this.Secret(_this.accountReg)
-              let url = '/api/Reg/AccountByGeetest'
+              _this.phoneReg.seccodeGeetest = result.geetest_seccode
+              _this.phoneReg.validateGeetest = result.geetest_validate
+              _this.phoneReg.challengeGeetest = result.geetest_challenge
+              _this.phoneReg.ScreenWidth = window.screen.width
+              _this.phoneReg.ScreenHeight = window.screen.height
+              let params = _this.Secret(_this.phoneReg)
+              let url = '/api/Register/FBRegister'
               _this.$https
                 .fetchPost(url, params)
                 .then(res => {
@@ -339,34 +286,13 @@ export default {
     /**
      * @description 提交手机号码注册
      */
-    submitPhoneReg () {
+    bingFacebookReg () {
       let _this = this
       if (_this.inClickProcess) {
         return false
       }
-      if (_this.phoneReg.UserName.length < 1) {
-        _this.AlertWarning('请输入游戏账号')
-        return false
-      }
-      var reg = /^09[0-9]{9}$/gi
-      if (_this.phoneReg.Phone.length < 1 || !reg.test(_this.phoneReg.Phone)) {
-        _this.AlertWarning('请输入手机号码')
-        return false
-      }
-      // if (_this.phoneReg.SMSCode.length < 1) {
-      //   _this.AlertWarning('请输入验证码')
-      //   return false
-      // }
-      if (_this.phoneReg.Fullname.length < 1) {
-        _this.AlertWarning('请输入真实姓名')
-        return false
-      }
-      if (_this.phoneReg.Pwd.length < 6) {
-        _this.AlertWarning('请输入登录密码')
-        return false
-      }
-      if (_this.phoneReg.Raid.length < 1 && !_this.hasRaid) {
-        _this.AlertWarning('请输入邀请码')
+      if (_this.accountReg.UserName.length < 1 || _this.accountReg.Pwd.length < 1) {
+        _this.AlertWarning('Username or password can\'t be empty!')
         return false
       }
       _this.inClickProcess = true
@@ -389,11 +315,13 @@ export default {
               captchaObj.verify()
             }).onSuccess(function () {
               var result = captchaObj.getValidate()
-              _this.phoneReg.seccodeGeetest = result.geetest_seccode
-              _this.phoneReg.validateGeetest = result.geetest_validate
-              _this.phoneReg.challengeGeetest = result.geetest_challenge
-              let params = _this.Secret(_this.phoneReg)
-              let url = '/api/reg/UserNameBySlidePicture'
+              _this.accountReg.seccodeGeetest = result.geetest_seccode
+              _this.accountReg.validateGeetest = result.geetest_validate
+              _this.accountReg.challengeGeetest = result.geetest_challenge
+              _this.accountReg.ScreenWidth = window.screen.width
+              _this.accountReg.ScreenHeight = window.screen.height
+              let params = _this.Secret(_this.accountReg)
+              let url = '/api/Login/LoginBySlidePicture'
               _this.$https
                 .fetchPost(url, params)
                 .then(res => {

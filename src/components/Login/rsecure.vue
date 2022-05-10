@@ -117,7 +117,7 @@ export default {
       if (_this.codeBtnInClick) {
         return false
       }
-      var reg = /^[1]+\d{10}$/gi
+      var reg = /^09[0-9]{9}$/gi
       if (!_this.phone || !reg.test(_this.phone)) {
         _this.AlertWarning('请输入正确的手机号码')
         return false
@@ -162,7 +162,7 @@ export default {
       if (_this.inClickProcess) {
         return false
       }
-      var reg = /^[1]+\d{10}$/gi
+      var reg = /^09[0-9]{9}$/gi
       if (!_this.phone || !reg.test(_this.phone)) {
         _this.AlertWarning('请输入正确的手机号码')
         return false
