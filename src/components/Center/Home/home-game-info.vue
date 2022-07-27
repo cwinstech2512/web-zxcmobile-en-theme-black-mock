@@ -427,20 +427,20 @@ export default {
 }
 .gameInfoMain .swiper-slide .boxbar {
   float: left;
-  width: 2.1rem;
+  width: 3.2rem;
   margin-right: 0.25rem;
 }
 .gameInfoMain .swiper-slide .boxbar:nth-child(3n + 3) {
-  margin-right: 0;
+  /* margin-right: 0; */
 }
 .gameInfoMain .swiper-slide .boxbar .box {
   float: left;
-  width: 2.1rem;
+  width: 3.1rem;
   margin-right: 0.3rem;
 }
 .gameInfoMain .swiper-slide .boxbar .box img {
-  width: 2.1rem;
-  height: 1.58rem;
+  width: 3.1rem;
+  height: 2.33rem;
   border-radius: 0.06rem;
   background: url(../../../assets/images/home/promotion_placeholder@2x.jpg);
   background-size: 100% 100%;
