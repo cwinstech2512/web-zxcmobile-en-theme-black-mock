@@ -14,26 +14,59 @@ export default {
     init () {
       let plat = this.getQueryString('act')
       let gameCode = this.getQueryString('gameCode')
-      let url = '/api/Login/' + plat
+      let gameType = this.getQueryString('gameType')
+      let token = this.getQueryString('token')
+      let url = ''
+      let _this = this
       let params = {
-        'Token': this.getinfo().token
+        'Token': token
+      }
+      if (plat === 'FC' || plat === 'JILI' || plat === 'AE' || plat === 'RICH88') {
+        let cate = this.getQueryString('cate')
+        if (cate) {
+          params.PageIndex = 0
+          params.PageSize = 1
+          url = `/api/${cate}/${plat}Login`
+        } else {
+          _this.$swal({
+            text: ``,
+            type: 'error',
+            confirmButtonText: 'Confirm'
+          })
+        }
+      } else {
+        url = '/api/Login/' + plat
       }
       if (gameCode) {
         params.GameCode = gameCode// 有游戏编码就加上
       }
-      let _this = this
-      this.$https.fetchPost(url, this.secret(params))
+      if (gameType) {
+        params.GameType = gameType// 有游戏编码就加上
+      }
+      this.$https.fetchPost(url, this.Secret(params))
         .then((res) => {
-          // debugger
           if (res.data.Success === true) {
-            top.document.location.href = res.data.Result
+            if (plat === 'FC' || plat === 'JILI' || plat === 'AE' || plat === 'RICH88') {
+              top.document.location.href = res.data.Message
+            } else {
+              top.document.location.href = res.data.Result
+            }
+          } else if (res.data.Status === 'LoginExpire') {
+            // 登录过期
+            if (window.opener) {
+              window.opener.externalLogout()
+              window.close()
+            } else {
+              top.location.href = 'index.html'
+            }
           } else {
             _this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: '确定'
+              confirmButtonText: 'Confirm'
             })
           }
+          // window.externalLogout()
         }).catch(err => {
           console.log(err)
         })

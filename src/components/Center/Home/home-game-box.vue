@@ -87,7 +87,7 @@ export default {
       loadVal2: 1,
       name: null,
       amount: null,
-      zxName: '众鑫',
+      zxName: '18SLOT',
       platName: null,
       TransferOut: 0, // 转出平台余额
       TransferIn: 0, // 转入平台余额
@@ -134,7 +134,7 @@ export default {
     },
     hide () {
       let that = this
-      that.zxName = '众鑫'
+      that.zxName = '18SLOT'
       that.out = true
       setTimeout(() => {
         this.$emit('hiddenGame')
@@ -152,7 +152,7 @@ export default {
       this.BoxName()
       // Method = 1 去API 请求
 
-      if (this.gameInfo.DemoUrl.length > 0) {
+      if (!(this.gameInfo.GameType === 'Slots' || this.gameInfo.GameType === 'Fish') && this.gameInfo.DemoUrl.length > 0) {
         let demohref = this.gameInfo.WebOpenUrl
         if (this.gameInfo.Method === '1') {
           demohref = 'Game.html?act=' + this.gameInfo.Plat + 'Demo'
@@ -183,7 +183,7 @@ export default {
         // }
       }
       // 网页版
-      if (this.gameInfo.GameType === 'Slots' && this.gameInfo.Plat.toUpperCase() !== 'AG') {
+      if ((this.gameInfo.GameType === 'Slots' || this.gameInfo.GameType === 'Fish') && this.gameInfo.Plat.toUpperCase() !== 'AG') {
         // 老虎机 进自己的页面
         this.gameBtn.push({ code: 'h5', name: '网页版', href: '', target: 'router' })
       } else if (this.gameInfo.WebOpenUrl.length > 0 || this.gameInfo.Method === '1') {
@@ -268,19 +268,19 @@ export default {
     BoxName () {
       var that = this
       switch (that.gameInfo.Plat) {
-        case 'NSP':
+        case 'JILI':
           that.name = this.gameInfo.GameName
-          that.platName = '小金'
+          that.platName = 'JILI'
           break
-        case 'YSB':
+        case 'CQ9':
           that.name = this.gameInfo.GameName
-          that.platName = 'YSB'
+          that.platName = 'CQ9'
           break
-        case 'AI':
+        case 'AE':
           that.name = this.gameInfo.GameName
-          that.platName = 'AI'
+          that.platName = 'AE'
           break
-        case 'AG':
+        case 'KA':
           // if (this.gameInfo.GameType === 'Slots') {
           //   that.name = 'AG老虎机'
           // } else if () {
@@ -289,43 +289,23 @@ export default {
           //   that.name = 'AG娱乐场'
           // }
           that.name = this.gameInfo.GameName
-          that.platName = 'AG'
+          that.platName = 'KA'
           break
-        case 'AG2':
+        case 'JDB':
           that.name = this.gameInfo.GameName
-          that.platName = 'AG2'
+          that.platName = 'JDB'
           break
-        case 'EA':
-          that.name = 'EA娱乐场'
-          that.platName = 'EA'
+        case 'RICH88':
+          that.name = this.gameInfo.GameName
+          that.platName = 'RICH88'
           break
-        case 'OG':
-          that.name = 'OG娱乐场'
-          that.platName = 'OG'
+        case 'FC':
+          that.name = this.gameInfo.GameName
+          that.platName = 'FC'
           break
-        case 'LB':
-          that.name = 'LB快乐彩'
-          that.platName = 'LB'
-          break
-        case 'KG':
-          that.name = 'KG彩票'
-          that.platName = 'KG'
-          break
-        case 'PG':
-          that.name = 'PG老虎机'
-          that.platName = 'PG'
-          break
-        case 'PT':
-          that.name = 'PT老虎机'
-          that.platName = 'PT'
-          break
-        case 'MG':
-          that.name = 'MG老虎机'
-          that.platName = 'MG'
-          break
-        case 'DT':
-          that.name = 'DT老虎机'
-          that.platName = 'DT'
+        case 'BNG':
+          that.name = this.gameInfo.GameName
+          that.platName = 'BNG'
           break
         default:
           break
@@ -483,8 +463,8 @@ export default {
     btnClick (code) {
       // debugger
       if (code === 'h5' || code === 'demo') {
-        if (this.gameInfo.GameType === 'Slots') {
-          this.$router.push({ name: 'gameinfo', query: { plat: this.gameInfo.Plat } })
+        if (this.gameInfo.GameType === 'Slots' || this.gameInfo.GameType === 'Fish') {
+          this.$router.push({ name: 'gameinfo', query: { plat: this.gameInfo.Plat, type: this.gameInfo.GameType } })
           // this.$router.push('/center/home')
           return false
         }

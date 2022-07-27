@@ -16,11 +16,13 @@
              v-for="(lists, index) in gameNav"
              :key="index"
              :class="['game-box-list', lists.code]">
-          <span v-for="(li, index) in lists.list"
-                :key="index"
-                :class="li.Plat"
-                @click="gameShow(li)">
-          </span>
+             <div >
+                <span v-for="(li, index) in lists.list"
+                      :key="index"
+                      :class="li.Plat"
+                      @click="gameShow(li)">
+                </span>
+             </div>
         </div>
       </div>
     </div>
@@ -267,68 +269,88 @@ export default {
 #game-box .swiper-slide.on {
   display: block;
 }
+#game-box .swiper-slide > div {
+  display: flex;
+  flex-wrap: wrap;
+}
 #game-box .swiper-slide span {
   display: block;
-  width: 100%;
-  height: 2.4rem;
+  width: 44vw;
+  height: 2.1rem;
   border-radius: 0.14rem;
   overflow: hidden;
   margin-bottom: 0.2rem;
 }
-#game-box .swiper-slide span.AI {
-  background: url(../../../assets/images/home/home_game_ai@2x.jpg);
+#game-box .swiper-slide span:nth-child(odd){
+  background-color: #ccc;
+  margin-right: 0.1rem;
+}
+#game-box .swiper-slide span:nth-child(even){
+  background-color: #000;
+  margin-left: 0.1rem;
+}
+#game-box .swiper-slide.Fish span.JILI {
+  background: url(../../../assets/images/home/home_game_fish_jili.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide span.NSP {
-  background: url(../../../assets/images/home/home_game_xj@2x.jpg);
+#game-box .swiper-slide.Slots span.JILI {
+  background: url(../../../assets/images/home/home_game_slots_jili.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide span.YSB {
-  background: url(../../../assets/images/home/home_game_ysb@2x.jpg);
+#game-box .swiper-slide.Fish span.CQ9 {
+  background: url(../../../assets/images/home/home_game_fish_cq9.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide span.AG {
-  background: url(../../../assets/images/home/home_game_ag@2x.jpg);
+#game-box .swiper-slide.Slots span.CQ9 {
+  background: url(../../../assets/images/home/home_game_slots_cq9.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide span.AG2 {
-  background: url(../../../assets/images/home/home_game_ag2@2x.jpg);
+#game-box .swiper-slide.Fish span.AE {
+  background: url(../../../assets/images/home/home_game_slots_ae.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide span.EA {
-  background: url(../../../assets/images/home/home_game_ea@2x.jpg);
+#game-box .swiper-slide.Slots span.AE {
+  background: url(../../../assets/images/home/home_game_slots_ae.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide span.OG {
-  background: url(../../../assets/images/home/home_game_ea@2x.jpg);
+#game-box .swiper-slide.Fish span.KA {
+  background: url(../../../assets/images/home/home_game_fish_ka.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide span.LB {
-  background: url(../../../assets/images/home/home_game_lb@2x.jpg);
+#game-box .swiper-slide.Slots span.KA {
+  background: url(../../../assets/images/home/home_game_slots_ka.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide span.KG {
-  background: url(../../../assets/images/home/home_game_kg@2x.jpg);
+#game-box .swiper-slide.Fish span.JDB {
+  background: url(../../../assets/images/home/home_game_fish_jdb.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide.Slots span.AG {
-  background: url(../../../assets/images/home/home_game_ag2@2x.jpg);
+#game-box .swiper-slide.Slots span.JDB {
+  background: url(../../../assets/images/home/home_game_slots_jdb.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide.Slots span.PG {
-  background: url(../../../assets/images/home/home_game_pg@2x.jpg);
+#game-box .swiper-slide.Fish span.RICH88 {
+  background: url(../../../assets/images/home/home_game_slots_rich88.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide.Slots span.PT {
-  background: url(../../../assets/images/home/home_game_pt@2x.jpg);
+#game-box .swiper-slide.Slots span.RICH88 {
+  background: url(../../../assets/images/home/home_game_slots_rich88.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide.Slots span.MG {
-  background: url(../../../assets/images/home/home_game_mg@2x.jpg);
+#game-box .swiper-slide.Fish span.FC {
+  background: url(../../../assets/images/home/home_game_fish_fc.png);
   background-size: 100% 100%;
 }
-#game-box .swiper-slide.Slots span.DT {
-  background: url(../../../assets/images/home/home_game_dt@2x.jpg);
+#game-box .swiper-slide.Slots span.FC {
+  background: url(../../../assets/images/home/home_game_slots_fc.png);
+  background-size: 100% 100%;
+}
+#game-box .swiper-slide.Fish span.BNG {
+  background: url(../../../assets/images/home/home_game_slots_bng.png);
+  background-size: 100% 100%;
+}
+#game-box .swiper-slide.Slots span.BNG {
+  background: url(../../../assets/images/home/home_game_slots_bng.png);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide span.OG {

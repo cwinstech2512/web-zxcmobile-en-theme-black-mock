@@ -108,9 +108,9 @@ export default {
         // 老虎机返回
       } else if (this.navLeft === 'slotsBack') {
         this.$router.push({
-          name: 'home',
+          name: 'login',
           params: {
-            gameIndex: 3
+            gameIndex: 1
           }
         })
         // 左侧菜单

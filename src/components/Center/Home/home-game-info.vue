@@ -30,7 +30,7 @@
                      v-else>
                 <a :href="game.GameUrl"
                    target="_blank"
-                   v-if="plat === 'PG'"
+                   v-if="isDireOpenUrl()"
                    :class="game.DemoUrl? '':'center'">开始游戏</a>
                 <a @click="LoginPT(game.GameCode)"
                    v-else-if="plat === 'PT'"
@@ -38,7 +38,7 @@
                 <a @click="LoginDT(game)"
                    v-else-if="plat === 'DT'"
                    :class="game.DemoUrl? '':'center'">开始游戏</a>
-                <a :href="'Game.html?act=' + plat + '&gameCode=' + game.GameCode"
+                <a :href="'Game.html?cate=' + type + '&act=' + plat + '&gameCode=' + game.GameCode + '&gameType=' + game.Category + '&token=' + getinfo().token"
                    target="_blank"
                    v-else
                    :class="game.DemoUrl? '':'center'">开始游戏</a>
@@ -98,6 +98,7 @@ export default {
     return {
       active: 1,
       plat: '',
+      type: '',
       status: '',
       isFirst: false,
       InfoNav: [], // '所有游戏', '热门游戏', '吃角老虎机', '牌桌&纸牌游戏', '街机游戏', '视频扑克', '刮刮乐'
@@ -120,6 +121,31 @@ export default {
   watch: {},
   //  方法集合
   methods: {
+    // 是否直接打開url
+    isDireOpenUrl () {
+      switch (this.type) {
+        case 'Slots':
+          switch (this.plat) {
+            case 'KA':
+            case 'CQ9':
+            case 'JDB':
+            case 'BNG':
+              return true
+            default:
+              return false
+          }
+        case 'Fish':
+          switch (this.plat) {
+            case 'KA':
+            case 'CQ9':
+            case 'JDB':
+              return true
+            default:
+              return false
+          }
+      }
+      return false
+    },
     // 切换菜单
     navToggle (index) {
       this.active = index
@@ -161,7 +187,13 @@ export default {
       })
     },
     getSlotGame () {
-      let url = '/api/Slots/' + this.$route.query.plat
+      var type = this.$route.query.type
+      if (type === 'Slots') {
+        type = 'Slots'
+      } else if (type === 'Fish') {
+        type = 'Fishing'
+      }
+      let url = `/api/${type}/` + this.$route.query.plat
       let params = {
         Category: '',
         GameName: '',
@@ -196,6 +228,7 @@ export default {
     },
     init () {
       this.plat = this.$route.query.plat
+      this.type = this.$route.query.type
       let _this = this
       this.categoryAllGames = []
       // this.categoryPageIndex = []
@@ -330,7 +363,7 @@ export default {
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     var that = this
-    that.$emit('getStatus', that.$route.query.plat + '老虎机', 'slotsBack', 'hide', true)
+    that.$emit('getStatus', that.$route.query.plat + ' ' + that.$route.query.type, 'slotsBack', 'hide', true)
   }
 }
 </script>

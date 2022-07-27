@@ -322,7 +322,8 @@ export default {
      * @description 获取平台列表
      */
     getGamePlats () {
-      var platRevse = ['AI', 'YSB', 'AG', 'AG2', 'EA', 'OG', 'PT', 'MG', 'DT', 'PG', 'LB', 'KG']
+      // var platRevse = ['AI', 'YSB', 'AG', 'AG2', 'EA', 'OG', 'PT', 'MG', 'DT', 'PG', 'LB', 'KG']
+      var platRevse = ['JILI', 'CQ9', 'AE', 'KA', 'JDB', 'RICH88', 'FC', 'BNG']
       let _this = this
       let url = '/api/gameplat/get'
       _this.$https.fetchPost(url, {})

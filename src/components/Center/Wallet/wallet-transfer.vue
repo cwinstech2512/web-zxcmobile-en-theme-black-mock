@@ -196,7 +196,7 @@ export default {
     },
     // 获取游戏平台
     getGamePlat () {
-      var platRevse = ['AI', 'YSB', 'AG', 'AG2', 'EA', 'OG', 'PT', 'MG', 'DT', 'PG', 'LB', 'KG']
+      var platRevse = ['JILI', 'CQ9', 'AE', 'KA', 'JDB', 'RICH88', 'FC', 'BNG']
       let _this = this
       let url = '/api/gameplat/get'
       _this.$https
@@ -210,7 +210,7 @@ export default {
               }
             }
             // _this.GamePlats = res.data.Result
-            _this.GamePlats.unshift({ GameName: '众鑫账户', Plat: 'ZXC' })
+            _this.GamePlats.unshift({ GameName: '18SLOT', Plat: 'ZXC' })
             for (var i = 0; i < _this.GamePlats.length; i++) {
               _this.GamePlats[i].Bal = '...'
               _this.getGameBalance(_this.GamePlats[i].Plat)
@@ -219,7 +219,7 @@ export default {
             _this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: '确定'
+              confirmButtonText: 'Confirm'
             })
           }
         })

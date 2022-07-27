@@ -174,7 +174,7 @@ export default {
     this.$nextTick(function () {
       this.route()
     })
-    this.$emit('getStatus', '钱包', 'menu', 'message')
+    this.$emit('getStatus', 'Wallet', 'menu', 'message')
   }
 }
 </script>
