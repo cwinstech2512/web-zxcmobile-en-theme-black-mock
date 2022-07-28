@@ -24,8 +24,8 @@
                  v-for="(game, g) in categoryGames[index]"
                  :key="g">
               <div class="box">
-                <img :src="'static/images/slots/'+plat+'/' + game.ImageName"
-                     v-if="plat ==='PT' || plat ==='MG'">
+                <img :src="'https://rmpiconcdn.kaga88.com/kaga/gameIcon?game='+game.GameCode+'&lang=en&type=rectangular'"
+                     v-if="plat ==='KA'">
                 <img :src="'static/images/slots/'+plat+'/' + game.ImageName"
                      v-else>
                 <a :href="game.GameUrl"
@@ -106,13 +106,15 @@ export default {
       categoryAllGames: [], // 每个对应一个选项卡，全部游戏
       categoryGames: [], // 每个对应一个选项卡，显示的游戏
       // categoryPageIndex: [], // 页数
-      pageSize: 24,
+      pageSize: 20,
       gameInfoNav: null,
       gameInfoMain: null,
       platPwd: {
         pwd: '',
         surePwd: ''
-      }
+      },
+      totalPage: 1, // 统共页数，默认为1
+      currentPage: 1 // 当前页数 ，默认为1
     }
   },
   //  监听属性 类似于data概念
@@ -186,7 +188,7 @@ export default {
         })
       })
     },
-    getSlotGame () {
+    getSlotGame (navIndex = 0, pageIndex = 1) {
       var type = this.$route.query.type
       if (type === 'Slots') {
         type = 'Slots'
@@ -195,14 +197,17 @@ export default {
       }
       let url = `/api/${type}/` + this.$route.query.plat
       let params = {
-        Category: '',
+        Category: navIndex === 1 ? 'hot' : '',
         GameName: '',
-        PageIndex: 1,
-        PageSize: 0,
+        PageIndex: pageIndex,
+        PageSize: this.pageSize,
         Token: this.getinfo().token
       }
       let _this = this
       _this.$bus.$emit('loadingShow')
+      if (pageIndex === 1) {
+        this.categoryGames.push([])
+      }
       this.$https
         .fetchPost(url, this.secret(params))
         .then(res => {
@@ -210,17 +215,18 @@ export default {
             _this.InfoNav = res.data.Result.Category
             _this.games = res.data.Result.Data
             _this.status = res.data.Result.Status
+            _this.totalPage = res.data.Result.PageCount
             _this.init()
           }
           _this.$bus.$emit('loadingHide')
-          _this.gameNavSwiper()
-          _this.gameMainSwiper()
-          _this.$nextTick(function () {
-            if (_this.$route.name === 'gameinfo') {
-              _this.gameInfoNav.slideToLoop(1)
-              _this.gameInfoMain.slideToLoop(1)
-            }
-          })
+          // _this.gameNavSwiper()
+          // _this.gameMainSwiper()
+          // _this.$nextTick(function () {
+          //   if (_this.$route.name === 'gameinfo') {
+          //     _this.gameInfoNav.slideToLoop(1)
+          //     _this.gameInfoMain.slideToLoop(1)
+          //   }
+          // })
         })
         .catch(err => {
           console.log(err)
@@ -230,7 +236,7 @@ export default {
       this.plat = this.$route.query.plat
       this.type = this.$route.query.type
       let _this = this
-      this.categoryAllGames = []
+      // this.categoryAllGames = []
       // this.categoryPageIndex = []
       this.InfoNav.forEach((nav, navIndex) => {
         // console.log('aaa' + i)
@@ -265,8 +271,9 @@ export default {
       })
     },
     loadRecord (navIndex) {
-      let arr = this.categoryAllGames[navIndex].slice(this.categoryGames[navIndex].length, this.categoryGames[navIndex].length + this.pageSize)
-      this.$set(this.categoryGames, navIndex, this.categoryGames[navIndex].concat(arr))
+      // let arr = this.categoryAllGames[navIndex].slice(0, this.categoryGames[navIndex].length + this.pageSize)
+      this.games.map(item => { this.categoryGames[navIndex].push(item) })
+      this.$set(this.categoryGames, navIndex, this.categoryAllGames[navIndex])
       setTimeout(() => {
         this.$bus.$emit('loadingHide')
       }, 1000)
@@ -347,18 +354,23 @@ export default {
       let clientHeight = event.currentTarget.offsetHeight // 可见高度
       let scrollHeight = event.currentTarget.scrollHeight // 可见高度
       // let totalPage = Math.ceil(this.categoryAllGames[navIndex].length /this.pageSize)
-      if (scrollTop + clientHeight > scrollHeight - 50) {
-        if (this.categoryGames[navIndex] < this.categoryAllGames[navIndex]) {
+      console.log(scrollTop, clientHeight, scrollHeight, navIndex)
+      if (scrollTop / (scrollHeight - clientHeight) >= 1) {
+        if (this.currentPage === this.totalPage) {
+
+        } else if (this.currentPage < this.totalPage) {
           // 只要还有数据就要加载
           this.$bus.$emit('loadingShow')
+          this.currentPage++
           this.loadRecord(navIndex)
+          this.getSlotGame(navIndex, this.currentPage)
         }
       }
     }
   },
   //  生命周期 - 创建完成（可以访问当前this实例）
   created () {
-    this.getSlotGame()
+    this.getSlotGame(1)
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
