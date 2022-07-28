@@ -150,6 +150,7 @@ export default {
     },
     // 切换菜单
     navToggle (index) {
+      this.currentPage = 1
       this.active = index
       this.gameInfoNav.slideToLoop(index)
       this.gameInfoMain.slideToLoop(index)
@@ -198,7 +199,7 @@ export default {
       let url = `/api/${type}/` + this.$route.query.plat
       let params = {
         Category: navIndex === 1 ? 'hot' : '',
-        GameName: '',
+        GameNameEn: '',
         PageIndex: pageIndex,
         PageSize: this.pageSize,
         Token: this.getinfo().token
@@ -239,7 +240,7 @@ export default {
       // this.categoryAllGames = []
       // this.categoryPageIndex = []
       this.InfoNav.forEach((nav, navIndex) => {
-        // console.log('aaa' + i)
+        // console.log('aaa', nav)
         if (nav.value === '') {
           _this.categoryAllGames.push(this.games)
           _this.categoryGames.push([]) // categoryGames 初始化
@@ -354,7 +355,6 @@ export default {
       let clientHeight = event.currentTarget.offsetHeight // 可见高度
       let scrollHeight = event.currentTarget.scrollHeight // 可见高度
       // let totalPage = Math.ceil(this.categoryAllGames[navIndex].length /this.pageSize)
-      console.log(scrollTop, clientHeight, scrollHeight, navIndex)
       if (scrollTop / (scrollHeight - clientHeight) >= 1) {
         if (this.currentPage === this.totalPage) {
 
@@ -362,7 +362,7 @@ export default {
           // 只要还有数据就要加载
           this.$bus.$emit('loadingShow')
           this.currentPage++
-          this.loadRecord(navIndex)
+          // this.loadRecord(navIndex)
           this.getSlotGame(navIndex, this.currentPage)
         }
       }

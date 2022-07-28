@@ -107,12 +107,13 @@ export default {
         this.$router.back(-1)
         // 老虎机返回
       } else if (this.navLeft === 'slotsBack') {
-        this.$router.push({
-          name: 'login',
-          params: {
-            gameIndex: 1
-          }
-        })
+        // this.$router.push({
+        //   name: 'login',
+        //   params: {
+        //     gameIndex: 1
+        //   }
+        // })
+        this.$router.push('/center/home')
         // 左侧菜单
       } else {
         this.$emit('sideShow')
