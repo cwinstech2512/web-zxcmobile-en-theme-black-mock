@@ -4,7 +4,18 @@
     :class="[navLeft,'navLeft']"
     @click="leftEvent()"
   ></div>
-  <div class="navName">{{navBarName? navBarName:''}}</div>
+  <div class="navName">
+    <div class="logobar">
+      <div class="logobg">
+        <div class="logo">
+          <div class="logoA"
+                @click="returnHome()" />
+          <div class="logoB"
+                @click="returnHome()" />
+        </div>
+      </div>
+    </div>
+  </div>
   <div
     :class="[navRight,'navRight']"
     @click="rightEvent(navRight)"
@@ -84,7 +95,7 @@ export default {
   position: absolute;
   z-index: 99;
   top: 0;
-  background: #fff;
+  background: #B0C9D5;
 }
 .navBar.hide{
   display: none;
@@ -109,7 +120,7 @@ export default {
   background-size: 100% 100%;
 }
 .navBar .navName{
-  width: 4rem;
+  width: 2rem;
   height: 100%;
   margin: 0 auto;
   text-align: center;
@@ -146,5 +157,34 @@ export default {
 }
 .navBar .navRight.message i.on{
   display: block;
+}
+.navBar .logobar .logobg {
+  width: 110px;
+  height: 30px;
+  position: absolute;
+  /* margin: 0 auto; */
+}
+.navBar .logo {
+  width: 110px;
+  float: left;
+  /* left: 35px; */
+  top: 10px;
+  position: absolute;
+  cursor: pointer;
+}
+.navBar .logo .logoA {
+  width: 100px;
+  height: 24px;
+  background: url(../../../assets/images/nav/logoA.png);
+  animation: flipInY 1.2s ease-in-out;
+  margin: 0 auto;
+}
+.navBar .logo .logoB {
+  width: 60px;
+  height: 11px;
+  background: url(../../../assets/images/nav/logoB.png);
+  animation: slideInUp 1.5s ease-in-out;
+  margin-left: 24px;
+  margin-top: -4px;
 }
 </style>

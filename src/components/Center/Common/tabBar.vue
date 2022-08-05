@@ -93,7 +93,7 @@ export default {
   position: absolute;
   z-index: 99;
   bottom: 0;
-  background: #fff;
+  background: #B0C9D5;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
   display: block;
 }
@@ -114,7 +114,7 @@ export default {
 }
 .tabBar li a span{
   font-size: 0.2rem;
-  color: #636363;
+  color: #fff;
 }
 .tabBar li.on a span{
   font-size: 0.2rem;

@@ -188,7 +188,7 @@ export default {
 .game .game-nav {
   width: 100%;
   height: 1.2rem;
-  background: #fff;
+  background: #EBEBEB;
   border-radius: 0.1rem;
 }
 .game .game-nav li {

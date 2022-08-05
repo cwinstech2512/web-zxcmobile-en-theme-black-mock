@@ -3,6 +3,7 @@
   <navBar
     :navBarName='navBarName'
     :navLeft='navLeft'
+    :navRight='navRight'
     :navHide='navHide'
     @openSide='openSide'
   />
@@ -32,6 +33,7 @@ export default {
       showLoad: false,
       navBarName: '',
       navLeft: '',
+      navRight: '',
       sub: '',
       navHide: false,
       tabHide: false

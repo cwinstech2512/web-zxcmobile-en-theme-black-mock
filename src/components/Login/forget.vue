@@ -597,9 +597,10 @@ export default {
   position: absolute;
   top: 0;
   bottom: 0;
-  background: url(../../assets/images/allpage_bg@2x.jpg);
+  /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
-  background-attachment: fixed;
+  background-attachment: fixed; */
+  background: #fff;
 }
 .forget .forget-main {
   width: 100%;

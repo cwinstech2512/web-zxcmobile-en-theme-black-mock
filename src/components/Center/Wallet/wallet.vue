@@ -185,9 +185,10 @@ export default {
   position: absolute;
   top: 0;
   bottom: 0.98rem;
-  background: url(../../../assets/images/allpage_bg@2x.jpg);
+  /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
-  background-attachment: fixed;
+  background-attachment: fixed; */
+  background: #fff;
 }
 .wallet .walletNav {
   width: 100%;
@@ -360,6 +361,18 @@ export default {
 }
 .walletMain .swiper-slide >>> .way li.AlipaySmallAmount i {
   background: url(../../../assets/images/wallet/wallet_ualpaytocard_s_ico@2x.png);
+  background-size: 100% 100%;
+}
+.walletMain .swiper-slide >>> .way li.GcashToPay i {
+  background: url(../../../assets/images/wallet/wallet_gcash.png);
+  background-size: 100% 100%;
+}
+.walletMain .swiper-slide >>> .way li.GcashToQRcode i {
+  background: url(../../../assets/images/wallet/wallet_gcash.png);
+  background-size: 100% 100%;
+}
+.walletMain .swiper-slide >>> .way li.GcashToScan i {
+  background: url(../../../assets/images/wallet/wallet_gcash.png);
   background-size: 100% 100%;
 }
 .walletMain .swiper-slide >>> .aisle {

@@ -4,18 +4,31 @@
     <!-- 登录 -->
     <div class='login'
          v-show="isLogin">
-      <div class="logo"></div>
       <div class="login-main">
         <ul class="login-main-box">
+          <div class="logobar">
+            <div class="logobg">
+              <div class="logo">
+                <div class="logoA"
+                      @click="returnHome()" />
+                <div class="logoB"
+                      @click="returnHome()" />
+              </div>
+            </div>
+          </div>
           <li class="user">
-            <i /><input type="text"
-                   placeholder="Username"
-                   v-model.trim="loginForm.username">
+            <div class="input_block">
+              <i /><input type="text"
+                    placeholder="USERBANE"
+                    v-model.trim="loginForm.username">
+            </div>
           </li>
           <li class="key">
-            <i /><input type="password"
-                   placeholder="Password"
-                   v-model.trim="loginForm.password">
+            <div class="input_block">
+              <i /><input type="password"
+                    placeholder="PASSWORD"
+                    v-model.trim="loginForm.password">
+            </div>
           </li>
           <li class="vcode" style="display: none;">
             <i /><input type="text"
@@ -695,6 +708,11 @@ export default {
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     // sessionStorage.removeItem('GamePlat')
+    if (this.$route.params.goReg) {
+      this.isLogin = false
+    } else {
+      this.isLogin = true
+    }
   }
 }
 </script>
@@ -715,13 +733,39 @@ export default {
   top: 0;
   bottom: 1.5rem;
 }
-.login .logo {
+.login .logobar {
   width: 4.52rem;
   height: 1.3rem;
-  background: url(../../assets/images/login/login_logo@2x.png);
-  background-size: 100% 100%;
   margin: 1rem auto;
-  animation: fadeInDown 1s ease-in-out forwards alternate;
+}
+.login .logobar .logobg {
+  width: 4.52rem;
+  height: 1.3rem;
+  position: absolute;
+  /* margin: 0 auto; */
+}
+.login .logo {
+  width: 4.52rem;
+  float: left;
+  /* left: 35px; */
+  top: 10px;
+  position: absolute;
+  cursor: pointer;
+}
+.login .logo .logoA {
+  width: 193px;
+  height: 46px;
+  background: url(../../assets/images/login/logoA.png);
+  animation: flipInY 1.2s ease-in-out;
+  margin: 0 auto;
+}
+.login .logo .logoB {
+  width: 113px;
+  height: 21px;
+  background: url(../../assets/images/login/logoB.png);
+  animation: slideInUp 1.5s ease-in-out;
+  margin-left: 66px;
+  margin-top: -4px;
 }
 .login .login-main {
   width: 100%;
@@ -730,16 +774,24 @@ export default {
 }
 .login .login-main .login-main-box {
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 0.06rem;
   padding: 0.3rem;
   box-sizing: border-box;
+  margin-top: 30%;
 }
 .login .login-main .login-main-box li {
   width: 100%;
-  height: 1.1rem;
-  border-bottom: 0.02rem solid #dadde1;
+  height: 1.3rem;
+  /* border-bottom: 0.02rem solid #dadde1; */
   position: relative;
+}
+.login .login-main .login-main-box li .input_block{
+  background: rgba(235, 233, 233, 0.8);
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .login .login-main .login-main-box li.forget,
 .login .login-main .login-main-box li.text {
@@ -758,7 +810,7 @@ export default {
   width: 0.44rem;
   height: 0.44rem;
   position: absolute;
-  left: 0;
+  left: 0.3rem;
   top: 0.3rem;
 }
 .login .login-main .login-main-box li.user i {
@@ -794,9 +846,9 @@ export default {
 .login .login-main .login-main-box li input {
   width: 100%;
   height: 100%;
-  font-size: 0.3rem;
-  color: #fff;
-  padding: 0 0.6rem;
+  font-size: 0.35rem;
+  color: #9B9B9D;
+  padding: 0 0.8rem;
   box-sizing: border-box;
 }
 .login .login-main .login-main-box li input::-webkit-input-placeholder {
@@ -804,27 +856,27 @@ export default {
 }
 .login .login-main .login-main-box li.forget span {
   font-size: 0.25rem;
-  color: #b7b6b6;
+  color: #5B5B5C;
   line-height: 0.8rem;
-  margin-left: 0.6rem;
+  margin-left: 0.9rem;
 }
 .login .login-main .login-main-box li.forget em {
   font-size: 0.25rem;
-  color: #b7b6b6;
+  color: #5B5B5C;
   margin-top: 0.25rem;
   float: right;
 }
 .login .login-main .login-main-box li.btn button {
   width: 100%;
   height: 0.98rem;
-  border-radius: 0.06rem;
+  border-radius: 0.3rem;
   color: #fff;
   font-size: 0.3rem;
   background: #0088ff;
 }
 .login .login-main .login-main-box li.text span {
   line-height: 0.84rem;
-  color: #b7b6b6;
+  color: #5B5B5C;
   font-size: 0.3rem;
 }
 .login .login-main .login-main-box li.text span em {
@@ -837,8 +889,8 @@ export default {
   width: 100%;
   height: 0.98rem;
   border-radius: 0.06rem;
-  border: 0.02rem solid rgba(255, 255, 255, 0.2);
-  color: #b7b6b6;
+  border: 0.02rem solid rgba(91, 91, 92, 0.5);
+  color: #5B5B5C;
   font-size: 0.3rem;
   box-sizing: border-box;
   text-align: center;
@@ -902,7 +954,7 @@ export default {
 .loginbar .service-box .img span,
 .loginbar .download-box .img span {
   font-size: 0.2rem;
-  color: #b7b6b6;
+  color: #5B5B5C;
 }
 .loginbar .service-box .service {
   width: 1.82rem;
@@ -938,7 +990,7 @@ export default {
   background-color: #4267b2;
   height: 0.98rem;
   /* margin-top: 30px; */
-  border-radius: 0.06rem;
+  border-radius: 0.3rem;
   justify-content: center;
   align-items: center;
 }
