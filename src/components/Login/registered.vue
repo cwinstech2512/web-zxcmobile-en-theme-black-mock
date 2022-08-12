@@ -1,12 +1,21 @@
 <template>
   <div class='registered'>
-    <div class="logo"></div>
+    <div class="logobar">
+      <div class="logobg">
+        <div class="logo">
+          <div class="logoA"
+                @click="returnHome()" />
+          <div class="logoB"
+                @click="returnHome()" />
+        </div>
+      </div>
+    </div>
     <div class="reg-main"
          v-show="!def">
       <ul class="reg-main-nav">
         <template v-for="(navs, index) in regNav">
           <li :key="index"
-              v-if="index > 0"
+              v-if="index >= 0"
               :class="{'on': index==active}"
               @click="cutoverNav(index)">{{navs}}</li>
         </template>
@@ -70,7 +79,7 @@
           <!-- <label>Username：</label> -->
           <input v-model.trim="accountReg.UserName"
                  type="text"
-                 placeholder="Username"
+                 placeholder="USERNAME"
                  minlength="6"
                  maxlength="10">
         </li>
@@ -78,32 +87,32 @@
           <!-- <label>First Name：</label> -->
           <input v-model.trim="accountReg.FirstName"
                  type="text"
-                 placeholder="First Name">
+                 placeholder="FIRST NAME">
         </li>
         <li>
           <!-- <label>Last Name：</label> -->
           <input v-model.trim="accountReg.LastName"
                  type="text"
-                 placeholder="Last Name">
+                 placeholder="LAST NAME">
         </li>
         <li>
           <!-- <label>Mobile number：</label> -->
           <input v-model.trim="accountReg.Phone"
                  type="text"
-                 placeholder="Mobile number"
+                 placeholder="MOBILE NUMBER"
                  oninput="if(value.length > 11)value = value.slice(0, 11)">
         </li>
         <li>
           <!-- <label>Password：</label> -->
           <input v-model="accountReg.Pwd"
                  type="password"
-                 placeholder="Password">
+                 placeholder="PASSWORD">
         </li>
         <li>
           <!-- <label>Confirm password：</label> -->
           <input v-model="pwdConfirm"
                  type="password"
-                 placeholder="Confirm password">
+                 placeholder="CONFIRM PASSWORD">
         </li>
         <li v-show="!hasRaid">
           <label>邀请码：</label>
@@ -126,7 +135,7 @@
           <span>I have read and accept the<em @click="goRule">T&C</em></span>
         </li>
         <li class="btn">
-          <button @click="debounceSubmitAccountReg">Sign Up</button>
+          <button @click="debounceSubmitAccountReg">SIGN UP</button>
         </li>
         <li class="text">
           <span>Already an account?<em @click="goLogin">Play now</em></span>
@@ -136,7 +145,7 @@
             <span></span>
             <div
               type="button"
-              @click="sendFacebook()">Sign up with Facebook</div>
+              @click="sendFacebook()">SIGN UP WITH FACEBOOK</div>
           </div>
         </li>
       </ul>
@@ -170,7 +179,7 @@ export default {
     return {
       active: 1,
       hasRaid: false,
-      regNav: ['手机号注册', 'Open Account'],
+      regNav: ['OPEN ACCOUNT'],
       phoneReg: {
         UserName: '',
         Phone: '',
@@ -560,6 +569,44 @@ export default {
 }
 </script>
 <style scoped>
+* {
+  font-family: "Heiti TC","黑體-繁" !important;
+  font-size: 17px;
+}
+.registered .logobar {
+  width: 4.52rem;
+  height: 1.3rem;
+  margin: 3% auto;
+}
+.registered .logobar .logobg {
+  width: 4.52rem;
+  height: 1.3rem;
+  position: absolute;
+  /* margin: 0 auto; */
+}
+.registered .logo {
+  width: 4.52rem;
+  float: left;
+  /* left: 35px; */
+  top: 10px;
+  position: absolute;
+  cursor: pointer;
+}
+.registered .logo .logoA {
+  width: 193px;
+  height: 46px;
+  background: url(../../assets/images/login/logoA.png);
+  animation: flipInY 1.2s ease-in-out;
+  margin: 0 auto;
+}
+.registered .logo .logoB {
+  width: 113px;
+  height: 21px;
+  background: url(../../assets/images/login/logoB.png);
+  animation: slideInUp 1.5s ease-in-out;
+  margin-left: 66px;
+  margin-top: -4px;
+}
 .registered {
   width: 100%;
   overflow-x: hidden;
@@ -570,38 +617,40 @@ export default {
   padding: 0 0.3rem;
   box-sizing: border-box;
 }
-.registered .logo {
+/* .registered .logo {
   width: 2.7rem;
   height: 0.78rem;
   background: url(../../assets/images/login/login_logo@2x.png);
   background-size: 100% 100%;
   margin: 0.2rem auto;
-}
+} */
 .registered .reg-main,
 .registered .reg-end {
   width: 100%;
-  background: rgba(0, 26, 18, 0.46);
-  border-radius: 0.06rem;
-  padding: 0 0.3rem;
+  color: #5B5B5C;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 0.2rem;
+  padding: 0.4rem 0.8rem;
   box-sizing: border-box;
+  font-weight: 900;
 }
 .registered .reg-main .reg-main-nav {
   width: 100%;
   height: 1.2rem;
-  border-bottom: 0.02rem solid #444;
+  /* border-bottom: 0.02rem solid #444; */
 }
 .registered .reg-main .reg-main-nav li {
   float: left;
-  width: 50%;
+  width: 100%;
   height: 100%;
   line-height: 1.2rem;
   text-align: center;
-  color: #b3b3b3;
-  font-size: 0.3rem;
+  color: #858788;
+  font-size: 0.6rem;
 }
 .registered .reg-main .reg-main-nav li.on {
-  color: #007eff;
-  border-bottom: 0.02rem solid #007eff;
+  color: #858788;
+  /* border-bottom: 0.02rem solid #858788; */
 }
 .registered .reg-main .reg-main-box {
   width: 100%;
@@ -610,7 +659,7 @@ export default {
 .registered .reg-main .reg-main-box li {
   width: 100%;
   height: 1.1rem;
-  border-bottom: 0.02rem solid #444;
+  /* border-bottom: 0.02rem solid #444; */
   position: relative;
 }
 .registered .reg-main .reg-main-box li label {
@@ -623,13 +672,17 @@ export default {
   text-align: left;
 }
 .registered .reg-main .reg-main-box li input {
-  width: 80vw;
-  height: 100%;
-  font-size: 0.3rem;
-  color: #fff;
+  background: rgba(235, 233, 233, 0.8);
+  box-shadow: 0 1px rgba(208, 207, 207, 0.9);
+  border-radius: 0.3rem;
+  padding: 0.4rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 0.9rem;
 }
 .registered .reg-main .reg-main-box li input::-webkit-input-placeholder {
-  color: #b7b6b6;
+  color: #5B5B5C;
 }
 .registered .reg-main .reg-main-box li b {
   width: 2rem;
@@ -665,14 +718,14 @@ export default {
   height: 0.98rem;
   line-height: 0.98rem;
   text-align: center;
-  border-radius: 0.06rem;
+  border-radius: 0.3rem;
   color: #fff;
   font-size: 0.3rem;
   background: #0088ff;
 }
 .registered .reg-main .reg-main-box li.text span {
   line-height: 0.84rem;
-  color: #b7b6b6;
+  color: #565758;
   font-size: 0.3rem;
 }
 .registered .reg-main .reg-main-box li.text span em {
@@ -723,7 +776,7 @@ export default {
   background-color: #4267b2;
   height: 0.98rem;
   margin-top: 30px;
-  border-radius: 0.06rem;
+  border-radius: 0.3rem;
   justify-content: center;
   align-items: center;
 }

@@ -43,26 +43,32 @@
           <li class="forget">
             <i @click="remember =!remember"
                :class="{'on':remember}" />
-            <span @click="remember =!remember">Remember Me</span><em @click="forget">Forgot password?</em>
+            <span @click="remember =!remember">REMEMBER</span><br />
+            <i class="forget_ico" />
+            <span @click="remember =!remember">FORGOT PASSWORD?</span>
           </li>
           <li class="btn">
             <button @click="login">{{loginBtnText}}</button>
           </li>
-          <li class="text">
-            <span>New User?<em @click="goRegistered">Join Now</em></span>
+          <li class="newuser" @click="goRegistered">
+            <i class="newuser_ico" /><span>NEW USER?<em>JOIN NOW</em></span>
           </li>
           <li class="btn">
             <div class="RtdFacebookBtn">
               <span></span>
               <div
                 type="button"
-                @click="FBLogin()">Sign up with Facebook</div>
+                @click="FBLogin()">SIGN UP WITH FACEBOOK</div>
             </div>
           </li>
+          <li class="text lookin_moment" @click="visitor">
+            <i class="lookin_moment_ico" /><span>LOOKING AT THE MOMENT</span>
+          </li>
+          <li class="text download_app" v-show="appDown">
+            <i class="download_app_ico" />
+            <a target="_blank" :href="downUrl"><span>DOWNLOAD APP</span></a>
+          </li>
         </ul>
-        <div class="visitor"
-             @click="visitor">Looking at the moment
-        </div>
       </div>
     </div>
     <!-- 注册 -->
@@ -80,26 +86,23 @@
     <!-- 客服 -->
     <div class="service-box">
       <div class="img"
-           @click="service = !service">
+           @click="serv1">
         <i></i><span>24/7</span>
       </div>
       <transition name="slide-fade">
         <ul class="service"
             v-show="service">
           <li @click="serv1">LINE1</li>
-          <li @click="serv2">LINE2</li>
         </ul>
       </transition>
     </div>
     <!-- 下载app -->
-    <div class="download-box"
+    <!-- <div class="download-box"
          v-show="appDown">
       <div class="img">
         <i /><span>APP下载</span>
-        <a target="_blank"
-           :href="downUrl"></a>
       </div>
-    </div>
+    </div> -->
     <!-- 背景视频 -->
     <div class="video-wrap">
       <!-- <video muted autoplay loop src="static/video/test.mp4" webkit-playsinline playsinline/> -->
@@ -150,7 +153,7 @@ export default {
       },
       remember: false,
       inClickProcess: false,
-      loginBtnText: 'Login',
+      loginBtnText: 'LOGIN',
       appDown: false,
       vcodesrc: '',
       downUrl: 'https://app.18slot.app/'
@@ -232,7 +235,7 @@ export default {
      * @description 主线客服
      */
     serv1 () {
-      // this.sliaonow()
+      this.sliaonow()
     },
     /**
      * @description 次线客服
@@ -717,6 +720,9 @@ export default {
 }
 </script>
 <style scoped>
+* {
+  font-family: "Heiti TC","黑體-繁" !important;
+}
 .loginbar {
   width: 100%;
   position: absolute;
@@ -736,7 +742,7 @@ export default {
 .login .logobar {
   width: 4.52rem;
   height: 1.3rem;
-  margin: 1rem auto;
+  margin: 3% auto;
 }
 .login .logobar .logobg {
   width: 4.52rem;
@@ -774,8 +780,8 @@ export default {
 }
 .login .login-main .login-main-box {
   width: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 0.06rem;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 0.3rem;
   padding: 0.3rem;
   box-sizing: border-box;
   margin-top: 30%;
@@ -793,7 +799,15 @@ export default {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-.login .login-main .login-main-box li.forget,
+.login .login-main .login-main-box li.lookin_moment,
+.login .login-main .login-main-box li.download_app {
+  border-bottom: none;
+  height: 0.84rem;
+}
+.login .login-main .login-main-box li.forget {
+  border-bottom: none;
+  height: 1.3rem;
+}
 .login .login-main .login-main-box li.text {
   border-bottom: none;
   height: 0.84rem;
@@ -814,11 +828,11 @@ export default {
   top: 0.3rem;
 }
 .login .login-main .login-main-box li.user i {
-  background: url(../../assets/images/login/login_uer_ico@2x.png);
+  background: url(../../assets/images/login/ico_login_user_gray.png);
   background-size: 100% 100%;
 }
 .login .login-main .login-main-box li.key i {
-  background: url(../../assets/images/login/login_key_ico@2x.png);
+  background: url(../../assets/images/login/ico_login_pass_gray.png);
   background-size: 100% 100%;
 }
 .login .login-main .login-main-box li.vcode i {
@@ -834,20 +848,48 @@ export default {
   right: 5px;
 }
 .login .login-main .login-main-box li.forget i {
-  background: url(../../assets/images/login/login_choose_ico_gray@2x.png);
+  background: url(../../assets/images/login/ico_login_remember_gray.png);
   background-size: 100% 100%;
-  top: 0.2rem;
+  top: 0.03rem;
+}
+.login .login-main .login-main-box li.forget span {
+  line-height: 0.5rem !important;
+}
+.login .login-main .login-main-box li.forget i.forget_ico {
+  background: url(../../assets/images/login/ico_login_forget_gray.png);
+  background-size: 100% 100%;
+  top: 0.56rem;
 }
 .login .login-main .login-main-box li.forget i.on {
-  background: url(../../assets/images/login/login_choose_ico_blue@2x.png);
+  background: url(../../assets/images/login/ico_login_remember_blue.png);
   background-size: 100% 100%;
-  top: 0.2rem;
+  top: 0.03rem;
+}
+.login .login-main .login-main-box li.newuser {
+  height: 1rem;
+}
+.login .login-main .login-main-box li.newuser i{
+  background: url(../../assets/images/login/ico_login_newuser_gray.png);
+  background-size: 100% 100%;
+  top: 18%;
+}
+.login .login-main .login-main-box li.download_app i{
+  background: url(../../assets/images/login/ico_login_download_gray.png);
+  background-size: 100% 100%;
+  top: 20%;
+  left: 22%;
+}
+.login .login-main .login-main-box li.newuser span{
+  font-size: 0.25rem;
+  color: #5B5B5C;
+  line-height: 0.8rem;
+  margin-left: 0.9rem;
 }
 .login .login-main .login-main-box li input {
   width: 100%;
   height: 100%;
   font-size: 0.35rem;
-  color: #9B9B9D;
+  color: #727273;
   padding: 0 0.8rem;
   box-sizing: border-box;
 }
@@ -935,7 +977,7 @@ export default {
   bottom: 0.2rem;
 }
 .loginbar .service-box .img {
-  width: 0.6rem;
+  width: 1.6rem;
   overflow: hidden;
   position: absolute;
   z-index: 1;
@@ -950,11 +992,18 @@ export default {
   background: rgba(255, 255, 255, 0.2)
     url(../../assets/images/login/registered_Customer_ico@2x.png);
   background-size: 100% 100%;
+  float: right;
 }
 .loginbar .service-box .img span,
 .loginbar .download-box .img span {
-  font-size: 0.2rem;
+  font-size: 0.35rem;
   color: #5B5B5C;
+  top: 10%;
+  position: absolute;
+  left: 0;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 0.2rem;
+  padding: 0.1rem;
 }
 .loginbar .service-box .service {
   width: 1.82rem;
