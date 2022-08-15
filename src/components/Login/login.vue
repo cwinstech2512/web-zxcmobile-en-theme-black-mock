@@ -738,6 +738,7 @@ export default {
   position: absolute;
   top: 0;
   bottom: 1.5rem;
+  top: 0.8rem;
 }
 .login .logobar {
   width: 4.52rem;

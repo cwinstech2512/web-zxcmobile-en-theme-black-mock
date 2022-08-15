@@ -624,10 +624,13 @@ export default {
   background-size: 100% 100%;
   margin: 0.2rem auto;
 } */
+.registered .reg-main .reg-main-box li input {
+  color: #727273;
+}
 .registered .reg-main,
 .registered .reg-end {
   width: 100%;
-  color: #5B5B5C;
+  color: #727273;
   background: rgba(255, 255, 255, 0.55);
   border-radius: 0.2rem;
   padding: 0.4rem 0.8rem;
@@ -645,7 +648,7 @@ export default {
   height: 100%;
   line-height: 1.2rem;
   text-align: center;
-  color: #858788;
+  color: #9fa4a6;
   font-size: 0.6rem;
 }
 .registered .reg-main .reg-main-nav li.on {
