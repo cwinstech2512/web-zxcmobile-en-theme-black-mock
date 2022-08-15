@@ -45,7 +45,7 @@
                :class="{'on':remember}" />
             <span @click="remember =!remember">REMEMBER</span><br />
             <i class="forget_ico" />
-            <span @click="remember =!remember">FORGOT PASSWORD?</span>
+            <span @click="forget">FORGOT PASSWORD?</span>
           </li>
           <li class="btn">
             <button @click="login">{{loginBtnText}}</button>

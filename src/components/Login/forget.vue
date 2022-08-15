@@ -9,13 +9,13 @@
         <div class="forget-main-step-box">
           <ul>
             <li>
-              <label>Username：</label>
+              <label></label>
               <input
                 type="text"
                 name="readonly"
                 maxlength="12"
                 v-model="gameName"
-                placeholder=""
+                placeholder="USERNAME"
               />
             </li>
           </ul>
@@ -24,23 +24,29 @@
       </div>
       <!-- 第二步 -->
       <div class="forget-main-step" v-show="step==1">
-        <span>Select reset password method</span>
+        <span>SELECT RESET PASSWORD METHOD</span>
         <div class="forget-main-step-box">
           <ul>
             <li @click="nextStep('b1')">
-              <em>Mobile to retrieve your password</em>
-              <i></i>
+              <div>
+                <em>MOBILE TO RETRIEVE YOUR PASSWORD</em>
+                <i></i>
+              </div>
             </li>
             <li @click="nextStep('b2')">
-              <em>Email to retrieve your password</em>
-              <i></i>
+              <div>
+                <em>MOBILE TO RETRIEVE YOUR PASSWORD</em>
+                <i></i>
+              </div>
             </li>
             <li @click="nextStep('b3')">
-              <em>Security PIN to retrieve your password</em>
-              <i></i>
+              <div>
+                <em>SECURITY PIN TO RETRIEVE YOUR PASSWORD</em>
+                <i></i>
+              </div>
             </li>
           </ul>
-          <span @click="prevStep('a')">Back to previous step</span>
+          <span class="btn" @click="prevStep('a')">BACK TO PREVIOUS STEP</span>
         </div>
       </div>
       <!-- 第三步 -->
@@ -591,6 +597,9 @@ export default {
 }
 </script>
 <style scoped>
+* {
+  font-family: "Heiti TC","黑體-繁" !important;
+}
 .forget {
   width: 100%;
   overflow: hidden;
@@ -617,10 +626,16 @@ export default {
 .forget .forget-main .forget-main-step {
   width: 100%;
   overflow: hidden;
+  color: #727273;
+  background: rgba(242, 242, 241, 0.55);
+  border-radius: 0.2rem;
+  padding: 0.4rem 0.4rem;
+  box-sizing: border-box;
+  font-weight: 900;
 }
 .forget .forget-main .forget-main-step span {
   display: block;
-  font-size: 0.2rem;
+  font-size: 0.36rem;
   color: #6b6b6b;
   margin-bottom: 0.2rem;
 }
@@ -629,7 +644,7 @@ export default {
   box-sizing: border-box;
   padding: 0 0.3rem 0.3rem 0.3rem;
   border-radius: 0.06rem;
-  background: #fff;
+  /* background: #fff; */
   overflow: hidden;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box span {
@@ -646,8 +661,9 @@ export default {
 .forget .forget-main .forget-main-step .forget-main-step-box ul li {
   width: 100%;
   height: 0.98rem;
-  border-bottom: 0.02rem solid #ddd;
+  /* border-bottom: 0.02rem solid #ddd; */
   position: relative;
+  padding: 0.2rem 0rem;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box ul li.hideline {
   border-bottom: none;
@@ -657,13 +673,23 @@ export default {
   width: 0.3rem;
   height: 0.3rem;
   float: right;
-  margin-top: 0.4rem;
+  margin-top: 0.24rem;
   background: url(../../assets/images/login/user_fogotpassword_arrow_ico@2x.png);
   background-size: 100% 100%;
 }
+.forget .forget-main .forget-main-step .forget-main-step-box ul li > div {
+  background: rgb(252, 252, 251);
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.1rem;
+  max-height: 83%;
+  width: 95%;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
 .forget .forget-main .forget-main-step .forget-main-step-box ul li em {
-  line-height: 0.98rem;
-  font-size: 0.3rem;
+  line-height: 0.8rem;
+  font-size: 0.25rem;
   color: #6b6b6b;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box ul li b {
@@ -692,12 +718,24 @@ export default {
   width: 1.6rem;
   color: #6b6b6b;
 }
-.forget .forget-main .forget-main-step .forget-main-step-box ul li input {
+/* .forget .forget-main .forget-main-step .forget-main-step-box ul li input {
   width: 4.1rem;
   height: 0.98rem;
   font-size: 0.3rem;
   color: #2b2b2b;
   line-height: 0.98rem;
+} */
+.forget .forget-main .forget-main-step .forget-main-step-box ul li input {
+  width: 4.1rem;
+  height: 0.98rem;
+  background: rgba(235, 233, 233, 0.8);
+  box-shadow: 0 1px rgba(208, 207, 207, 0.9);
+  border-radius: 0.3rem;
+  padding: 0.4rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 0.9rem;
 }
 .forget
   .forget-main
@@ -717,7 +755,7 @@ export default {
   text-align: center;
   line-height: 0.98rem;
   font-size: 0.3rem;
-  border-radius: 0.06rem;
+  border-radius: 0.3rem;
   margin: 0.8rem 0 0.4rem 0;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box .success {
