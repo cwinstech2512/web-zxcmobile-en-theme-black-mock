@@ -48,6 +48,9 @@ export default {
 }
 </script>
 <style scoped>
+* {
+  font-family: "Heiti TC","黑體-繁" !important;
+}
 .service{
   width: 100%;
   overflow-x: hidden;
@@ -61,26 +64,25 @@ export default {
   background: #fff;
 }
 .service .service-box{
-  width: 4rem;
+  width: 4.6rem;
   height: 2.56rem;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -1.28rem;
-  margin-left: -2rem;
+  transform: translate(-50%, -50%);
 }
 .service .service-box button{
-  width: 4rem;
+  width: 4.6rem;
   height: 0.98rem;
   margin: 0.15rem 0;
   color: #fff;
-  font-size: 0.3rem;
+  font-size: 0.4rem;
   border-radius: 0.06rem;
 }
 .service .service-box button.first{
-  background: #0088ff;
+  background: #e2e2e1;
 }
 .service .service-box button.second{
-  background: #00c389;
+  background: #d6e4ea;
 }
 </style>

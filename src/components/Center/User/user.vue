@@ -1,119 +1,116 @@
 <template>
 <div class='user'>
-  <div class="user-top">
-    <div class="userbar">
-      <div class="name" @click="showAvatar()">
-        <i :style="{backgroundImage: 'url('+baseUrl+'/Image/avatar/'+ [avatarKey? avatarKey:1] +'.jpg)',backgroundSize:'100% 100%'}"></i>
-        <em>{{account}}</em>
-        <span :class="[VipLevelName,'level']">
-        <i></i><em>{{vipName? vipName:'普通会员'}}</em>
-        </span>
+  <div class="user-card">
+    <div class="user-top">
+      <div class="userbar-act">
+        <div class="userbar">
+          <div class="name" @click="showAvatar()">
+            <i :style="{backgroundImage: 'url('+baseUrl+'/Image/avatar/'+ [avatarKey? avatarKey:1] +'.jpg)',backgroundSize:'100% 100%'}"></i>
+            <div>
+              <em>{{account}}</em>
+              <span :class="[VipLevelName,'level']">
+              <i></i><em>{{vipName? vipName:'普通会员'}}</em>
+              </span>
+              <em>Balance：<countTo :endVal='parseFloat(zxc)' :duration=1000 :decimals=2></countTo></em>
+            </div>
+          </div>
+          <div class="hotPromo" @click="promoEnter" v-if="topmenu.length>0">{{topmenu[0].Name}}</div>
+        </div>
       </div>
-      <div class="hotPromo" @click="promoEnter" v-if="topmenu.length>0">{{topmenu[0].Name}}</div>
     </div>
-    <ul class="balanceBar">
-      <li>
-        <i/>
-        <em>My Wallet</em>
-      </li>
-      <li>
-        <h2>Balance</h2>
-        <countTo :endVal='parseFloat(zxc)' :duration=1000 :decimals=2></countTo>
-      </li>
-    </ul>
-  </div>
-  <div class="user-bottom">
-    <ul class="financialBar">
-      <li
-        v-for="(mbars1, index) in mainBar1"
-        :key="index"
-        :class="mbars1.code"
-        @click="menuJump1(mbars1.code,index)"
-      >
-        <i></i>
-        <em>{{mbars1.name}}</em>
-      </li>
-    </ul>
-    <ul class="mainBar" ref="box_mainBar2">
-      <li
-        v-for="(mbars2, index) in mainBar2"
-        :key="index"
-        :class="mbars2.code"
-        @click="menuJump2(mbars2.code,index)"
-      >
-        <i></i>
-        <em>{{mbars2.name}}</em>
-      </li>
-    </ul>
-    <ul class="mainBar">
-      <li
-        v-for="(mbars3, index) in mainBar3"
-        :key="index"
-        :class="mbars3.Code"
-        @click="menuJump3(mbars3.Code,index)"
-      >
-        <i></i>
-        <em>{{mbars3.Name}}</em>
-      </li>
-    </ul>
-    <div class="signOut" @click="signOut">Logout</div>
-  </div>
-  <div class="avatarBar" v-show="avatarShow" @click.self="toggleAvatar">
-    <ul>
-      <li
-        v-for="(avatar, index) in avatarList"
-        :key="index"
-        @click="ChangeAvatar(index)"
-        :style="{backgroundImage: 'url('+ baseUrl + avatar.value + ')',backgroundSize:'100% 100%'}"
-        ><i :class="{on: index == avatarindex}"></i></li>
-    </ul>
-  </div>
-  <div v-if="highStepMax > 0" class="introjs-overlay">
-    <div class="introjs-tip">
-      <ul v-if="highStepMax == 2">
-        <li>亲爱的用户您好：</li>
-        <li>充值前需要先完成【绑定银行卡及验证手机号】</li>
-        <li>您当前还未绑定银行卡及验证手机号</li>
+    <div class="user-bottom">
+      <ul class="financialBar">
+        <li
+          v-for="(mbars1, index) in mainBar1"
+          :key="index"
+          :class="mbars1.code"
+          @click="menuJump1(mbars1.code,index)"
+        >
+          <i></i>
+          <em>{{mbars1.name}}</em>
+        </li>
       </ul>
-      <ul v-else-if="highStepMax > 0 && highStep == 1">
-        <li>亲爱的用户您好：</li>
-        <li>充值前需要先完成【绑定银行卡及验证手机号】</li>
-        <li>您当前还未验证手机号</li>
+      <ul class="mainBar" ref="box_mainBar2">
+        <li
+          v-for="(mbars2, index) in mainBar2"
+          :key="index"
+          :class="mbars2.code"
+          @click="menuJump2(mbars2.code,index)"
+        >
+          <i></i>
+          <em>{{mbars2.name}}</em>
+        </li>
       </ul>
-      <ul v-else-if="highStepMax > 0 && highStep == 2">
-        <li>亲爱的用户您好：</li>
-        <li>充值前需要先完成【绑定银行卡及验证手机号】</li>
-        <li>您当前还未绑定银行卡</li>
+      <ul class="mainBar">
+        <li
+          v-for="(mbars3, index) in mainBar3"
+          :key="index"
+          :class="mbars3.Code"
+          @click="menuJump3(mbars3.Code,index)"
+        >
+          <i></i>
+          <em>{{mbars3.Name}}</em>
+        </li>
+      </ul>
+      <div class="signOut" @click="signOut">LOGOUT</div>
+    </div>
+    <div class="avatarBar" v-show="avatarShow" @click.self="toggleAvatar">
+      <ul>
+        <li
+          v-for="(avatar, index) in avatarList"
+          :key="index"
+          @click="ChangeAvatar(index)"
+          :style="{backgroundImage: 'url('+ baseUrl + avatar.value + ')',backgroundSize:'100% 100%'}"
+          ><i :class="{on: index == avatarindex}"></i></li>
       </ul>
     </div>
-    <div class="introjs-button">
-      <img
-        src="../../../assets/images/intro/confirm.png"
-        class="confirm"
-        @click="closeIntro()"
-      />
+    <div v-if="highStepMax > 0" class="introjs-overlay">
+      <div class="introjs-tip">
+        <ul v-if="highStepMax == 2">
+          <li>亲爱的用户您好：</li>
+          <li>充值前需要先完成【绑定银行卡及验证手机号】</li>
+          <li>您当前还未绑定银行卡及验证手机号</li>
+        </ul>
+        <ul v-else-if="highStepMax > 0 && highStep == 1">
+          <li>亲爱的用户您好：</li>
+          <li>充值前需要先完成【绑定银行卡及验证手机号】</li>
+          <li>您当前还未验证手机号</li>
+        </ul>
+        <ul v-else-if="highStepMax > 0 && highStep == 2">
+          <li>亲爱的用户您好：</li>
+          <li>充值前需要先完成【绑定银行卡及验证手机号】</li>
+          <li>您当前还未绑定银行卡</li>
+        </ul>
+      </div>
+      <div class="introjs-button">
+        <img
+          src="../../../assets/images/intro/confirm.png"
+          class="confirm"
+          @click="closeIntro()"
+        />
+      </div>
+      <div class="introjs-arrow">
+        <img
+          src="../../../assets/images/intro/bind_phone.png"
+          class="bind_phone"
+          v-if="highStep == 1"
+        />
+        <img
+          src="../../../assets/images/intro/bind_bank.png"
+          class="bind_bank"
+          v-if="highStep == 2"
+        />
+      </div>
     </div>
-    <div class="introjs-arrow">
-      <img
-        src="../../../assets/images/intro/bind_phone.png"
-        class="bind_phone"
-        v-if="highStep == 1"
-      />
-      <img
-        src="../../../assets/images/intro/bind_bank.png"
-        class="bind_bank"
-        v-if="highStep == 2"
-      />
-    </div>
-  </div>
-  <div v-if="highStepMax > 0" class="introjs-highlight" :style="'top:'+highlight.y+'px;height:'+highlight.height+'px;'">
-    <div class="blank" v-if="highStep == 2">
-      <i></i>
-      <em>银行卡</em>
-    </div>
-    <div class="phone" v-if="highStep == 1">
-      <i></i>
-      <em>手机验证</em>
+    <div v-if="highStepMax > 0" class="introjs-highlight" :style="'top:'+highlight.y+'px;height:'+highlight.height+'px;'">
+      <div class="blank" v-if="highStep == 2">
+        <i></i>
+        <em>银行卡</em>
+      </div>
+      <div class="phone" v-if="highStep == 1">
+        <i></i>
+        <em>手机验证</em>
+      </div>
     </div>
   </div>
   <!-- <step :highlight="highlight"/> -->
@@ -146,11 +143,11 @@ export default {
       mainBar1: [
         {
           code: 'deposit',
-          name: 'Deposit'
+          name: 'DEPOSIT'
         },
         {
           code: 'transfer',
-          name: 'Transfer'
+          name: 'TRANSFER'
         },
         {
           code: 'withdrawal',
@@ -635,6 +632,9 @@ export default {
 }
 </script>
 <style scoped>
+* {
+  font-family: "Heiti TC","黑體-繁" !important;
+}
 .user{
   width: 100%;
   overflow: hidden;
@@ -648,6 +648,16 @@ export default {
   background-attachment: fixed; */
   background: #fff;
 }
+.user .user-card {
+  background: #ececeb;
+  margin: 5%;
+  border-radius: 0.1rem;
+  padding: 2% 0;
+}
+.user .userbar-act {
+  background: #fff;
+  margin-bottom: 16px;
+}
 .user .user-top{
   width: 100%;
   padding: 0 0.3rem;
@@ -655,42 +665,50 @@ export default {
 }
 .user .user-top .userbar{
   width: 100%;
-  height: 1.4rem;
+  /* height: 100%; */
   padding-top: 0.3rem;
+  padding: 0.3rem 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  display: flex;
+}
+.user .user-top .userbar .name > div{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2%;
 }
 .user .user-top .userbar .name{
-  width: 3.4rem;
+  width: 100%;
   float: left;
   position:relative;
+  display: flex;
+  flex-direction: row;
+  padding: 0 3%;
 }
 .user .user-top .userbar .name i{
   display: block;
   border-radius: 50%;
   float: left;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
+.user .user-top .userbar .name em > span,
 .user .user-top .userbar .name em{
-  float: left;
-  margin-left: 0.2rem;
-  font-size: 0.3rem;
+  font-size: 0.37rem;
   font-weight: bold;
-  color: #2b2b2b;
+  color: #063246;
 }
 .user .user-top .userbar .name .level{
   float: left;
   height: 0.4rem;
-  position: absolute;
-  bottom: 0;
-  left: 1rem;
 }
 .user .user-top .userbar .name .level em{
   margin-left: 0;
-  font-size: 0.25rem;
-  font-weight: normal;
+  font-size: 0.37rem;
+  font-weight: bold;
   line-height: 0.4rem;
-  color: #6b6b6b;
+  color: #063246;
 }
 .user .user-top .userbar .name .level i{
   width: 0.4rem;
@@ -791,6 +809,9 @@ export default {
   padding: 0 0.3rem;
   box-sizing: border-box;
 }
+.user .user-bottom .financialBar{
+  background: #adc9d6 !important;
+}
 .user .user-bottom .mainBar,
 .user .user-bottom .financialBar{
   width: 100%;
@@ -799,18 +820,25 @@ export default {
   background: #fff;
   border-radius: 0.06rem;
 }
+.user .user-bottom .financialBar li.transfer {
+  width: 2.2rem;
+}
+.user .user-bottom .financialBar li.withdrawal {
+  width: 1.9rem;
+}
 .user .user-bottom .financialBar li{
   float: left;
-  width: 2.3rem;
+  width: 2rem;
   height: 1.1rem;
   text-align: center;
 }
 .user .user-bottom .financialBar li em{
-  font-size: 0.25rem;
+  font-size: 0.28rem;
   float: left;
   line-height: 1.1rem;
-  margin-left: 0.2rem;
-  color: #2b2b2b;
+  margin-left: 0.05rem;
+  color: #fff;
+  font-weight: bold;
 }
 .user .user-bottom .financialBar li i{
   display: block;
@@ -839,7 +867,7 @@ export default {
 }
 .user .user-bottom .mainBar li{
   float: left;
-  width: 2.3rem;
+  width: 2rem;
   height: 1.6rem;
   text-align: center;
 }
@@ -907,10 +935,11 @@ export default {
   height: 0.98rem;
   overflow: hidden;
   margin-bottom: 0.2rem;
-  background: #fff;
-  border-radius: 0.06rem;
-  font-size: 0.3rem;
-  color: #ea2222;
+  background: #0097f6;
+  border-radius: 0.38rem;
+  font-size: 0.4rem;
+  font-weight: bold;
+  color: #fff;
   text-align: center;
   line-height: 0.98rem;
 }
