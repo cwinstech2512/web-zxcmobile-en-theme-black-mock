@@ -69,7 +69,10 @@ export default {
         .then(res => {
           if (res.data.Success === true) {
             // console.log('raid_verify', res.data)
-            if (res.data.Status === 403 || res.data.Status === 405) {
+            if (res.data.Status === 403) {
+              sessionStorage.setItem('ip', res.data.Result.IP)
+              this.$router.push('/forbidden')
+            } else if (res.data.Status === 405) {
               this.$router.push('/errorinfo')
             } else {
               scode = res.data.Result.Scode // 获取服务器检测后的代理编码

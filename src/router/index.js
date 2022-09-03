@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/Login/login.vue'
 import Center from '@/components/Center/center.vue'
 import Error from '@/components/Center/Common/errorinfo.vue'
+import Forbidden from '@/components/Center/Common/Forbidden.vue'
 
 Vue.use(Router)
 
@@ -200,6 +201,11 @@ const router = new Router({
         }
 
       ]
+    },
+    {
+      path: '/forbidden',
+      name: 'Forbidden',
+      component: Forbidden
     },
     {
       path: '*',
