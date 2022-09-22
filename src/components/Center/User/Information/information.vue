@@ -3,20 +3,20 @@
     <div class="information-bar">
       <ul>
         <li>
-          <label>Username:</label>
+          <label>USERNAME</label>
           <em>{{userName}}</em>
         </li>
         <li class="hide"
             @click="changePW()">
-          <label>Password:</label>
-          <em class="active">Edit</em>
+          <label>PASSWORD</label>
+          <em class="active">EDIT</em>
         </li>
       </ul>
     </div>
     <div class="information-bar">
       <ul>
         <li>
-          <label>First name：</label>
+          <label>FIRST NAME</label>
           <em class="active"
               @click="modifyName"
               v-show="!VerifyRealName && userModel.RealName!==null && !haveChangedRealName">{{VerifyText}}</em>
@@ -29,14 +29,14 @@
           <em v-if="VerifyRealName">{{VerifyRealName}}</em>
         </li>
         <li>
-          <label>Title:</label>
+          <label>TITLE</label>
           <select v-model="userModel.Gender">
             <option v-bind:value="1">男</option>
             <option v-bind:value="0">女</option>
           </select>
         </li>
         <li>
-          <label>Birthday:</label>
+          <label>BIRTHDAY</label>
           <input type="date"
                  value=""
                  v-model="userModel.BirthDay"
@@ -44,17 +44,17 @@
           <em v-show="userModel.BirthDay!==''">{{userModel.BirthDay}}</em>
         </li>
         <li>
-          <label>Messenger:</label>
+          <label>MESSAGER</label>
           <input type="text"
                  value=""
                  v-model="userModel.QQ"
                  placeholder="" />
         </li>
         <li>
-          <label>Mobile:</label>
+          <label>MOBILE</label>
           <em v-show="!VerifyPhone"
               class="active"
-              @click="modifyPhone">Bind</em>
+              @click="modifyPhone">BIND</em>
           <input type="text"
                  value=""
                  v-model="userModel.Phone"
@@ -64,10 +64,10 @@
               @click="modifyPhone">{{VerifyPhone}}</em>
         </li>
         <li>
-          <label>Email:</label>
+          <label>EMAIL</label>
           <em class="active"
               v-if="!VerifyEmail"
-              @click="modifyMail">Bind</em>
+              @click="modifyMail">BIND</em>
           <input type="text"
                  value=""
                  v-model="userModel.Email"
@@ -77,9 +77,9 @@
               @click="modifyMail">{{VerifyEmail}}</em>
         </li>
         <li>
-          <label>Security PIN:</label>
+          <label>SECURITY PIN</label>
           <em class="active"
-              @click="security">Edit</em>
+              @click="security">EDIT</em>
         </li>
       </ul>
       <button @click="dbSaveInfo">{{saveBtnText}}</button>
@@ -110,7 +110,7 @@ export default {
       VerifyRealName: '',
       VerifyPhone: '',
       VerifyEmail: '',
-      VerifyText: 'Verify',
+      VerifyText: 'VERIFY',
       tempRealName: '',
       haveChangedRealName: false,
       editPwdPlats: [],
@@ -336,6 +336,10 @@ export default {
 }
 </script>
 <style scoped>
+* {
+  font-family: "Heiti TC","黑體-繁" !important;
+  font-size: 17px;
+}
 .information {
   width: 100%;
   padding: 0 0.3rem;
@@ -363,20 +367,27 @@ export default {
   overflow: hidden;
 }
 .information .information-bar ul li {
+  background: rgba(235, 233, 233, 0.8);
+  box-shadow: 0 1px rgb(208 207 207 / 90%);
+  border-radius: 0.3rem;
+  padding: 0 0.3rem;
+  box-sizing: border-box;
   width: 100%;
-  height: 0.98rem;
-  line-height: 0.98rem;
-  border-bottom: 0.02rem solid #ddd;
+  height: 0.9rem;
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .information .information-bar ul li.hide {
   border-bottom: none;
 }
 .information .information-bar ul li label {
-  font-size: 0.3rem;
+  font-size: 0.35rem;
   color: #6b6b6b;
 }
 .information .information-bar ul li em {
-  font-size: 0.3rem;
+  font-size: 0.35rem;
   color: #aaa;
   float: right;
 }
@@ -389,9 +400,10 @@ export default {
   border: none;
   width: 0.8rem;
   height: 0.96rem;
-  font-size: 0.3rem;
+  font-size: 0.35rem;
   color: #6b6b6b;
-  background: #fff;
+  background: none !important;
+  text-align: right;
 }
 .information .information-bar ul li input {
   width: 2.4rem;
@@ -415,5 +427,6 @@ export default {
   color: #fff;
   font-size: 0.3rem;
   margin: 0.8rem 0;
+  border-radius: 0.3rem;
 }
 </style>

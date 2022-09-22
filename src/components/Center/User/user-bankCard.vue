@@ -101,7 +101,7 @@ export default {
   background-size: 100% 100%;
 }
 .bankCard .card .top h2{
-  color: #fff;
+  color: #717170;
   font-size: 0.35rem;
   font-weight: normal;
   float: left;
@@ -113,21 +113,29 @@ export default {
   height: 1rem;
 }
 .bankCard .card .bottom span{
-  color: #fff;
+  color: #717170;
   font-size: 0.4rem;
   font-weight: normal;
   margin-left: 0.3rem;
 }
 .bankCard .card:nth-child(1n+1){
-  background: url(../../../assets/images/account/bankcard_red@2x.png);
+  background: url(../../../assets/images/account/bankcard_style1@1x.png);
   background-size: 100% 100%;
 }
 .bankCard .card:nth-child(2n+2){
-  background: url(../../../assets/images/account/bankcard_green@2x.png);
+  background: url(../../../assets/images/account/bankcard_style2@1x.png);
   background-size: 100% 100%;
 }
 .bankCard .card:nth-child(3n+3){
-  background: url(../../../assets/images/account/bankcard_blue@2x.png);
+  background: url(../../../assets/images/account/bankcard_style3@1x.png);
+  background-size: 100% 100%;
+}
+.bankCard .card:nth-child(4n+4){
+  background: url(../../../assets/images/account/bankcard_style4@1x.png);
+  background-size: 100% 100%;
+}
+.bankCard .card:nth-child(5n+5){
+  background: url(../../../assets/images/account/bankcard_style5@1x.png);
   background-size: 100% 100%;
 }
 </style>

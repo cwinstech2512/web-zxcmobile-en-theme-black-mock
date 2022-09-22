@@ -1,8 +1,8 @@
 <template>
 <div class="bankSelect">
   <div class="redirect_group">
-    <div class="redirectBtn" @click="redirect(0)">Bank Card</div>
-    <div class="redirectBtn" @click="redirect(1)">Crypto</div>
+    <div class="redirectBtn primaryBtn" @click="redirect(0)">Bank Card</div>
+    <div class="redirectBtn normalBtn" @click="redirect(1)">Crypto</div>
     <!-- <div class="normalBtn redirectBtn">虚拟钱包</div> -->
   </div>
 </div>
@@ -94,11 +94,17 @@ export default {
   height: 0.98rem;
   overflow: hidden;
   margin-bottom: 0.7rem;
-  background: #fff;
+  color: #ffffff;
   border-radius: 0.06rem;
   font-size: 0.5rem;
   text-align: center;
   line-height: 0.98rem;
+  border-radius: 0.08rem;
+  font-size: 0.4rem;
+  font-weight: bold;
+}
+.primaryBtn {
+  background: #0097f6 !important;
 }
 .normalBtn{
   background: #ABB5BE !important;
