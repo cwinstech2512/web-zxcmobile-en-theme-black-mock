@@ -158,6 +158,12 @@ export default new Router({
       name: 'signinbrother',
       component: (resolve) => require(['@/components/External/Activity/SignInBrother/SignInBrother.vue'], resolve)
     },
+    // 抽獎吧兄弟
+    {
+      path: '/LuckyDrawBonus',
+      name: 'LuckyDrawBonus',
+      component: (resolve) => require(['@/components/External/Activity/LuckyDrawBonus/LuckyDrawBonus.vue'], resolve)
+    },
     { // 虛擬幣免費體驗金
       path: '/USDTexperience',
       name: 'USDTexperience',

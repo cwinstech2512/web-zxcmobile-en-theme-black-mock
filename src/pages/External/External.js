@@ -19,6 +19,7 @@ import validator from 'vue-validator'
 import loading from '../../plugin/loading'
 import VueSweetalert2 from 'vue-sweetalert2'
 import lottery from 'vue-lottery'
+import scroll from 'vue-seamless-scroll'
 
 import Es6Promise from 'es6-promise'
 require('es6-promise').polyfill()
@@ -36,6 +37,7 @@ Vue.use(extension)
 Vue.use(platmain)
 Vue.use(validator)
 Vue.use(loading)
+Vue.use(scroll)
 Vue.use(VueSweetalert2)
 Vue.use(lottery)
 Vue.config.productionTip = false
