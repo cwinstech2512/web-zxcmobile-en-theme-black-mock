@@ -50,11 +50,11 @@ export default {
         //   name: '体育',
         //   list: []
         // },
-        // {
-        //   code: 'Live',
-        //   name: '娱乐场',
-        //   list: []
-        // },
+        {
+          code: 'Live',
+          name: 'Live',
+          list: []
+        },
         // {
         //   code: 'Lotto',
         //   name: '彩票',
@@ -355,6 +355,14 @@ export default {
 }
 #game-box .swiper-slide span.OG {
   background: url(../../../assets/images/home/home_game_og@2x.jpg);
+  background-size: 100% 100%;
+}
+#game-box .swiper-slide.Live span.AE {
+  background: url(../../../assets/images/home/home_game_live_ae.jpg);
+  background-size: 100% 100%;
+}
+#game-box .swiper-slide.Live span.EVO {
+  background: url(../../../assets/images/home/home_game_live_evo.jpg);
   background-size: 100% 100%;
 }
 #game-box .Fish span.AG {

@@ -8,7 +8,7 @@
     @openSide='openSide'
   />
   <div class="no_page">
-    <i></i><p>您的页面已经遗失，请返回上一页！</p>
+    <i></i><p>The page you were looking for was moved or doesn't exist. <br>Please return back to the previous page!</p>
   </div>
 </div>
 </template>
