@@ -458,8 +458,8 @@ export default {
 @import "../../../../assets/images/activity/LuckyDrawBonus/style/default.css";
 
 .LuckyDrawBonus {
-  margin: 47px 0 15% 0;
-  padding: 0;
+  margin: 47px 0 0 0;
+  padding: 0 0 0 0;
 }
 /* .LuckyDrawBonus .bg {
   z-index: -1;
@@ -476,6 +476,7 @@ export default {
   background: url(../../../../assets/images/activity/LuckyDrawBonus/img/bg.jpeg)
     no-repeat;
   background-size: 100% 100%;
+  padding: 0 0 7% 0;
 }
 .LuckyDrawBonus section {
   position: relative;
