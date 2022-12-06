@@ -51,8 +51,8 @@ export default {
         //   list: []
         // },
         {
-          code: 'Live',
-          name: 'Live',
+          code: 'Slots',
+          name: 'Slots',
           list: []
         },
         // {
@@ -61,13 +61,13 @@ export default {
         //   list: []
         // },
         {
-          code: 'Slots',
-          name: 'Slots',
+          code: 'Fish',
+          name: 'Fishing',
           list: []
         },
         {
-          code: 'Fish',
-          name: 'Fishing',
+          code: 'Live',
+          name: 'Live',
           list: []
         }
       ],
