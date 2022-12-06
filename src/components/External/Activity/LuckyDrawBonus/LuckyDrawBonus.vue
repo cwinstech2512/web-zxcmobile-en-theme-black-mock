@@ -1,7 +1,7 @@
 <template>
   <div class="LuckyDrawBonus">
-    <!-- <div class="bg"></div> -->
-    <img class="bg" src="../../../../assets/images/activity/LuckyDrawBonus/img/bg.jpg">
+    <div class="bg">
+    <!-- <img class="bg" src="../../../../assets/images/activity/LuckyDrawBonus/img/bg.jpg"> -->
     <section class="section1">
       <div class="b_content">
         <img src="../../../../assets/images/activity/LuckyDrawBonus/img/title.png">
@@ -105,6 +105,7 @@
     </section>
     <PopupRecord :records="records" :showActPopup="showActPopup"  @showRecordRecord="showDrawRecord"></PopupRecord>
     <PopupGift :prize="prize" :showGiftPopup="showGiftPopup" @showGiftGift="showGiftGift"></PopupGift>
+    </div>
   </div>
 </template>
 
@@ -457,18 +458,24 @@ export default {
 @import "../../../../assets/images/activity/LuckyDrawBonus/style/default.css";
 
 .LuckyDrawBonus {
-  margin: 60px 0 15% 0;
+  margin: 47px 0 15% 0;
   padding: 0;
 }
-.LuckyDrawBonus .bg {
+/* .LuckyDrawBonus .bg {
   z-index: -1;
   min-width: 100%;
-  /* height: 2570px; */
   max-width: 100%;
   object-fit: cover;
   position: absolute;
   background: url(../../../../assets/images/activity/LuckyDrawBonus/img/bg.jpg)
     no-repeat;
+} */
+.LuckyDrawBonus .bg {
+  object-fit: cover;
+  position: relative;
+  background: url(../../../../assets/images/activity/LuckyDrawBonus/img/bg.jpeg)
+    no-repeat;
+  background-size: 100% 100%;
 }
 .LuckyDrawBonus section {
   position: relative;
@@ -515,10 +522,11 @@ section.section2 .right_img > .icon_gift {
   height: 28px;
 }
 section.section2 .right_img > .gift_chance {
-  font-size: 0.1rem;
+  font-size: x-small;
   font-weight: 900;
   flex: auto;
   margin: 5px 5px 0 5px;
+  letter-spacing: -1px;
 }
 section.section2 .right_img {
   float: right;
