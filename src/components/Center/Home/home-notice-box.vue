@@ -2,7 +2,7 @@
 <div class='noticeBox' @click.self="toggleBox">
   <div class="boxMain" :class="out? 'out':''">
     <div class="boxHd">
-      <h2>最新公告</h2>
+      <h2>NOTICE</h2>
     </div>
     <div class="boxBd">
       <div class="swiper-container" id="Nbox">
@@ -19,7 +19,7 @@
         </div>
         <div class="swiper-pagination"></div>
       </div>
-      <button @click="closeBox()">知道了</button>
+      <button @click="closeBox()">OK</button>
     </div>
   </div>
 </div>
