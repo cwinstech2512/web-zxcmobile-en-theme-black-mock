@@ -133,6 +133,11 @@ export default {
             case 'JDB':
             case 'BNG':
               return true
+            case 'EVO':
+            case 'FC':
+            case 'AE':
+            case 'RICH88':
+              return false
             default:
               return false
           }
@@ -196,7 +201,11 @@ export default {
       } else if (type === 'Fish') {
         type = 'Fishing'
       }
-      let url = `/api/${type}/` + this.$route.query.plat
+      var plat = this.$route.query.plat
+      if (this.$route.query.category) {
+        plat = this.$route.query.category
+      }
+      let url = `/api/${type}/` + plat
       let params = {
         Category: navIndex === 1 ? 'hot' : '',
         GameNameEn: '',

@@ -194,7 +194,8 @@ export default {
         // }
         let href = this.gameInfo.WebOpenUrl
         if (this.gameInfo.Method === '1') {
-          href = 'Game.html?act=' + this.gameInfo.Plat
+          // href = 'Game.html?act=' + this.gameInfo.Plat
+          href = 'Game.html?cate=' + this.gameInfo.GameType + '&act=' + this.gameInfo.Plat + '&token=' + this.getinfo().token
           if (this.gameInfo.Plat.toUpperCase() === 'AG') {
             href += '&gameCode=' + this.gameInfo.GameType
           }
@@ -306,6 +307,10 @@ export default {
         case 'BNG':
           that.name = this.gameInfo.GameName
           that.platName = 'BNG'
+          break
+        case 'EVO':
+          that.name = this.gameInfo.GameName
+          that.platName = 'EVO'
           break
         default:
           break
@@ -463,7 +468,11 @@ export default {
     btnClick (code) {
       // debugger
       if (code === 'h5' || code === 'demo') {
-        if (this.gameInfo.GameType === 'Slots' || this.gameInfo.GameType === 'Fish') {
+        if (this.gameInfo.GameType === 'Slots' || this.gameInfo.GameType === 'Live') {
+          this.$router.push({ name: 'gameinfo', query: { plat: this.gameInfo.Plat, type: this.gameInfo.GameType, category: this.gameInfo.GameCategory } })
+          // this.$router.push('/center/home')
+          return false
+        } else if (this.gameInfo.GameType === 'Fish') {
           this.$router.push({ name: 'gameinfo', query: { plat: this.gameInfo.Plat, type: this.gameInfo.GameType } })
           // this.$router.push('/center/home')
           return false

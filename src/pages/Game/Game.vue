@@ -21,12 +21,39 @@ export default {
       let params = {
         'Token': token
       }
-      if (plat === 'FC' || plat === 'JILI' || plat === 'AE' || plat === 'RICH88') {
+      if (plat === 'FC' || plat === 'JILI' || plat === 'AE' || plat === 'RICH88' || plat === 'EVO') {
         let cate = this.getQueryString('cate')
         if (cate) {
           params.PageIndex = 0
           params.PageSize = 1
           url = `/api/${cate}/${plat}Login`
+        } else {
+          _this.$swal({
+            text: ``,
+            type: 'error',
+            confirmButtonText: 'Confirm'
+          })
+        }
+      } else if (plat === 'REDTIGER' || plat === 'NETENT') {
+        let cate = this.getQueryString('cate')
+        plat = 'EVO'
+        if (cate) {
+          params.PageIndex = 0
+          params.PageSize = 1
+          url = `/api/${cate}/${plat}Login`
+        } else {
+          _this.$swal({
+            text: ``,
+            type: 'error',
+            confirmButtonText: 'Confirm'
+          })
+        }
+      } else if (plat === 'AESEXY') {
+        let cate = this.getQueryString('cate')
+        if (cate) {
+          params.PageIndex = 0
+          params.PageSize = 1
+          url = `/api/${cate}/AESEXYBCRT`
         } else {
           _this.$swal({
             text: ``,
@@ -46,7 +73,7 @@ export default {
       this.$https.fetchPost(url, this.Secret(params))
         .then((res) => {
           if (res.data.Success === true) {
-            if (plat === 'FC' || plat === 'JILI' || plat === 'AE' || plat === 'RICH88') {
+            if (plat === 'FC' || plat === 'JILI' || plat === 'AE' || plat === 'RICH88' || plat === 'EVO' || plat === 'AESEXY') {
               top.document.location.href = res.data.Message
             } else {
               top.document.location.href = res.data.Result

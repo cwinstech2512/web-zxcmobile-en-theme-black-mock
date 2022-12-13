@@ -19,7 +19,7 @@
              <div >
                 <span v-for="(li, index) in lists.list"
                       :key="index"
-                      :class="li.Plat"
+                      :class="li.GameCategory? li.GameCategory : li.Plat"
                       @click="gameShow(li)">
                 </span>
              </div>
@@ -343,6 +343,14 @@ export default {
 }
 #game-box .swiper-slide.Slots span.FC {
   background: url(../../../assets/images/home/home_game_slots_fc.png);
+  background-size: 100% 100%;
+}
+#game-box .swiper-slide.Slots span.REDTIGER {
+  background: url(../../../assets/images/home/home_game_slots_redtiger.png);
+  background-size: 100% 100%;
+}
+#game-box .swiper-slide.Slots span.NETENT {
+  background: url(../../../assets/images/home/home_game_slots_netent.png);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Fish span.BNG {
