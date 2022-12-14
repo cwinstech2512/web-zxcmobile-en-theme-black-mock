@@ -26,28 +26,30 @@
               <div class="box">
                 <img :src="'https://rmpiconcdn.kaga88.com/kaga/gameIcon?game='+game.GameCode+'&lang=en&type=rectangular'"
                      v-if="plat ==='KA'">
+                <img :src="'static/images/slots/'+category+'/' + game.ImageName"
+                     v-else-if="plat === 'EVO'">
                 <img :src="'static/images/slots/'+plat+'/' + game.ImageName"
                      v-else>
                 <a :href="game.GameUrl"
                    target="_blank"
                    v-if="isDireOpenUrl()"
-                   :class="game.DemoUrl? '':'center'">开始游戏</a>
+                   :class="game.DemoUrl? '':'center'">Play Now</a>
                 <a @click="LoginPT(game.GameCode)"
                    v-else-if="plat === 'PT'"
-                   :class="game.DemoUrl? '':'center'">开始游戏</a>
+                   :class="game.DemoUrl? '':'center'">Play Now</a>
                 <a @click="LoginDT(game)"
                    v-else-if="plat === 'DT'"
-                   :class="game.DemoUrl? '':'center'">开始游戏</a>
+                   :class="game.DemoUrl? '':'center'">Play Now</a>
                 <a :href="'Game.html?cate=' + type + '&act=' + plat + '&gameCode=' + game.GameCode + '&gameType=' + game.Category + '&token=' + getinfo().token"
                    target="_blank"
                    v-else
-                   :class="game.DemoUrl? '':'center'">开始游戏</a>
+                   :class="game.DemoUrl? '':'center'">Play Now</a>
                 <!-- MG -->
                 <a class="try"
                    :href="game.DemoUrl"
                    target="_blank"
-                   v-if="game.DemoUrl">试玩</a>
-                <h2>{{game.GameName}}</h2>
+                   v-if="game.DemoUrl">Free</a>
+                <h2>{{game.GameNameEn}}</h2>
               </div>
             </div>
           </div>
@@ -99,6 +101,7 @@ export default {
       active: 1,
       plat: '',
       type: '',
+      category: '',
       status: '',
       isFirst: false,
       InfoNav: [], // '所有游戏', '热门游戏', '吃角老虎机', '牌桌&纸牌游戏', '街机游戏', '视频扑克', '刮刮乐'
@@ -245,6 +248,7 @@ export default {
     init () {
       this.plat = this.$route.query.plat
       this.type = this.$route.query.type
+      this.category = this.$route.query.category
       let _this = this
       // this.categoryAllGames = []
       // this.categoryPageIndex = []

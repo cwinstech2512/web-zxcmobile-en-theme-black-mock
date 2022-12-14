@@ -8,7 +8,7 @@
             <i :style="{backgroundImage: 'url('+baseUrl+'/Image/avatar/'+ [avatarKey? avatarKey:1] +'.jpg)',backgroundSize:'100% 100%'}" /><em>{{account}}</em>
           </div>
           <div :class="[VipLevelName,'level']">
-            <i /><em>{{vipName? vipName:'普通会员'}}</em>
+            <i /><em>{{vipName? vipName:'Member'}}</em>
           </div>
         </div>
         <div class="balanceBar">

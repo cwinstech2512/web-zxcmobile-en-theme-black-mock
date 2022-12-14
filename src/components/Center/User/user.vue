@@ -9,7 +9,7 @@
             <div>
               <em>{{account}}</em>
               <span :class="[VipLevelName,'level']">
-              <i></i><em>{{vipName? vipName:'普通会员'}}</em>
+              <i></i><em>{{vipName? vipName:'Member'}}</em>
               </span>
               <em>Balance：<countTo :endVal='parseFloat(zxc)' :duration=1000 :decimals=2></countTo></em>
             </div>
