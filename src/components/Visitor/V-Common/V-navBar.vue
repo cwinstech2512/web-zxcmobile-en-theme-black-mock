@@ -19,7 +19,7 @@
   <div
     :class="[navRight,'navRight']"
     @click="joinEvent()"
-  ><span>Join Now</span></div>
+  ><div></div></div>
 </div>
 </template>
 
@@ -111,10 +111,16 @@ export default {
   background-size: 100% 100%;
 }
 .navBar div.navRight {
-  border-style: solid;
+  /* border-style: solid;
   border-color: #EBEBEB;
-  padding: 0.1rem 0.1rem;
+  padding: 0.1rem 0.1rem; */
   color: #EBEBEB;
+}
+.navBar div.navRight > div{
+  width: 55px;
+  height: 37px;
+  background: url(../../../assets/images/nav/join_now.png);
+  background-size: 100% 100%;
 }
 .navBar .navRight{
   margin-right: 0.2rem;

@@ -290,75 +290,75 @@ export default {
   margin-left: 0.1rem;
 }
 #game-box .swiper-slide.Fish span.JILI {
-  background: url(../../../assets/images/home/home_game_fish_jili.png);
+  background: url(../../../assets/images/home/home_game_fish_jili.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.JILI {
-  background: url(../../../assets/images/home/home_game_slots_jili.png);
+  background: url(../../../assets/images/home/home_game_slots_jili.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Fish span.CQ9 {
-  background: url(../../../assets/images/home/home_game_fish_cq9.png);
+  background: url(../../../assets/images/home/home_game_fish_cq9.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.CQ9 {
-  background: url(../../../assets/images/home/home_game_slots_cq9.png);
+  background-image: url(../../../assets/images/home/home_game_slots_cq9.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Fish span.AE {
-  background: url(../../../assets/images/home/home_game_slots_ae.png);
+  background: url(../../../assets/images/home/home_game_slots_ae.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.AE {
-  background: url(../../../assets/images/home/home_game_slots_ae.png);
+  background: url(../../../assets/images/home/home_game_slots_ae.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Fish span.KA {
-  background: url(../../../assets/images/home/home_game_fish_ka.png);
+  background: url(../../../assets/images/home/home_game_fish_ka.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.KA {
-  background: url(../../../assets/images/home/home_game_slots_ka.png);
+  background: url(../../../assets/images/home/home_game_slots_ka.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Fish span.JDB {
-  background: url(../../../assets/images/home/home_game_fish_jdb.png);
+  background: url(../../../assets/images/home/home_game_fish_jdb.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.JDB {
-  background: url(../../../assets/images/home/home_game_slots_jdb.png);
+  background: url(../../../assets/images/home/home_game_slots_jdb.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Fish span.RICH88 {
-  background: url(../../../assets/images/home/home_game_slots_rich88.png);
+  background: url(../../../assets/images/home/home_game_slots_rich88.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.RICH88 {
-  background: url(../../../assets/images/home/home_game_slots_rich88.png);
+  background: url(../../../assets/images/home/home_game_slots_rich88.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Fish span.FC {
-  background: url(../../../assets/images/home/home_game_fish_fc.png);
+  background: url(../../../assets/images/home/home_game_fish_fc.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.FC {
-  background: url(../../../assets/images/home/home_game_slots_fc.png);
+  background: url(../../../assets/images/home/home_game_slots_fc.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.REDTIGER {
-  background: url(../../../assets/images/home/home_game_slots_redtiger.png);
+  background: url(../../../assets/images/home/home_game_slots_redtiger.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.NETENT {
-  background: url(../../../assets/images/home/home_game_slots_netent.png);
+  background: url(../../../assets/images/home/home_game_slots_netent.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Fish span.BNG {
-  background: url(../../../assets/images/home/home_game_slots_bng.png);
+  background: url(../../../assets/images/home/home_game_slots_bng.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide.Slots span.BNG {
-  background: url(../../../assets/images/home/home_game_slots_bng.png);
+  background: url(../../../assets/images/home/home_game_slots_bng.jpg);
   background-size: 100% 100%;
 }
 #game-box .swiper-slide span.OG {

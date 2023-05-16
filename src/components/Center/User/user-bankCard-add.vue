@@ -13,6 +13,9 @@
        <li>
         <input type="text" v-model="info.Branch" placeholder="Bank Branch">
        </li>
+       <li>
+        <input type="text" v-model="info.RegisteredNumber" placeholder="Registered Number">
+       </li>
        <li v-show="showAnswer">
         <input type="text"  v-model.trim="info.Answer" placeholder="Security PIN">
        </li>
@@ -37,6 +40,7 @@ export default {
         BankName: '',
         BankCardNo: '',
         Branch: '',
+        RegisteredNumber: '',
         Answer: ''
       },
       cards: [],
@@ -65,23 +69,27 @@ export default {
       }
       let _this = this
       if (_this.info.BankName.length < 1) {
-        _this.AlertWarning('请选择发卡银行')
+        _this.AlertWarning('Please select issuer bank name')
         return false
       }
       if (_this.info.BankCardNo.length < 15) {
-        _this.AlertWarning('请输入正确的银行卡号')
+        _this.AlertWarning('Please enter bank card number')
         return false
       }
       if (_this.info.Name.length < 1) {
-        _this.AlertWarning('请输入持卡人姓名')
+        _this.AlertWarning('Please enter name on card')
         return false
       }
       if (_this.info.Branch.length < 1) {
-        _this.AlertWarning('请输入开户网点')
+        _this.AlertWarning('Please enter bank branch')
+        return false
+      }
+      if (!_this.validMobileNumber(_this.info.RegisteredNumber)) {
+        _this.AlertWarning('Please enter registered number')
         return false
       }
       if (_this.showAnswer === true && _this.info.Answer.length < 1) {
-        _this.AlertWarning('请输入安保答案')
+        _this.AlertWarning('Please enter security answer')
         return false
       }
       _this.inClickProcess = true
@@ -139,6 +147,19 @@ export default {
           this.$bus.$emit('loadingHide')
           console.log('error', err)
         })
+    },
+    validMobileNumber (mobileNumber) {
+      if (mobileNumber.length < 1) {
+        return false
+      }
+      var reg = /^09[0-9]{9}$/gi
+      if (
+        mobileNumber.length < 1 ||
+        !reg.test(mobileNumber)
+      ) {
+        return false
+      }
+      return true
     },
     dbAddCard: _.debounce(function () {
       this.addCard()

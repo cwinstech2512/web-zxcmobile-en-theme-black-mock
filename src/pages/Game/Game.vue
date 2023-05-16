@@ -72,6 +72,7 @@ export default {
       }
       this.$https.fetchPost(url, this.Secret(params))
         .then((res) => {
+          console.log(res)
           if (res.data.Success === true) {
             if (plat === 'FC' || plat === 'JILI' || plat === 'AE' || plat === 'RICH88' || plat === 'EVO' || plat === 'AESEXY') {
               top.document.location.href = res.data.Message
