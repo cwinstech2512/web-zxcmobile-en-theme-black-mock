@@ -143,15 +143,15 @@ export default {
       mainBar1: [
         {
           code: 'deposit',
-          name: 'DEPOSIT'
+          name: 'Deposit'
         },
         {
           code: 'transfer',
-          name: 'TRANSFER'
+          name: 'Transfer'
         },
         {
           code: 'withdrawal',
-          name: 'W/D'
+          name: 'Withdrawal'
         }
       ],
       mainBar2: [
