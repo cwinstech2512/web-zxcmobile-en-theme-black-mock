@@ -104,6 +104,12 @@
         </li>
         <li>
           <!-- <label>Password：</label> -->
+          <input v-model="accountReg.Email"
+                 type="text"
+                 placeholder="Email">
+        </li>
+        <li>
+          <!-- <label>Password：</label> -->
           <input v-model="accountReg.Pwd"
                  type="password"
                  placeholder="PASSWORD">
@@ -262,6 +268,10 @@ export default {
       }
       if (_this.accountReg.LastName.length < 1) {
         _this.AlertWarning('Please enter LastName')
+        return false
+      }
+      if (_this.accountReg.Email.length < 1) {
+        _this.AlertWarning('Please enter Email')
         return false
       }
       var reg = /^09[0-9]{9}$/gi

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import step from '@/components/Center/Step/step-guide'
+// import step from '@/components/Center/Step/step-guide'
 import navBar from '@/components/Center/Common/navBar'
 import tabBar from '@/components/Center/Common/tabBar'
 
@@ -36,8 +36,8 @@ export default {
   },
   components: {
     navBar,
-    tabBar,
-    step
+    tabBar
+    // step
   },
   data () {
   //  这里存放数据

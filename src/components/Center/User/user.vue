@@ -418,14 +418,14 @@ export default {
           params: { index: index }
         })
       } else if (code === 'deposit') {
-        if (await this.syncVaildPhone() & await this.syncVaildBank()) {
-          this.$router.push({
-            name: 'wallet',
-            params: {
-              index: index
-            }
-          })
-        }
+        // if (await this.syncVaildPhone() & await this.syncVaildBank()) {
+        //   this.$router.push({
+        //     name: 'wallet',
+        //     params: {
+        //       index: index
+        //     }
+        //   })
+        // }
       } else {
         this.$router.push({
           name: 'wallet',
@@ -826,17 +826,26 @@ export default {
 .user .user-bottom .financialBar li.withdrawal {
   width: 1.9rem;
 }
+.user .user-bottom .financialBar li.withdrawal i {
+  margin-left: 0.65rem;
+}
+.user .user-bottom .financialBar li.deposit i {
+  margin-left: 0.7rem;
+}
 .user .user-bottom .financialBar li{
   float: left;
   width: 2rem;
-  height: 1.1rem;
+  height: 1.5rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .user .user-bottom .financialBar li em{
   font-size: 0.28rem;
   float: left;
-  line-height: 1.1rem;
-  margin-left: 0.05rem;
+  line-height: 0.5rem;
+  margin: 0 auto;
   color: #fff;
   font-weight: bold;
 }
@@ -847,7 +856,7 @@ export default {
   height: 0.64rem;
   background: #000;
   margin-top: 0.24rem;
-  margin-left: 0.2rem;
+  margin-left: 0.8rem;
 }
 .user .user-bottom .financialBar li.deposit i{
   background: url(../../../assets/images/account/account_top-up_ico@2x.png);
