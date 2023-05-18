@@ -418,13 +418,14 @@ export default {
           params: { index: index }
         })
       } else if (code === 'deposit') {
+        // 引导页面判断
         // if (await this.syncVaildPhone() & await this.syncVaildBank()) {
-        //   this.$router.push({
-        //     name: 'wallet',
-        //     params: {
-        //       index: index
-        //     }
-        //   })
+        this.$router.push({
+          name: 'wallet',
+          params: {
+            index: index
+          }
+        })
         // }
       } else {
         this.$router.push({
@@ -506,7 +507,7 @@ export default {
         .then((res) => {
           _this.$bus.$emit('loadingHide')
           if (res.data.Success === true) {
-            // _this.AlertSuccess('保存成功')
+            // _this.AlertSuccess('Success')
             _this.$bus.$emit('getAvatar', params.AvatarKey)
             _this.avatarKey = params.AvatarKey
           } else {
@@ -624,10 +625,11 @@ export default {
     let sidemenuVm = this.$parent.$parent.$children[0]
     this.updateSidebarBalacne(sidemenuVm)
     this.updateHighLight(this.$refs['box_mainBar2'].getBoundingClientRect())
-    if (this.$route.params.highStepMax) {
-      this.highStep = this.$route.params.highStep
-      this.highStepMax = this.$route.params.highStepMax
-    }
+    // 引导页面
+    // if (this.$route.params.highStepMax) {
+    //   this.highStep = this.$route.params.highStep
+    //   this.highStepMax = this.$route.params.highStepMax
+    // }
   }
 }
 </script>

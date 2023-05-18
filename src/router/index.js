@@ -138,24 +138,34 @@ const router = new Router({
           component: (resolve) => require(['@/components/Center/User/user-select.vue'], resolve)
         },
         {
+          path: 'gcashCard',
+          name: 'gcashCard',
+          component: (resolve) => require(['@/components/Center/User/Cards/user-gcashCard.vue'], resolve)
+        },
+        {
           path: 'bankCard',
           name: 'bankCard',
-          component: (resolve) => require(['@/components/Center/User/user-bankCard.vue'], resolve)
+          component: (resolve) => require(['@/components/Center/User/Cards/user-bankCard.vue'], resolve)
         },
         {
           path: 'virtualWallet',
           name: 'virtualWallet',
-          component: (resolve) => require(['@/components/Center/User/user-virtualWallet.vue'], resolve)
+          component: (resolve) => require(['@/components/Center/User/Cards/user-virtualWallet.vue'], resolve)
+        },
+        {
+          path: 'gcashCardAdd',
+          name: 'gcashCardAdd',
+          component: (resolve) => require(['@/components/Center/User/Cards/user-gcashCard-add.vue'], resolve)
         },
         {
           path: 'bankCardAdd',
           name: 'bankCardAdd',
-          component: (resolve) => require(['@/components/Center/User/user-bankCard-add.vue'], resolve)
+          component: (resolve) => require(['@/components/Center/User/Cards/user-bankCard-add.vue'], resolve)
         },
         {
           path: 'virtualWalletAdd',
           name: 'virtualWalletAdd',
-          component: (resolve) => require(['@/components/Center/User/user-virtualWallet-add.vue'], resolve)
+          component: (resolve) => require(['@/components/Center/User/Cards/user-virtualWallet-add.vue'], resolve)
         },
         {
           path: 'gameinfo',

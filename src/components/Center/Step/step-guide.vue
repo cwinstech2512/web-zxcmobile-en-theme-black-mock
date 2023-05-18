@@ -59,66 +59,67 @@ export default {
   created () {},
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$router.beforeEach((to, from, next) => {
-      if (to.name === 'wallet') {
-        let _this = this
-        let url = '/api/account/checkverifyphone'
-        let params = {
-          Token: _this.getinfo().token
-        }
-        _this.$https.fetchPost(url, _this.secret(params))
-          .then((res) => {
-            _this.$bus.$emit('loadingHide')
-            if (res.data.Success === true) {
-              if (!res.data.Result.Status) {
-                if (from.name !== 'user') {
-                  this.$router.push({
-                    name: 'user'
-                  })
-                }
-                _this.stepMax = _this.stepMax + 1
-              }
-            }
-            let varifyPhone = res.data.Result.Status
-            url = '/api/withdrawal/getdrawcard'
-            _this.$https
-              .fetchPost(url, this.secret({ Token: this.getinfo().token }))
-              .then(res => {
-                _this.$bus.$emit('loadingHide')
-                if (res.data.Success === true) {
-                  if (res.data.Result.Data.length < 1) {
-                    if (from.name !== 'user') {
-                      this.$router.push({
-                        name: 'user'
-                      })
-                    }
-                    _this.stepMax = _this.stepMax + 1
-                    _this.stepText = '您当前还未绑定银行卡'
-                  }
-                  if (res.data.Result.Data.length < 1 && !varifyPhone) {
-                    _this.step = 1
-                    _this.stepText = '您当前还未验证手机号'
-                  } else if (!varifyPhone) {
-                    _this.step = 1
-                    _this.stepText = '您当前还未验证手机号'
-                  } else if (res.data.Result.Data.length < 1) {
-                    _this.step = 2
-                    _this.stepText = '您当前还未绑定银行卡'
-                  } else {
-                    next()
-                  }
-                }
-              })
-              .catch(err => {
-                console.log(err)
-              })
-          }).catch(err => {
-            console.log('error', err)
-          })
-      } else {
-        next()
-      }
-    })
+    // 引导页
+    // this.$router.beforeEach((to, from, next) => {
+    //   if (to.name === 'wallet') {
+    //     let _this = this
+    //     let url = '/api/account/checkverifyphone'
+    //     let params = {
+    //       Token: _this.getinfo().token
+    //     }
+    //     _this.$https.fetchPost(url, _this.secret(params))
+    //       .then((res) => {
+    //         _this.$bus.$emit('loadingHide')
+    //         if (res.data.Success === true) {
+    //           if (!res.data.Result.Status) {
+    //             if (from.name !== 'user') {
+    //               this.$router.push({
+    //                 name: 'user'
+    //               })
+    //             }
+    //             _this.stepMax = _this.stepMax + 1
+    //           }
+    //         }
+    //         let varifyPhone = res.data.Result.Status
+    //         url = '/api/withdrawal/getdrawcard'
+    //         _this.$https
+    //           .fetchPost(url, this.secret({ Token: this.getinfo().token }))
+    //           .then(res => {
+    //             _this.$bus.$emit('loadingHide')
+    //             if (res.data.Success === true) {
+    //               if (res.data.Result.Data.length < 1) {
+    //                 if (from.name !== 'user') {
+    //                   this.$router.push({
+    //                     name: 'user'
+    //                   })
+    //                 }
+    //                 _this.stepMax = _this.stepMax + 1
+    //                 _this.stepText = '您当前还未绑定银行卡'
+    //               }
+    //               if (res.data.Result.Data.length < 1 && !varifyPhone) {
+    //                 _this.step = 1
+    //                 _this.stepText = '您当前还未验证手机号'
+    //               } else if (!varifyPhone) {
+    //                 _this.step = 1
+    //                 _this.stepText = '您当前还未验证手机号'
+    //               } else if (res.data.Result.Data.length < 1) {
+    //                 _this.step = 2
+    //                 _this.stepText = '您当前还未绑定银行卡'
+    //               } else {
+    //                 next()
+    //               }
+    //             }
+    //           })
+    //           .catch(err => {
+    //             console.log(err)
+    //           })
+    //       }).catch(err => {
+    //         console.log('error', err)
+    //       })
+    //   } else {
+    //     next()
+    //   }
+    // })
   }
 }
 </script>

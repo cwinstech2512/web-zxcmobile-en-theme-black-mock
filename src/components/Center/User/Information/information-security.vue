@@ -98,7 +98,7 @@ export default {
               { Question: _this.question1 },
               { Question: _this.question2 }
             ]
-            _this.AlertSuccess('保存成功')
+            _this.AlertSuccess('Success')
           } else {
             _this.NormalFailConfirm(res.data)
           }

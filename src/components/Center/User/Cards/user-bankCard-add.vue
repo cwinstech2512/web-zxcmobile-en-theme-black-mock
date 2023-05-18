@@ -3,8 +3,8 @@
   <select v-model="info.BankName">
     <option v-for="(banks, index) in bank" :key="index" :value="banks">{{banks}}</option>
   </select>
-  <input type="text" maxlength="8" v-model.trim="info.Name" :disabled="!editName" :name="editName?'':'readonly'" placeholder="请填写真实姓名">
-  <p>*Please enter your bank real info</p>
+  <input type="text" maxlength="8" v-model.trim="info.Name" :disabled="!editName" :name="editName?'':'readonly'" placeholder="Please enter your bank real info">
+  <p style="padding: 0 0.3rem;">*Please enter your bank real info</p>
   <div class="box">
      <ul>
        <li>
@@ -20,7 +20,7 @@
         <input type="text"  v-model.trim="info.Answer" placeholder="Security PIN">
        </li>
      </ul>
-     <p v-show="showAnswer">*填写任意一个安保答案（第一次绑定可不填）</p>
+     <p v-show="showAnswer">*Fill in any security answer (optional for the first binding)</p>
      <button @click="dbAddCard" :disabled="inClickProcess">Confirm</button>
   </div>
 </div>
@@ -102,7 +102,7 @@ export default {
         .then(res => {
           _this.inClickProcess = false
           if (res.data.Success === true) {
-            _this.AlertSuccess('添加成功')
+            _this.AlertSuccess('Success')
             _this.info.BankName = ''
             _this.info.BankCardNo = ''
             _this.info.Branch = ''

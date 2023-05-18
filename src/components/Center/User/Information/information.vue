@@ -188,7 +188,7 @@ export default {
           _this.VerifyText = 'Verify'
           if (res.data.Success === true) {
             _this.VerifyRealName = res.data.Result
-            _this.AlertSuccess('验证成功')
+            _this.AlertSuccess('Success')
           } else {
             _this.NormalFailConfirm(res.data)
           }
@@ -230,7 +230,7 @@ export default {
           _this.inClickProcess = false
           _this.saveBtnText = 'SAVE'
           if (res.data.Success === true) {
-            _this.AlertSuccess('保存成功')
+            _this.AlertSuccess('Success')
           } else {
             _this.NormalFailConfirm(res.data)
           }

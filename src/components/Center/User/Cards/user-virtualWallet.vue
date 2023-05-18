@@ -1,14 +1,14 @@
 <template>
-<div class='bankCard'>
+<div class='virtualWallet'>
   <div class="card"
     v-for="(cards, index) in card"
     :key="index"
   >
     <div class="top">
-      <i></i><h2>{{cards.BankName}}</h2>
+      <i></i><h2>{{cards.ChainName}}</h2>
     </div>
     <div class="bottom">
-      <span>{{cards.CardNumber}}</span>
+      <span>{{cards.WalletAddr}}</span>
     </div>
   </div>
 </div>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'bankCard',
+  name: 'virtualWallet',
   //  import引入的组件需要注入到对象中才能使用
   components: {},
   data () {
@@ -31,12 +31,12 @@ export default {
   watch: {},
   //  方法集合
   methods: {
-    // 获取提款卡
-    getCards () {
+    // 獲取錢包
+    getVirtuala () {
       let _this = this
-      let url = '/api/withdrawal/getdrawcard'
+      let url = '/api/withdrawal/getvirtualacc'
       _this.$https
-        .fetchPost(url, _this.secret({ Token: this.getinfo().token }))
+        .fetchPost(url, this.Secret({ Token: this.getinfo().token }))
         .then(res => {
           this.$bus.$emit('loadingHide')
           if (res.data.Success === true) {
@@ -54,16 +54,16 @@ export default {
   //  生命周期 - 创建完成（可以访问当前this实例）
   created () {
     this.$bus.$emit('loadingShow')
-    this.getCards()
+    this.getVirtuala()
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', 'My Bank Card', 'back', 'add', true)
+    this.$emit('getStatus', 'My Crypto', 'back', 'virtualadd', true)
   }
 }
 </script>
 <style scoped>
-.bankCard{
+.virtualWallet{
   width: 100%;
   padding: 0 0.3rem;
   box-sizing: border-box;
@@ -77,65 +77,69 @@ export default {
   background-attachment: fixed; */
   background: #fff;
 }
-.bankCard .card:last-child{
+.virtualWallet .card:last-child{
   margin-bottom: 0.2rem;
 }
-.bankCard .card{
+.virtualWallet .card{
   width: 100%;
   height: 2rem;
   margin-top: 0.2rem;
 }
-.bankCard .card .top{
+.virtualWallet .card .top{
   width: 100%;
   height: 1rem;
   float: left;
 }
-.bankCard .card .top i{
+.virtualWallet .card .top i{
   display: block;
   float: left;
   width: 0.44rem;
   height: 0.44rem;
   margin-top: 0.3rem;
   margin-left: 0.3rem;
-  background: url(../../../assets/images/account/bankcard_logo@2x.png);
+  background: url(../../../../assets/images/account/bankcard_logo@2x.png);
   background-size: 100% 100%;
 }
-.bankCard .card .top h2{
+.virtualWallet .card .top h2{
   color: #717170;
   font-size: 0.35rem;
   font-weight: normal;
   float: left;
   margin-top: 0.25rem;
   margin-left: 0.2rem;
+  width: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.bankCard .card .bottom {
+.virtualWallet .card .bottom {
   width: 100%;
   height: 1rem;
 }
-.bankCard .card .bottom span{
+.virtualWallet .card .bottom span{
   color: #717170;
   font-size: 0.4rem;
   font-weight: normal;
   margin-left: 0.3rem;
 }
-.bankCard .card:nth-child(1n+1){
-  background: url(../../../assets/images/account/bankcard_style1@1x.png);
+.virtualWallet .card:nth-child(1n+1){
+  background: url(../../../../assets/images/account/bankcard_style1@1x.png);
   background-size: 100% 100%;
 }
-.bankCard .card:nth-child(2n+2){
-  background: url(../../../assets/images/account/bankcard_style2@1x.png);
+.virtualWallet .card:nth-child(2n+2){
+  background: url(../../../../assets/images/account/bankcard_style2@1x.png);
   background-size: 100% 100%;
 }
-.bankCard .card:nth-child(3n+3){
-  background: url(../../../assets/images/account/bankcard_style3@1x.png);
+.virtualWallet .card:nth-child(3n+3){
+  background: url(../../../../assets/images/account/bankcard_style3@1x.png);
   background-size: 100% 100%;
 }
-.bankCard .card:nth-child(4n+4){
-  background: url(../../../assets/images/account/bankcard_style4@1x.png);
+.virtualWallet .card:nth-child(4n+4){
+  background: url(../../../../assets/images/account/bankcard_style4@1x.png);
   background-size: 100% 100%;
 }
-.bankCard .card:nth-child(5n+5){
-  background: url(../../../assets/images/account/bankcard_style5@1x.png);
+.virtualWallet .card:nth-child(5n+5){
+  background: url(../../../../assets/images/account/bankcard_style5@1x.png);
   background-size: 100% 100%;
 }
 </style>

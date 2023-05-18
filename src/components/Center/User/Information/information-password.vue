@@ -181,7 +181,7 @@ export default {
           _this.inClickProcess = false
           _this.saveBtnText = 'SAVE'
           if (res.data.Success === true) {
-            _this.AlertSuccess('设置成功')
+            _this.AlertSuccess('Success')
           } else {
             _this.NormalFailConfirm(res.data)
           }

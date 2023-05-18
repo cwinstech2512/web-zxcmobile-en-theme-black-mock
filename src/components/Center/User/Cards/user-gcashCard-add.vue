@@ -1,22 +1,26 @@
 <template>
-<div class='virtualWallet_Add'>
-  <select v-model="info.chainname">
+<div class='gcashCard_Add'>
+  <!-- <select v-model="info.BankName">
     <option v-for="(banks, index) in bank" :key="index" :value="banks">{{banks}}</option>
-  </select>
-  <p>*Please enter your USDT full address</p>
+  </select> -->
+  <input type="text" maxlength="8" v-model.trim="info.Name" :disabled="!editName" :name="editName?'':'readonly'" placeholder="Please enter your bank real info">
+  <p style="padding: 0 0.3rem;">*Please enter your bank real info</p>
   <div class="box">
      <ul>
        <li>
-        <input type="text" v-model="info.walletaddr" placeholder="USDT Address">
+        <input type="text" v-model="info.BankName" placeholder="Bank Name" :disabled="true" :name="'readonly'">
        </li>
        <li>
-        <input type="text" v-model="info.Exange" placeholder="Exchanges">
+        <input type="text" v-model="info.BankCardNo" placeholder="Mobile">
        </li>
+       <!-- <li>
+        <input type="text" v-model="info.Name" placeholder="Account Name">
+       </li> -->
        <li v-show="showAnswer">
         <input type="text"  v-model.trim="info.Answer" placeholder="Security PIN">
        </li>
      </ul>
-     <p v-show="showAnswer">*填写任意一个安保答案（第一次绑定可不填）</p>
+     <p v-show="showAnswer">*Fill in any security answer (optional for the first binding)</p>
      <button @click="dbAddCard" :disabled="inClickProcess">Confirm</button>
   </div>
 </div>
@@ -25,7 +29,7 @@
 <script>
 import _ from 'lodash'
 export default {
-  name: 'virtualWallet_Add',
+  name: 'gcashCard_Add',
   //  import引入的组件需要注入到对象中才能使用
   components: {},
   data () {
@@ -33,9 +37,9 @@ export default {
     return {
       info: {
         Name: '',
-        chainname: '',
-        walletaddr: '',
-        Exange: '',
+        BankName: 'GCash',
+        BankCardNo: '',
+        Branch: 'GCash',
         Answer: ''
       },
       cards: [],
@@ -49,9 +53,9 @@ export default {
   computed: {},
   //  监控data中的数据变化
   watch: {
-    // 'info.walletaddr': function (val) {
-    //   this.info.walletaddr = val.replace(/\D/g, '')
-    // }
+    'info.BankCardNo': function (val) {
+      this.info.BankCardNo = val.replace(/\D/g, '')
+    }
   },
   //  方法集合
   methods: {
@@ -63,31 +67,24 @@ export default {
         return false
       }
       let _this = this
-      if (_this.info.chainname.length < 1) {
-        _this.AlertWarning('请选择链名称')
+      if (_this.info.BankName.length < 1) {
+        _this.AlertWarning('Please select issuer bank name')
         return false
       }
-      if (_this.info.Exange.length < 1) {
-        _this.AlertWarning('请输入交易所名称')
+      if (_this.info.BankCardNo.length < 11) {
+        _this.AlertWarning('Please enter correct mobile number')
         return false
       }
-      let trcRules = new RegExp('^T[0-9a-zA-Z]{33}')
-      if (_this.info.chainname.replace(/\s*/g, '') === 'TRC20' && !(trcRules.test(_this.info.walletaddr))) {
-        _this.AlertWarning('请输入正确的钱包地址')
+      if (_this.info.Name.length < 1) {
+        _this.AlertWarning('Please enter name on card')
         return false
       }
-      let ercRules = new RegExp('^0x[0-9a-zA-Z]{40}')
-      if (_this.info.chainname.replace(/\s*/g, '') === 'ERC20' && !(ercRules.test(_this.info.walletaddr))) {
-        _this.AlertWarning('请输入正确的钱包地址')
-        return false
-      }
-
       if (_this.showAnswer === true && _this.info.Answer.length < 1) {
-        _this.AlertWarning('请输入安保答案')
+        _this.AlertWarning('Please enter security answer')
         return false
       }
       _this.inClickProcess = true
-      let url = '/api/withdrawal/bindvirtualwallet'
+      let url = '/api/withdrawal/binddrawcard'
       var params = {
         Token: _this.getinfo().token
       }
@@ -96,10 +93,10 @@ export default {
         .then(res => {
           _this.inClickProcess = false
           if (res.data.Success === true) {
-            _this.AlertSuccess('添加成功')
-            _this.info.chainname = ''
-            _this.info.walletaddr = ''
-            _this.info.Exange = ''
+            _this.AlertSuccess('Success')
+            _this.info.BankName = ''
+            _this.info.BankCardNo = ''
+            _this.info.Branch = ''
             _this.info.Answer = ''
           } else {
             _this.NormalFailConfirm(res.data)
@@ -111,11 +108,11 @@ export default {
         })
     },
     /**
-     * @description 获取所有錢包
+     * @description 获取所有提款卡
      */
-    getVirtuala () {
+    getCards () {
       let _this = this
-      let url = '/api/withdrawal/getvirtualacc'
+      let url = '/api/withdrawal/getdrawcard'
       _this.$https
         .fetchPost(url, _this.secret({ Token: this.getinfo().token }))
         .then(res => {
@@ -123,13 +120,13 @@ export default {
           if (res.data.Success === true) {
             _this.cards = res.data.Result.Data
             _this.info.Name = res.data.Result.Name
-            _this.bank = ['ERC20', 'TRC20']
-            this.$nextTick(() => {
-              this.info.chainname = 'ERC20'
-            })
-            // if (_this.cards.length < 1) {
-            //   _this.showAnswer = false
-            // }
+            _this.bank = res.data.Result.BankList
+            // this.$nextTick(() => {
+            //   this.info.BankName = this.bank[0]
+            // })
+            if (_this.cards.length < 1) {
+              _this.showAnswer = false
+            }
             if (res.data.Result.Name.length > 0) {
               _this.editName = false
             }
@@ -142,6 +139,19 @@ export default {
           console.log('error', err)
         })
     },
+    validMobileNumber (mobileNumber) {
+      if (mobileNumber.length < 1) {
+        return false
+      }
+      var reg = /^09[0-9]{9}$/gi
+      if (
+        mobileNumber.length < 1 ||
+        !reg.test(mobileNumber)
+      ) {
+        return false
+      }
+      return true
+    },
     dbAddCard: _.debounce(function () {
       this.addCard()
     }, 1000, {
@@ -152,16 +162,16 @@ export default {
   //  生命周期 - 创建完成（可以访问当前this实例）
   created () {
     this.$bus.$emit('loadingShow')
-    this.getVirtuala()
+    this.getCards()
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('getStatus', 'Add a Crypto', 'back', 'hide', true)
+    this.$emit('getStatus', 'Add a Bank Card', 'back', 'hide', true)
   }
 }
 </script>
 <style scoped>
-.virtualWallet_Add{
+.gcashCard_Add{
   width: 100%;
   padding: 0 0.3rem;
   box-sizing: border-box;
@@ -175,7 +185,7 @@ export default {
   background-attachment: fixed; */
   background: #fff;
 }
-.virtualWallet_Add select{
+.gcashCard_Add select{
   width: 100%;
   height: 0.98rem;
   border: none;
@@ -187,7 +197,7 @@ export default {
   background: #fff;
   font-size: 0.3rem;
 }
-.virtualWallet_Add input{
+.gcashCard_Add input{
   width: 100%;
   height: 0.98rem;
   border: none;
@@ -198,35 +208,35 @@ export default {
   background: #fff;
   font-size: 0.3rem;
 }
-.virtualWallet_Add input::-webkit-input-placeholder{
+.gcashCard_Add input::-webkit-input-placeholder{
   color: #bbb;
 }
-.virtualWallet_Add p{
+.gcashCard_Add p{
   line-height: 0.6rem;
   font-size: 0.25rem;
   color: #6b6b6b;
 }
-.virtualWallet_Add .box{
+.gcashCard_Add .box{
   width: 100%;
   padding: 0 0.3rem;
   box-sizing: border-box;
   background: #fff;
   border-radius: 0.06rem;
 }
-.virtualWallet_Add .box ul{
+.gcashCard_Add .box ul{
   width: 100%;
   overflow: hidden;
 }
-.virtualWallet_Add .box ul li{
+.gcashCard_Add .box ul li{
   width: 100%;
   height: 0.98rem;
   border-bottom: 0.02rem solid #ddd;
 }
-.virtualWallet_Add .box ul li input{
+.gcashCard_Add .box ul li input{
   margin: 0;
   padding: 0;
 }
-.virtualWallet_Add .box button{
+.gcashCard_Add .box button{
   width: 100%;
   height: 0.98rem;
   background: #0088ff;

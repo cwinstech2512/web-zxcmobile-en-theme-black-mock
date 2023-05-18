@@ -97,6 +97,7 @@ export default {
         that.swiperWalletMain.slideToLoop(that.routeIndex)
       }
     },
+    // 引导页
     async vaildInfo () {
       var that = this
       if (that.active !== undefined && that.active === 0) {
@@ -169,7 +170,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.vaildInfo()
+    // this.vaildInfo()
     this.Wallet()
     this.$nextTick(function () {
       this.route()

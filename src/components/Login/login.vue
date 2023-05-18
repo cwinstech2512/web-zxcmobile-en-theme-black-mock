@@ -674,7 +674,7 @@ export default {
     initFacebookSdk()
     // this.setDownUrl()
     this.$root.$on('setAPPDownUrl', () => {
-      this.setDownUrl()
+      // this.setDownUrl()
     })
 
     // 检查是否已经登录，如若已经登录则直接进入主页面

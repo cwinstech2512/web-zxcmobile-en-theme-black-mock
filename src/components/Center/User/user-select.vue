@@ -1,8 +1,9 @@
 <template>
 <div class="bankSelect">
   <div class="redirect_group">
-    <div class="redirectBtn primaryBtn" @click="redirect(0)">Bank Card</div>
-    <div class="redirectBtn normalBtn" @click="redirect(1)">Crypto</div>
+    <div class="redirectBtn secondBtn" @click="redirect(0)">GCash</div>
+    <div class="redirectBtn primaryBtn" @click="redirect(1)">Bank Card</div>
+    <div class="redirectBtn normalBtn" @click="redirect(2)">Crypto</div>
     <!-- <div class="normalBtn redirectBtn">虚拟钱包</div> -->
   </div>
 </div>
@@ -17,8 +18,8 @@ export default {
   //  这里存放数据
     return {
       select: 'bankSelect',
-      bankSelect: ['bankCard', 'virtualWallet'],
-      withdrawalSelect: ['wallet', 'usdtWallet']
+      bankSelect: ['gcashCard', 'bankCard', 'virtualWallet'],
+      withdrawalSelect: ['gcash', 'wallet', 'usdtWallet']
     }
   },
   //  监听属性 类似于data概念
@@ -105,6 +106,9 @@ export default {
 }
 .primaryBtn {
   background: #0097f6 !important;
+}
+.secondBtn{
+  background: #5d95c7 !important;
 }
 .normalBtn{
   background: #ABB5BE !important;

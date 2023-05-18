@@ -69,6 +69,8 @@ export default {
         this.$router.push('/center/bankCardAdd')
       } else if (right === 'virtualadd') {
         this.$router.push('/center/virtualWalletAdd')
+      } else if (right === 'gcashadd') {
+        this.$router.push('/center/gcashCardAdd')
       }
     }
   },
@@ -140,6 +142,10 @@ export default {
   display: none;
 }
 .navBar .navRight.add,.navBar .navRight.virtualadd{
+  background: url(../../../assets/images/nav/add_bankcard_ico@2x.png);
+  background-size: 100% 100%;
+}
+.navBar .navRight.add,.navBar .navRight.gcashadd{
   background: url(../../../assets/images/nav/add_bankcard_ico@2x.png);
   background-size: 100% 100%;
 }
