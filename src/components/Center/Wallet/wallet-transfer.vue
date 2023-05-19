@@ -49,7 +49,7 @@
         >All Reversal</button>
         <button :class="['half',sending? 'dis':'']" @click="send()">Transfer Now</button>
       </div>
-      <h2>*注：一键回收功能会一次性把所有游戏平台上的余额转账回众鑫账户</h2>
+      <h2>*Note: The one-click recovery function will transfer all game platforms balances back to the your account wallet at once.</h2>
     </div>
   </div>
 </template>
@@ -219,7 +219,7 @@ export default {
             _this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: 'Confirm'
+              confirmButtonText: 'OK'
             })
           }
         })
@@ -312,11 +312,11 @@ export default {
       let _this = this
       _this
         .$swal({
-          text: '您确定要回收其他平台的余额吗？',
+          text: 'Withdraw the remaining balance from other platforms？',
           type: 'warning',
           showCancelButton: true,
-          confirmButtonText: '确定',
-          cancelButtonText: '取消'
+          confirmButtonText: 'OK',
+          cancelButtonText: 'Cancel'
         })
         .then(isConfirm => {
           if (isConfirm.value) {
@@ -338,13 +338,13 @@ export default {
                   _this.$swal({
                     text: res.data.Message,
                     type: 'success',
-                    confirmButtonText: '确定'
+                    confirmButtonText: 'OK'
                   })
                 } else {
                   _this.$swal({
                     text: res.data.Message,
                     type: 'error',
-                    confirmButtonText: '确定'
+                    confirmButtonText: 'OK'
                   })
                 }
               })
@@ -363,39 +363,39 @@ export default {
       let _this = this
       if (_this.Outval === 'out') {
         _this.$swal({
-          text: '请选择转出账户',
+          text: 'Select account to transfer-out',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.Inval === 'in') {
         _this.$swal({
-          text: '请选择转入账户',
+          text: '请Select account to transfer-in',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.amount < 1) {
         _this.$swal({
-          text: '最低转账1元',
+          text: 'Minimum transfer: 1 peso.',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (!/^[0-9]*[1-9][0-9]*$/.test(_this.amount)) {
         _this.$swal({
-          text: '转账金额必须为整数',
+          text: 'Transfer amount must be a whole number.',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       _this.sending = true
       let url = '/api/transfer/post'
-      _this.$bus.$emit('loadingShow', '转账中...')
+      _this.$bus.$emit('loadingShow', 'Transferring...')
       var params = {
         OutGame: _this.Outval,
         InGame: _this.Inval,
@@ -412,15 +412,15 @@ export default {
             _this.getGameBalance(_this.Inval)
             _this.getGameBalance(_this.Outval)
             _this.$swal({
-              text: '转账成功',
+              text: 'Transfer successful.',
               type: 'success',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
           } else {
             _this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
           }
         })

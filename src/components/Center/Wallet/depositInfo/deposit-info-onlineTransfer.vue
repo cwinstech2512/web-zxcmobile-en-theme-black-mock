@@ -2,37 +2,37 @@
 <div class='onlineTransfer'>
   <ul>
     <li>
-      <label>银行：</label>
+      <label>Bank：</label>
       <input
         type="text"
         name="readonly"
         disabled="disabled"
         v-model="result.BankName"
       >
-      <b @click="handleCopy(result.BankName,$event)">复制</b>
+      <b @click="handleCopy(result.BankName,$event)">Copy</b>
     </li>
     <li>
-      <label>姓名：</label>
+      <label>Account Name：</label>
       <input
         type="text"
         name="readonly"
         disabled="disabled"
         v-model="result.Name"
       >
-      <b @click="handleCopy(result.Name,$event)">复制</b>
+      <b @click="handleCopy(result.Name,$event)">Copy</b>
     </li>
     <li>
-      <label>账号：</label>
+      <label>Account：</label>
       <input
         type="text"
         name="readonly"
         disabled="disabled"
         v-model="result.CardNumber"
       >
-      <b @click="handleCopy(result.CardNumber,$event)">复制</b>
+      <b @click="handleCopy(result.CardNumber,$event)">Copy</b>
     </li>
     <li>
-      <label>金额：</label>
+      <label>Amount：</label>
       <input
         type="text"
         name="readonly"
@@ -52,10 +52,10 @@
     </li> -->
   </ul>
   <div class="text">
-    <span>注意事项</span>
-    <p>1.单笔存款最低100.00元，上限50000.00元；</p>
-    <p>2.支付完成前请勿关闭浏览器，否则可能造成支付失败；</p>
-    <p>3.若充值后未到账请联系在线客服。</p>
+    <span>NOTICE</span>
+    <p>1.Minimum deposit PHP100, Maximum PHP50000.</p>
+    <p>2.Pay via Bank card step guide: ① Enter or select deposit amount. ② Select bank name then click "Next Step" ③ Using your online banking to transfer. </p>
+    <p>3.If the recharge not received, please contact our 24/7 help center. </p>
   </div>
 </div>
 </template>

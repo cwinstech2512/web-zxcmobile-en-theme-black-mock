@@ -232,7 +232,11 @@ export default {
         language: (navigator.browserLanguage || navigator.language).toLowerCase()
       }
     }
-
+    // 客服_Messager
+    Vue.prototype.sliao_messager = function () {
+      // window.open('https://18slot.ladesk.com/scripts/generateWidget.php?v=5.35.3.12&t=' + timestamp + '&cwid=ptaxsxn1&cwt=chat_popout&cid=wto1No5LCQNxNjaj&vid=bf624n60epk72o4mr57fa944yokky', 'lawindow', 'height=660,width=490,top=40,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+      window.open('http://m.me/103291305984562', 'lawindow', 'height=660,width=490,top=40,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+    }
     // 客服1
     Vue.prototype.sliaonow = function () {
       window.open('../KF.html', 'kfwindow', 'height=660,width=490,top=40,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')

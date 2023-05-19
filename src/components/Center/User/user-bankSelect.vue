@@ -1,8 +1,9 @@
 <template>
 <div class="bankSelect">
   <div class="redirect_group">
+    <div class="redirectBtn" @click="redirect('gcashCard')">GCash</div>
     <div class="redirectBtn" @click="redirect('bankCard')">Bank Card</div>
-    <div class="redirectBtn" @click="redirect('virtualWallet')">Crypto</div>
+    <div class="redirectBtn" @click="redirect('virtualWallet')">USDT</div>
   </div>
 </div>
 </template>

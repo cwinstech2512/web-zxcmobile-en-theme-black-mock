@@ -43,13 +43,13 @@
       </div>
     </div>
     <div class="text">
-      <span>注意事项</span>
-      <p>1.单笔存款最低{{onlineAmount.minAmount}}元，上限{{onlineAmount.maxAmount}}元；</p>
-      <p>2. 每次充值请重新获取新USDT地址，充至非当前地址导致一切损失概不负责；</p>
-      <p>3. 自行选择USDT链名称为ERC20或TRC20进行充值，请同链充值，否则导致一切损失自行承担；</p>
-      <p>4. 当前汇率为：{{toDecimal2(USDTRate)}} CNY/USDT（汇率有变动，仅供参考）；</p>
+      <span>NOTICE</span>
+      <p>1. Minimum per deposit USDT{{onlineAmount.minAmount}}, Maximum USDT{{onlineAmount.maxAmount}}.</p>
+      <p>2. Please obtain a new USDT address for each deposit. We are not responsible for any losses caused by deposit to a non-current USDT address.</p>
+      <p>3. Please choose to deposit USDT on either the ERC20 or TRC20 chain. And need use the same chain type to deposit, otherwise you will bear all losses.</p>
+      <p>4. Current exchange rate: {{toDecimal2(USDTRate)}} PHP/USDT (Exchange rates are indicative rates only).</p>
       <p>
-        5. 若充值后未到账请联系在线客服。
+        5. If the deposit amount is not credited,please contact our 24/7 help center. 
       </p>
     </div>
   </div>
@@ -186,9 +186,9 @@ export default {
         //  手动存款
         if (this.bankName === '') {
           this.$swal({
-            text: '请选择USDT链名称',
+            text: 'Select USDT chain type',
             type: 'warning',
-            confirmButtonText: '确定'
+            confirmButtonText: 'OK'
           })
           return false
         }
@@ -198,9 +198,9 @@ export default {
           this.amount < this.onlineAmount.minAmount
         ) {
           this.$swal({
-            text: '充值金额错误',
+            text: 'Deposit amount error',
             type: 'warning',
-            confirmButtonText: '确定'
+            confirmButtonText: 'OK'
           })
           return false
         }
@@ -212,9 +212,9 @@ export default {
           !this.vaifyWalletAddr(this.walletAddr)
         ) {
           this.$swal({
-            text: '转出钱包错误',
+            text: 'Withdrawal wallet error.',
             type: 'warning',
-            confirmButtonText: '确定'
+            confirmButtonText: 'OK'
           }).then(x => {
             // this.$refs.walletAddr.focus()
           })
@@ -253,7 +253,7 @@ export default {
               this.$swal({
                 text: res.data.Message,
                 type: 'error',
-                confirmButtonText: '确定'
+                confirmButtonText: 'OK'
               })
             }
           })
@@ -283,7 +283,7 @@ export default {
               .$swal({
                 text: res.data.Message,
                 type: 'error',
-                confirmButtonText: '确定'
+                confirmButtonText: 'OK'
               })
               .then(r => {
                 if (res.data.Status === 'LoginExpire') {

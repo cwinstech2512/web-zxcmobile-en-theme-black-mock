@@ -21,7 +21,7 @@
     <div v-else>
       <div class="bank"
            v-show="bankShow">
-        <h2>选择银行</h2>
+        <h2>Select Bank</h2>
         <select v-model="bankName">
           <option v-for="(banks, index) in bank"
                   :key="index">{{banks}}</option>
@@ -30,7 +30,7 @@
 
       <div class="aisle"
            v-show="aisleShow">
-        <h2>选择通道</h2>
+        <h2>Channel</h2>
         <ul>
           <li v-for="(aisles, index) in aisle"
               :key="index"
@@ -41,11 +41,11 @@
 
       <div class="writeBank"
            v-show="writeBankShow">
-        <h2>请输入银行卡卡号</h2>
+        <h2>Enter your bank card number</h2>
         <input type="text"
                v-model.trim.number="writeBank"
                maxlength="50"
-               placeholder="请输入银行卡卡号" />
+               placeholder="Please enter your bank card number" />
       </div>
 
       <!-- <div class="writeBank" v-show="alipayNameShow">
@@ -54,12 +54,12 @@
       </div>-->
       <div class="writeBank"
            v-show="isBankToCardSm || writeBankH5Sm">
-        <h2>请输入转款姓名</h2>
-        <input type="text" v-model.trim="RealName" maxlength="50" placeholder="请输入本次转款真实银行姓名" />
+        <h2>Enter the remitter name</h2>
+        <input type="text" v-model.trim="RealName" maxlength="50" placeholder="Please enter remitter name for this transfer" />
       </div>
       <div class="bank"
            v-show="olBankShow">
-        <h2>选择银行</h2>
+        <h2>Select Bank</h2>
         <select v-model="olBank">
           <option v-for="(item, index) in olBanks"
                   :key="index"
@@ -68,57 +68,55 @@
       </div>
 
       <div class="amount">
-        <h2>充值金额</h2>
+        <h2>Deposit Amount</h2>
         <div class="amount-Main">
-          <i>¥</i>
+          <i>₱</i>
           <div v-if="fixAmount.length === 0">
             <input type="number"
                    v-model="amount"
                    maxlength="8"
-                   placeholder="输入充值金额"
+                   placeholder="Enter deposit amount"
                    @keyup="inputChange" />
             <em class="dec"
                 v-if="decValue>0">.{{decValue}}</em>
             <span v-if="decValue>0">
-              请按上述金额汇款，包括小数点后两位
+              Please transfer the amount stated above, including two decimal places.
               <b>.{{decValue}}</b>
             </span>
             <ul class="amountBtn">
               <li v-for="(abtn, index) in amountBtn"
                   :key="index"
-                  @click="addAmount(abtn)">{{ abtn==-1 ? '清除':abtn}}</li>
+                  @click="addAmount(abtn)">{{ abtn==-1 ? 'Clear':abtn}}</li>
             </ul>
-            <button @click="deposit()">立即充值</button>
+            <button @click="deposit()">Deposit Now</button>
             <button class="green"
                     v-show="tutorialBtn"
-                    @click="tutorial">教程</button>
+                    @click="tutorial">Tutorial</button>
           </div>
           <div v-else>
             <select v-model="amount"
                     class="else">
               <option disabled="disabled"
                       value="0"
-                      selected="selected">请选择金额</option>
+                      selected="selected">Select amount</option>
               <option v-for="(fix,index) in fixAmount"
                       :value="fix"
                       :key="index">{{fix}}</option>
             </select>
-            <button @click="deposit()">立即充值</button>
+            <button @click="deposit()">Deposit Now</button>
           </div>
         </div>
       </div>
       <div class="text">
-        <span>注意事项</span>
-        <p>1.单笔存款最低{{minAmount}}元，上限{{maxAmount}}元；</p>
+        <span>NOTICE</span>
+        <p>1.Minimum deposit PHP{{minAmount}}，Maximum PHP{{maxAmount}}.</p>
         <template v-if="isWechatTransfer">
           <p>2.提交充值金额后请按系统给出的带小数点金额存款，以便系统自动上分；</p>
           <p>3.存款成功后5分钟内没有到账的请及时联系在线客服；</p>
         </template>
         <template v-else>
-          <p>2. 在汇款的“附言”或“用途”等处填写附言编码即可秒速到账；</p>
-          <p>3. 该收款账户仅支持银行网银转账，禁止使用支付宝转入，若使用支付宝转入而导致金额出现问题均由个人承担。如需要支付宝转账请使用支付宝转账功能充值；
-  </p>
-          <p>4. 若充值后未到账请联系在线客服。</p>
+          <p>2.Pay via Bank card step guide: ① Enter or select deposit amount. ② Select bank name then click "Next Step" ③ Using your online banking to transfer.</p>
+          <p>3. If the recharge not received, please contact our 24/7 help center.</p>
           <p v-if="isBankToCard">5.收款账户不定时更新，请认准当前显示账户信息，仔细核对银行及卡号，
           如因个人原因转账错误或转入已下架异常银行卡，导致金额损失，均由个人承担；</p>
         </template>
@@ -336,9 +334,9 @@ export default {
         //  手动存款
         if (this.bankName === '') {
           this.$swal({
-            text: '请选择收款银行',
+            text: 'Select receiving bank',
             type: 'warning',
-            confirmButtonText: '确定'
+            confirmButtonText: 'OK'
           })
           return false
         }
@@ -348,9 +346,9 @@ export default {
           this.amount < this.minAmount
         ) {
           this.$swal({
-            text: '充值金额错误',
+            text: 'Deposit amount error',
             type: 'warning',
-            confirmButtonText: '确定'
+            confirmButtonText: 'OK'
           })
           return false
         }
@@ -389,7 +387,7 @@ export default {
               this.$swal({
                 text: res.data.Message,
                 type: 'error',
-                confirmButtonText: '确定'
+                confirmButtonText: 'OK'
               })
             }
           })
@@ -402,18 +400,18 @@ export default {
         if (this.depositMethod[this.activeWay].code === 'BankH5') {
           if (this.writeBank.length === 0) {
             this.$swal({
-              text: '请输入充值银行卡号',
+              text: 'Please enter the deposit bank card number',
               type: 'warning',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
             return false
           }
           let reg = /^\d{10,}$/
           if (!reg.test(this.writeBank)) {
             this.$swal({
-              text: '银行卡号错误',
+              text: 'Invalid bank card number',
               type: 'warning',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
             return false
           }
@@ -434,9 +432,9 @@ export default {
           this.amount < this.minAmount
         ) {
           this.$swal({
-            text: '充值金额错误',
+            text: 'Deposit amount error',
             type: 'warning',
-            confirmButtonText: '确定'
+            confirmButtonText: 'OK'
           })
           return false
         }
@@ -453,7 +451,7 @@ export default {
             this.$swal({
               text: regextip,
               type: 'warning',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
             return false
           }
@@ -462,9 +460,9 @@ export default {
         if (this.olBankShow) {
           if (this.olBank.length === 0) {
             this.$swal({
-              text: '请选择银行',
+              text: 'Select Bank',
               type: 'warning',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
             return false
           }
@@ -493,12 +491,12 @@ export default {
         )
         // 1.5秒后恢复点击
         this.$swal({
-          text: '确认是否充值成功',
+          text: 'Please check if the deposit was successful',
           type: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#0088ff',
-          confirmButtonText: '成功',
-          cancelButtonText: '失败'
+          confirmButtonText: 'Success',
+          cancelButtonText: 'Failed'
         }).then(res => {
           if (res.value) {
             this.$router.push({
@@ -547,7 +545,7 @@ export default {
             ) // 保留在本地
             this.init(res.data.Result)
           } else {
-            if (res.data.Message === '请先绑定银行卡' || res.data.Message === '请先绑定银行卡') {
+            if (res.data.Message === 'Please bind your bank card first' || res.data.Message === 'Please bind your bank card first') {
 
             } else {
               this.NormalFailConfirm(res.data)

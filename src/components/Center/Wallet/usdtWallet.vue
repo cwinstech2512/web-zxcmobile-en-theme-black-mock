@@ -46,7 +46,7 @@ export default {
     return {
       active: 2,
       showWithdrawal: false,
-      walletNav: ['', '', '提款'],
+      walletNav: ['', '', 'Withdrawl'],
       swiperWalletMain: null,
       routeIndex: null,
       tutorial: false

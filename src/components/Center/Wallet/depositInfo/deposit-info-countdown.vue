@@ -7,13 +7,13 @@
       <em>{{minute}}:{{second}}</em>
     </div>
   </div>
-  <h2>正在处理中</h2>
+  <h2>In progress</h2>
 </div>
 <div class="textBar">
-  <span>请关注您的余额变动</span>
-  <span>如3分钟内未上分，请联系<em @click="service">在线客服</em></span>
+  <span>Please monitor your balance. </span>
+  <span>If your balance is not updated within 3 minutes，please contact our<em @click="service">24/7 help center</em></span>
 </div>
-<div class="btn" @click="again">返回</div>
+<div class="btn" @click="again">Back</div>
 </div>
 </template>
 

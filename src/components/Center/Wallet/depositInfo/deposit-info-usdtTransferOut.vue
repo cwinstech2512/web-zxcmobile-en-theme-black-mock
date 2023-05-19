@@ -3,7 +3,7 @@
   <div class="deposit-box">
     <ul>
       <li style="display: flex;">
-        <label>请转入USDT：</label>
+        <label>Transfer-in USDT：</label>
         <input
           type="text"
           name="readonly"
@@ -11,11 +11,11 @@
           v-model="AmountUSDT"
         >
         <div style="position: relative;">
-          <b @click="handleCopy(AmountUSDT,$event)">复制1</b>
+          <b @click="handleCopy(AmountUSDT,$event)">Copy</b>
         </div>
       </li>
       <li>
-        <label>USDT链名称：</label>
+        <label>USDT chain type：</label>
         <input
           type="text"
           name="readonly"
@@ -24,7 +24,7 @@
         >
       </li>
       <li style="min-height: 1.3rem; display: flex;">
-        <label>充币地址：</label>
+        <label>Transfer-in USDT address：</label>
         <textarea
           type="text"
           name="readonly"
@@ -37,19 +37,19 @@
             height: 25px;
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
-            top: 50%;" @click="handleCopy(WalletAddr,$event)">复制</b>
+            top: 50%;" @click="handleCopy(WalletAddr,$event)">Copy</b>
         </div>
       </li>
     </ul>
     <div class="text">
-      <p class="notiUSDT">*请确保收款地址收到{{AmountUSDT}} USDT,（不含手续费),否则无法自动到账</p>
-      <span>注意事项</span>
-      <p>1. 单笔存款最低{{TransferPropety.minAmount}}元，上限{{TransferPropety.maxAmount}}元；</p>
-      <p>2. 每次充值请重新获取新USDT地址，充至非当前地址导致一切损失概不负责；</p>
-      <p>3. 自行选择USDT链名称为ERC20或TRC20进行充值，请同链充值，否则导致一切损失自行承担；</p>
-      <p>4. 当前汇率为：{{toDecimal2(USDTRate)}} CNY/USDT（汇率有变动，仅供参考）；</p>
+      <p class="notiUSDT">*Please ensure that the receiving address receives USDT{{AmountUSDT}} (Excluding fees), otherwise the funds will not be automatically added to your account</p>
+      <span>NOTICE</span>
+      <p>1. Minimum per deposit USDT{{TransferPropety.minAmount}}, Maximum USDT{{TransferPropety.maxAmount}}.</p>
+      <p>2. Please obtain a new USDT address for each deposit. We are not responsible for any losses caused by deposit to a non-current USDT address.</p>
+      <p>3. Please choose to deposit USDT on either the ERC20 or TRC20 chain. And need use the same chain type to deposit, otherwise you will bear all losses.</p>
+      <p>4. Current exchange rate: {{toDecimal2(USDTRate)}} PHP/USDT (Exchange rates are indicative rates only).</p>
       <p>
-        5. 若充值后未到账请联系在线客服。
+        5. If the deposit amount is not credited,please contact our 24/7 help center. 
       </p>
     </div>
   </div>

@@ -35,10 +35,10 @@
             <i :style="{backgroundImage: 'url('+baseUrl+activitys.IconUrl+')',backgroundSize:'100% 100%'}" />
             <em>{{activitys.MenuName}}</em>
           </li>
-          <li class="download">
+          <!-- <li class="download">
             <a target="_blank"
                :href="downUrl"><i /><em>Download APP</em></a>
-          </li>
+          </li> -->
           <li class="out"
               @click="logout">
             <i /><em>Logout</em>

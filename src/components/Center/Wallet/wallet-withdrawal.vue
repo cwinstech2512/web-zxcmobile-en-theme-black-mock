@@ -23,7 +23,7 @@
                   disabled="disabled">Please Select bind bank card</option>
           <option v-for="(bankCards, index) in withdrawal.bankCard"
                   :key="index"
-                  :value="bankCards.BankId.toString()">{{bankCards.BankName}}--尾号{{bankCards.CardNumber}}</option>
+                  :value="bankCards.BankId.toString()">{{bankCards.BankName}}--Ending with{{bankCards.CardNumber}}</option>
         </select>
       </div>
       <div class="amount">
@@ -58,7 +58,7 @@
           <button :class="withdrawal.sending? 'dis':''"
                   @click="sendWithdrawal()">Withdrawal Now</button>
         </div>
-        <h2>*注：今日提款次数剩余{{withdrawal.RemainDrawCount}}次，单次最高{{numberFormat(withdrawal.MaxLimit,2)}}元，今日提款额度剩余{{numberFormat(withdrawal.RemainDrawSum,2)}}元</h2>
+        <h2>*Note：Remaining withdrawal attempts today: {{withdrawal.RemainDrawCount}}，Maximum amount per withdrawal: ₱{{numberFormat(withdrawal.MaxLimit,2)}}，Remaining daily withdrawal limit: ₱{{numberFormat(withdrawal.RemainDrawSum,2)}}</h2>
       </div>
     </div>
     <div v-if="USDT_Withdraw.bankCard.length>0 && activeWay == 'USDT_Withdraw'">
@@ -66,10 +66,10 @@
         <h2>USDT Wallet</h2>
         <select v-model="USDT_Withdraw.bankId">
           <option value
-                  disabled="disabled">Please Select USDT Wallet</option>
+                  disabled="disabled">Select USDT wallet</option>
           <option v-for="(bankCards, index) in USDT_Withdraw.bankCard"
                   :key="index"
-                  :value="bankCards.Id.toString()">{{bankCards.ChainName}}--开头{{strSlice(bankCards.WalletAddr,3)}}</option>
+                  :value="bankCards.Id.toString()">{{bankCards.ChainName}}--Starting with{{strSlice(bankCards.WalletAddr,3)}}</option>
         </select>
       </div>
       <div class="amount">
@@ -112,7 +112,7 @@
           <button :class="USDT_Withdraw.sending? 'dis':''"
                   @click="sendUsdtWithdrawal()">Withdrawal Now</button>
         </div>
-        <h2>*注：今日提款次数剩余{{withdrawal.RemainDrawCount}}次，单次最高{{numberFormat(withdrawal.MaxLimit,2)}}元，今日提款额度剩余{{numberFormat(withdrawal.RemainDrawSum,2)}}元</h2>
+        <h2>*Note：Remaining withdrawal attempts today: {{withdrawal.RemainDrawCount}}，Maximum amount per withdrawal: ₱{{numberFormat(withdrawal.MaxLimit,2)}}，Remaining daily withdrawal limit: ₱{{numberFormat(withdrawal.RemainDrawSum,2)}}</h2>
       </div>
     </div>
   </div>
@@ -289,11 +289,11 @@ export default {
           if (res.data.Success === true) {
             _this[this.activeWay].bankCard = res.data.Result.BankCards
             _this[this.activeWay].liText =
-              '今日提款次数剩余' +
+              'Remaining withdrawal attempts today: ' +
               res.data.Result.RemainDrawCount +
-              '次，单次最高' +
+              '，Maximum amount per withdrawal: ₱' +
               _this.numberFormat(res.data.Result.MaxLimit, 2) +
-              '元，今日提款额度剩余' +
+              '，Remaining daily withdrawal limit: ₱' +
               res.data.Result.RemainDrawSum +
               '元'
             _this[this.activeWay].MinLimit = parseFloat(res.data.Result.MinLimit)
@@ -320,11 +320,11 @@ export default {
             if (res.data.Result.BankCards.length < 1) {
               _this
                 .$swal({
-                  text: '请先绑定提款卡',
+                  text: 'Please bind your withdrawal card first',
                   type: 'warning',
                   showCancelButton: true,
-                  confirmButtonText: '确定',
-                  cancelButtonText: '稍候'
+                  confirmButtonText: 'OK',
+                  cancelButtonText: 'Please wait a moment'
                   // closeOnConfirm: false,
                   // closeOnClickOutside: false
                 })
@@ -357,11 +357,11 @@ export default {
             if (res.data.Result.Data.length < 1) {
               _this
                 .$swal({
-                  text: '请先绑定提款卡',
+                  text: 'Please bind your withdrawal card first',
                   type: 'warning',
                   showCancelButton: true,
-                  confirmButtonText: '确定',
-                  cancelButtonText: '稍候'
+                  confirmButtonText: 'OK',
+                  cancelButtonText: 'Please wait a moment'
                   // closeOnConfirm: false,
                   // closeOnClickOutside: false
                 })
@@ -402,7 +402,7 @@ export default {
               .$swal({
                 text: res.data.Message,
                 type: 'error',
-                confirmButtonText: '确定'
+                confirmButtonText: 'OK'
               })
               .then(r => {
                 if (res.data.Status === 'LoginExpire') {
@@ -425,58 +425,58 @@ export default {
       let _this = this
       if (_this.withdrawal.bankId.length < 1) {
         _this.$swal({
-          text: '请选择银行卡',
+          text: 'Select bank card',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       localStorage.setItem('bankId', _this.withdrawal.bankId)
       if (_this.withdrawal.amount.toString().length < 1) {
         _this.$swal({
-          text: '请输入提款金额',
+          text: 'Enter withdrawal amount',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.withdrawal.RemainDrawCount < 1) {
         _this.$swal({
-          text: '您今天的提款次数已达到上限',
+          text: 'You have reached your daily withdrawal limit for today',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.withdrawal.RemainDrawSum < _this.withdrawal.amount) {
         _this.$swal({
-          text: '您今天提款额度已超过单日上限',
+          text: 'You have exceeded your daily withdrawal limit for today',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.withdrawal.amount > _this.withdrawal.MaxLimit) {
         _this.$swal({
-          text: '最高提款' + _this.withdrawal.MaxLimit + '元',
+          text: 'Maximum withdrawal' + _this.withdrawal.MaxLimit + 'PHP',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.withdrawal.amount < _this.withdrawal.MinLimit) {
         _this.$swal({
-          text: '最低提款' + _this.withdrawal.MinLimit + '元',
+          text: 'Minimum withdrawal' + _this.withdrawal.MinLimit + 'PHP',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.withdrawal.password.length < 1) {
         _this.$swal({
-          text: '请输入提款密码',
+          text: 'Please enter your withdrawal password',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
@@ -508,15 +508,15 @@ export default {
             _this.withdrawal.amount = ''
             _this.withdrawal.password = ''
             _this.$swal({
-              text: '提交成功',
+              text: 'Submit successful',
               type: 'success',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
           } else {
             _this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
           }
         })
@@ -532,41 +532,41 @@ export default {
       let _this = this
       if (_this.USDT_Withdraw.bankId.length < 1) {
         _this.$swal({
-          text: '请选择钱包',
+          text: 'Select USDT wallet',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.USDT_Withdraw.amount.toString().length < 1) {
         _this.$swal({
-          text: '请输入提币金额',
+          text: 'Enter withdrawal amount',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.USDT_Withdraw.amount < _this.withdrawal.MinLimit) {
         _this.$swal({
-          text: '最低提款' + _this.withdrawal.MinLimit + '元',
+          text: 'Minimum withdrawal' + _this.withdrawal.MinLimit + 'PHP',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.USDT_Withdraw.amount > _this.withdrawal.MaxLimit) {
         _this.$swal({
-          text: '最高提款' + _this.withdrawal.MaxLimit + '元',
+          text: 'Maximum withdrawal' + _this.withdrawal.MaxLimit + 'PHP',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
       if (_this.USDT_Withdraw.password.length < 1) {
         _this.$swal({
-          text: '请输入提币密码',
+          text: 'Enter withdrawal password',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
@@ -593,16 +593,16 @@ export default {
             _this.USDT_Withdraw.amount = 0
             _this.getinfo()
             _this.$swal({
-              text: '提交成功',
+              text: 'Submit successful',
               type: 'success',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
           } else {
             _this
               .$swal({
                 text: res.data.Message,
                 type: 'error',
-                confirmButtonText: '确定'
+                confirmButtonText: 'OK'
               })
               .then(r => {
                 if (res.data.Status === 'LoginExpire') {
@@ -626,11 +626,11 @@ export default {
       let _this = this
       _this
         .$swal({
-          text: '您确定要回收其他平台的余额吗？',
+          text: 'Are you sure you want to retrieve the balance from other game platforms?',
           type: 'warning',
           showCancelButton: true,
-          confirmButtonText: '确定',
-          cancelButtonText: '取消'
+          confirmButtonText: 'OK',
+          cancelButtonText: 'Cancel'
         })
         .then(isConfirm => {
           if (isConfirm.value) {
@@ -653,13 +653,13 @@ export default {
                   _this.$swal({
                     text: res.data.Message,
                     type: 'success',
-                    confirmButtonText: '确定'
+                    confirmButtonText: 'OK'
                   })
                 } else {
                   _this.$swal({
                     text: res.data.Message,
                     type: 'error',
-                    confirmButtonText: '确定'
+                    confirmButtonText: 'OK'
                   })
                 }
               })

@@ -14,7 +14,15 @@ const router = new Router({
       path: '/',
       name: 'home',
       // component: Login,
-      redirect: { name: 'v_home' }
+      beforeEnter: (to, from, next) => {
+        let user = localStorage.getItem('account')
+        if (user) {
+          next({ path: '/center/home' })
+        } else {
+          next({ name: 'v_home' })
+        }
+      }
+      // redirect: { name: 'v_home' }
     },
     {
       path: '/login',

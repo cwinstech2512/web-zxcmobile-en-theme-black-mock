@@ -3,7 +3,7 @@
   <div class="redirect_group">
     <div class="redirectBtn secondBtn" @click="redirect(0)">GCash</div>
     <div class="redirectBtn primaryBtn" @click="redirect(1)">Bank Card</div>
-    <div class="redirectBtn normalBtn" @click="redirect(2)">Crypto</div>
+    <div class="redirectBtn normalBtn" @click="redirect(2)">USDT</div>
     <!-- <div class="normalBtn redirectBtn">虚拟钱包</div> -->
   </div>
 </div>

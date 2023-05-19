@@ -1,13 +1,15 @@
 <template>
 <div class='service'>
   <div class="service-box">
-    <button class="first" @click="serv1">LINE1</button>
-    <button class="second" @click="serv2">LINE2</button>
+    <div class="serice_livechat"><button class="first" @click="serv1">Live Chat</button><span id="chatButton"></span></div>
+    <button class="second" @click="serv2">Messenger</button>
   </div>
 </div>
 </template>
 
 <script>
+import $ from 'jquery'
+var chatButton
 export default {
   name: 'service',
   //  import引入的组件需要注入到对象中才能使用
@@ -29,12 +31,13 @@ export default {
      */
     serv1 () {
       // this.sliaonow()
+      chatButton.onClick()
     },
     /**
      * @description 次线客服
      */
     serv2 () {
-      // this.sliaonow2()
+      this.sliao_messager()
     }
   },
   //  生命周期 - 创建完成（可以访问当前this实例）
@@ -44,6 +47,18 @@ export default {
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     this.$emit('getStatus', '24/7 Chat', 'menu', 'message')
+    let scriptUrl = 'https://18slot.ladesk.com/scripts/track.js'
+    let node = document.createElement('script')
+    node.src = scriptUrl
+    node.id = 'la_x2s6df8d'
+    node.type = 'text/javascript'
+    node.async = true
+    node.charset = 'utf-8'
+    node.onload = function (e) {
+      chatButton = window.LiveAgent.createButton('ptaxsxn1', document.getElementById('chatButton'))
+      $('.service .service-box .serice_livechat > div').hide()
+    }
+    document.getElementsByTagName('head')[0].appendChild(node)
   }
 }
 </script>
@@ -84,5 +99,11 @@ export default {
 }
 .service .service-box button.second{
   background: #d6e4ea;
+}
+.service .service-box .serice_livechat > div{
+  visibility: hidden;
+}
+#b_ptaxsxn1_805 {
+  visibility: hidden;
 }
 </style>
