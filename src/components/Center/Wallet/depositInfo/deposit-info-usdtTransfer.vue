@@ -49,7 +49,7 @@
       <p>3. Please choose to deposit USDT on either the ERC20 or TRC20 chain. And need use the same chain type to deposit, otherwise you will bear all losses.</p>
       <p>4. Current exchange rate: {{toDecimal2(USDTRate)}} PHP/USDT (Exchange rates are indicative rates only).</p>
       <p>
-        5. If the deposit amount is not credited,please contact our 24/7 help center. 
+        5. If the deposit amount is not credited,please contact our 24/7 help center.
       </p>
     </div>
   </div>
