@@ -197,7 +197,7 @@ export default {
         let groupList = this.depositMethod[index].GroupList
         this.aisle = []
         groupList.forEach((element, index) => {
-          this.aisle.push('通道' + (index + 1))
+          this.aisle.push('Channel' + (index + 1))
         })
         if (groupList.length > 0) {
           this.switchAisle(0)

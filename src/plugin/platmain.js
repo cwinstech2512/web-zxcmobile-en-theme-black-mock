@@ -301,7 +301,7 @@ export default {
         if (data.Status === 'NoLogin' || data.Status === 'LoginExpire') {
           this.$swal({
             // title: data.Mesage,
-            text: '请重新登录！',
+            text: 'please log in again!',
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Confirm',
@@ -314,7 +314,7 @@ export default {
             }
           })
         } else if (data.Status === 'Forbidden') {
-          console.log('跳转到错误页面')
+          // console.log('跳转到错误页面')
           this.$router.push('/errorinfo')
         } else {
           this.$swal({
@@ -338,7 +338,7 @@ export default {
       if (data.Status === 'NoLogin' || data.Status === 'LoginExpire') {
         this.$swal({
           // title: data.Mesage,
-          text: '登录已超时，请重新登录！',
+          text: 'Timed out，please log in again!',
           type: 'warning',
           // showCancelButton: true,
           confirmButtonText: 'Confirm'
@@ -353,7 +353,7 @@ export default {
           }
         })
       } else if (data.Status === 'Forbidden') {
-        console.log('跳转到错误页面')
+        // console.log('跳转到错误页面')
         this.$router.push('/errorinfo')
       } else {
         this.$swal({
