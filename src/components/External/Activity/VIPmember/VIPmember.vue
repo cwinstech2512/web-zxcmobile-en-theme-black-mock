@@ -551,7 +551,7 @@ export default {
    * @description 挂载[内置钩子函数]
    */
   mounted () {
-    this.$emit('setExternalBar', 'VIP会员', 'back', this.showExternalBar)
+    this.$emit('setExternalBar', 'VIP', 'back', this.showExternalBar)
     // 将vue内部方法push给window
     window.vipGetRotateFunc = this.getLuckyFunc
     window.vipRotateSwitch = vipRotateSwitch
@@ -824,7 +824,7 @@ export default {
 }
 .MembershipCard .hd{
   width: 100%;
-  height: 1.8rem;
+  height: 1.2rem;
   padding: 0.2rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
