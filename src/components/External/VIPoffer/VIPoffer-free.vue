@@ -7,8 +7,8 @@
     <ul>
       <li>{{free.LevelName}}</li>
       <li>
-        <div class="info"><em>{{free.Bonus}}</em><p>彩金金额</p></div>
-        <div class="info"><em class="blue">{{free.Multiple}}</em><p>流水倍数</p></div>
+        <div class="info"><em>{{free.Bonus}}</em><p>Bonus amount</p></div>
+        <div class="info"><em class="blue">{{free.Multiple}}</em><p>Turnover multiple</p></div>
       </li>
     </ul>
     <button @click="dbGetFreeBonus(index)" :class="{on:free.Available}" :disabled="!free.Available ||inClickProcess"></button>
@@ -83,7 +83,7 @@ export default {
           if (res.data.Success === true) {
             _this.$set(_this.freeInfos, index, Object.assign({}, _this.freeInfos[index], {Available: false}))
             // ent.Available = false
-            _this.AlertSuccess('领取成功')
+            _this.AlertSuccess('Claimed')
           } else {
             _this.ExteralFileComfirm(res.data)
           }

@@ -49,7 +49,7 @@ export default {
   //  这里存放数据
     return {
       active: 0,
-      VIPofferNav: ['免费彩金', '存送优惠', '返水专享'],
+      VIPofferNav: ['Free bonus', 'Deposit bonus', 'Cashback exclusive'],
       swiperVIPofferMain: null,
       os: 'H5',
       token: '',
@@ -90,7 +90,7 @@ export default {
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     this.VIPofferMain()
-    this.$emit('setExternalBar', 'VIP优惠', 'back', this.showExternalBar)
+    this.$emit('setExternalBar', 'VIP Offer', 'back', this.showExternalBar)
   }
 }
 </script>

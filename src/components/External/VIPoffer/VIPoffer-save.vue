@@ -5,24 +5,24 @@
     :key="index"
   >
     <ul>
-      <li>{{save.LevelName}}<b>存送比例：{{pointToPercent(save.Rate)}}</b></li>
+      <li>{{save.LevelName}}<b>Deposit-bonus ratio：{{pointToPercent(save.Rate)}}</b></li>
       <li>
-        <div class="info"><em>{{numberFormat(save.Limit,2)}}</em><p>最高彩金</p></div>
-        <div class="info"><em class="blue">{{save.Multiple}}</em><p>（本金+彩金）流水倍数</p></div>
+        <div class="info"><em>{{numberFormat(save.Limit,2)}}</em><p>Max. bonus</p></div>
+        <div class="info"><em class="blue">{{save.Multiple}}</em><p>(Deposit+Bonus)Turnover multiple</p></div>
       </li>
     </ul>
     <button @click="showTerms(index)" :class="{on:save.Available}" :disabled="!save.Available || inClickProcess" ></button>
   </div>
   <div class="vipTerms" v-show="vipTerms" @click.self="toggleBox">
     <div class="terms">
-      <div class="hd"><h2>优惠条款</h2></div>
+      <div class="hd"><h2>Terms and Conditions</h2></div>
       <div class="bd">
-        <p>1、本优惠不限制游戏平台；</p>
-        <p>2、本优惠每月最多可申请一次；</p>
-        <p>3、存送优惠及免费筹码不能同时申请，否则将扣除所有红利彩金；<br>如：领取免费筹码，用免费筹码申请存送优惠，将被扣除所有红利彩金；</p>
-        <p>4、所有对冲、和局等（如同一局投注庄和闲、和局）注单流水将不计入有效流水范围；</p>
-        <p>5、众鑫娱乐对本次活动保有最终解释权；</p>
-        <div class="btnbar"><button @click="dbGetSaveBonus(tempSaveIndex)">确认领取</button><span>确认领取等于同意以上条款</span></div>
+        <p>1、This promotion is not limited to any gaming platform.</p>
+        <p>2、This promotion can be applied for a maximum of once per month.</p>
+        <p>3、Deposit bonuses and free chips cannot be applied for at the same time, otherwise all bonus winnings will be deducted；<br>Example: if you claim free chips and use them to apply for a deposit bonus, all bonus winnings will be deducted.</p>
+        <p>4、All hedging, draws, etc. (such as betting on both banker and player in the same round, or on a draw) will not be counted towards the valid turnover range.</p>
+        <p>5、18SLOT reserves the right of final interpretation for this event.</p>
+        <div class="btnbar"><button @click="dbGetSaveBonus(tempSaveIndex)">Confirm Claim </button><span>Confirming the claim is equivalent to agreeing to the above terms and conditions.</span></div>
       </div>
     </div>
   </div>
@@ -86,7 +86,7 @@ export default {
      */
     getSaveBonus (index) {
       if (index < 0) {
-        this.AlertError('操作失败！')
+        this.AlertError('Operation failed.')
         return false
       }
       let _this = this
@@ -94,26 +94,26 @@ export default {
       let content = []
       let bal = _.toNumber(_this.getinfo().balance)
       if (bal < 100) {
-        _this.AlertError('主账户余额不足100元')
+        _this.AlertError('The main account balance is less than 100 PHP.')
         return false
       }
       let depamount = _.round(ent.Limit / ent.Rate, 2)
       let bonus = bal * ent.Rate
       depamount = bonus >= ent.Limit ? depamount : bal
       bonus = bonus >= ent.Limit ? ent.Limit : bonus
-      content.push('账户金额：')
+      content.push('Account Balance:')
       content.push(_this.numberFormat(bal, 2))
-      content.push('申请彩金：')
+      content.push('Claim bonus:')
       content.push(_this.numberFormat(bonus, 2))
-      content.push('所需流水：')
+      content.push('Wagering requirement:')
       content.push(_this.numberFormat((depamount + bonus) * ent.Multiple, 2))
-      content.push('【公式: (本金+彩金) X 流水倍数】')
+      content.push('【Formula: (Deposit+Bonus)Turnover multiple】')
       this.$swal({
         text: content.join(''),
         type: 'warning',
         showCancelButton: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel'
         // closeOnConfirm: false
       }).then(res => {
         if (res.value) {
@@ -137,7 +137,7 @@ export default {
                 _this.vipTerms = false
                 _this.$set(_this.saveInfos, index, Object.assign({}, _this.saveInfos[index], {Available: false}))
                 // ent.Available = false
-                _this.AlertSuccess('申请成功')
+                _this.AlertSuccess('Success! Your application has been accepted.')
               } else {
                 _this.ExteralFileComfirm(res.data)
               }

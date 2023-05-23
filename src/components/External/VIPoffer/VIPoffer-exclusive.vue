@@ -5,10 +5,10 @@
     :key="index"
   >
     <ul>
-      <li>{{feed.LevelName}}-{{feed.PlatText}}<b>返水比例：{{pointToPercent(feed.Rate)}}</b></li>
+      <li>{{feed.LevelName}}-{{feed.PlatText}}<b>Rebate ratio：{{pointToPercent(feed.Rate)}}</b></li>
       <li>
-        <div class="info"><em>{{numberFormat(feed.RebateStake,2)}}</em><p>投注金额</p></div>
-        <div class="info"><em class="blue">{{numberFormat(feed.RebateFactAmount,2)}}</em><p>返水金额</p></div>
+        <div class="info"><em>{{numberFormat(feed.RebateStake,2)}}</em><p>Betting amount</p></div>
+        <div class="info"><em class="blue">{{numberFormat(feed.RebateFactAmount,2)}}</em><p>Rebate amount</p></div>
       </li>
     </ul>
     <button @click="dbGetFeedBonus(index)" :class="{on:feed.RebateFactAmount!==0}" :disabled="feed.RebateFactAmount===0 || inClickProcess"></button>
@@ -84,7 +84,7 @@ export default {
             // feed.RebateStake = 0
             // feed.RebateFactAmount = 0
             _this.$set(_this.feedInfos, index, Object.assign({}, _this.feedInfos[index], {RebateStake: 0, RebateFactAmount: 0}))
-            _this.AlertSuccess('领取成功')
+            _this.AlertSuccess('Claimed')
           } else {
             _this.ExteralFileComfirm(res.data)
           }
