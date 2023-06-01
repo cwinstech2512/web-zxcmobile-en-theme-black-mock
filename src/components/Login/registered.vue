@@ -17,7 +17,7 @@
           <li :key="index"
               v-if="index >= 0"
               :class="{'on': index==active}"
-              @click="cutoverNav(index)">{{navs}}</li>
+              >{{navs}}</li>
         </template>
       </ul>
       <ul class="reg-main-box"
@@ -635,13 +635,13 @@ export default {
   margin: 0.2rem auto;
 } */
 .registered .reg-main .reg-main-box li input {
-  color: #727273;
+  color: #fff;
 }
 .registered .reg-main,
 .registered .reg-end {
   width: 100%;
   color: #727273;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(108, 108, 110, 0.7);
   border-radius: 0.2rem;
   padding: 0.4rem 0.8rem;
   box-sizing: border-box;
@@ -685,7 +685,7 @@ export default {
   text-align: left;
 }
 .registered .reg-main .reg-main-box li input {
-  background: rgba(235, 233, 233, 0.8);
+  background: rgba(91, 92, 92, 0.8);
   box-shadow: 0 1px rgba(208, 207, 207, 0.9);
   border-radius: 0.3rem;
   padding: 0.4rem;
@@ -695,7 +695,7 @@ export default {
   height: 0.9rem;
 }
 .registered .reg-main .reg-main-box li input::-webkit-input-placeholder {
-  color: #5B5B5C;
+  color: #fff;
 }
 .registered .reg-main .reg-main-box li b {
   width: 2rem;
@@ -738,7 +738,7 @@ export default {
 }
 .registered .reg-main .reg-main-box li.text span {
   line-height: 0.84rem;
-  color: #565758;
+  color: #fff;
   font-size: 0.3rem;
 }
 .registered .reg-main .reg-main-box li.text span em {

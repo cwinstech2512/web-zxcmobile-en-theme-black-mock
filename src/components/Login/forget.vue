@@ -609,7 +609,7 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .forget .forget-main {
   width: 100%;
@@ -627,7 +627,7 @@ export default {
   width: 100%;
   overflow: hidden;
   color: #727273;
-  background: rgba(242, 242, 241, 0.55);
+  background: rgba(108, 108, 110, 0.7);
   border-radius: 0.2rem;
   padding: 0.4rem 0.4rem;
   box-sizing: border-box;
@@ -728,7 +728,7 @@ export default {
 .forget .forget-main .forget-main-step .forget-main-step-box ul li input {
   width: 4.1rem;
   height: 0.98rem;
-  background: rgba(235, 233, 233, 0.8);
+  background: rgba(91, 92, 92, 0.8);
   box-shadow: 0 1px rgba(208, 207, 207, 0.9);
   border-radius: 0.3rem;
   padding: 0.4rem;
@@ -744,7 +744,7 @@ export default {
   ul
   li
   input::-webkit-input-placeholder {
-  color: #bbb;
+  color: #fff;
   font-size: 0.3rem;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box .btn {

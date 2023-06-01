@@ -205,14 +205,14 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .promotionNav{
   width: 100%;
   height: 0.88rem;
   position: absolute;
   top: 0.88rem;
-  background: #fff;
+  background: #4A4A4A;
   z-index: 99;
 }
 #promotionNav{
@@ -225,7 +225,7 @@ export default {
   line-height: 0.88rem;
   text-align: center;
   font-size: 0.25rem;
-  color: #2b2b2b;
+  color: #fff;
 }
 #promotionNav .swiper-slide.on{
   color: #0088ff;

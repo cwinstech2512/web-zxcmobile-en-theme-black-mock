@@ -5,14 +5,18 @@
       <div class="sideMenu-Box-Top">
         <div class="userBar">
           <div class="name">
-            <i :style="{backgroundImage: 'url('+baseUrl+'/Image/avatar/'+ [avatarKey? avatarKey:1] +'.jpg)',backgroundSize:'100% 100%'}" /><em>{{account}}</em>
+            <i :style="{backgroundImage: 'url('+baseUrl+'/Image/avatar/'+ [avatarKey? avatarKey:1] +'.jpg)',backgroundSize:'100% 100%'}" />
+            <div :class="[VipLevelName,'level']">
+              <!-- <i /> -->
+              <div>
+                <span>{{vipName? vipName:'Member'}}</span>
+                <span>{{account}}</span>
+                <div class="balanceBar">
+                  <span>Balance：<em>{{balance}}</em></span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div :class="[VipLevelName,'level']">
-            <i /><em>{{vipName? vipName:'Member'}}</em>
-          </div>
-        </div>
-        <div class="balanceBar">
-          <span>Balance：<em>{{balance}}</em></span>
         </div>
         <ul class="financialBar">
           <li v-for="(financial, index) in financialBar"
@@ -330,7 +334,7 @@ export default {
 .sideMenu .sideMenu-Box {
   width: 6rem;
   height: 100%;
-  background: #e5e8e8;
+  background: rgba(69, 69, 69, 1);
   padding: 0 0.3rem;
   box-sizing: border-box;
   position: absolute;
@@ -340,18 +344,26 @@ export default {
   width: 100%;
   margin-bottom: 0.4rem;
   overflow: hidden;
+  margin-top: 7%;
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .userBar {
   width: 100%;
-  height: 0.88rem;
+  height: 1.88rem;
+  background: #313131;
+  border-radius: 0.1rem;
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .userBar .name {
   float: left;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  padding-left: 4%;
+  width: 100%;
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .userBar .name i {
   display: block;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 1rem;
+  height: 1rem;
   margin: 0.04rem 0;
   float: left;
   border-radius: 50%;
@@ -363,7 +375,9 @@ export default {
   margin-left: 0.1rem;
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .userBar .level {
-  float: right;
+  /* float: right; */
+  height: 100%;
+  padding-left: 3%;
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .userBar .level i {
   float: left;
@@ -392,21 +406,31 @@ export default {
   background: url(../../assets/images/account/lv5-ico@2x.png);
   background-size: 100% 100%;
 }
+.sideMenu .sideMenu-Box .sideMenu-Box-Top .userBar .level > div {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.sideMenu .sideMenu-Box .sideMenu-Box-Top .userBar .level > div > span{
+  font-size: 0.3rem;
+  color: #fff;
+  line-height: 0.58rem;
+}
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .userBar .level em {
   font-size: 0.28rem;
-  color: #1d1d1d;
-  line-height: 0.88rem;
+  color: #fff;
+  line-height: 0.58rem;
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .balanceBar {
   width: 100%;
-  height: 0.88rem;
+  /* height: 0.88rem; */
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .balanceBar span {
   width: 100%;
-  height: 0.88rem;
+  height: 0.58rem;
   font-size: 0.3rem;
-  color: #4b4b4b;
-  line-height: 0.88rem;
+  color: #fff;
+  /* line-height: 0.88rem; */
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .balanceBar span em {
   font-size: 0.3rem;
@@ -415,8 +439,9 @@ export default {
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .financialBar {
   width: 100%;
   height: 0.98rem;
-  background: #fff;
+  background: #313131;
   border-radius: 0.1rem;
+  margin-top: 5%;
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .financialBar li {
   float: left;
@@ -442,7 +467,7 @@ export default {
   background-size: 100% 100%;
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Top .financialBar li em {
-  color: #1c1c1c;
+  color: white;
   font-size: 0.3rem;
   line-height: 0.98rem;
 }
@@ -463,7 +488,7 @@ export default {
 .sideMenu .sideMenu-Box .sideMenu-Box-Bottom .itemBar li em {
   font-size: 0.3rem;
   line-height: 0.88rem;
-  color: #4b4b4b;
+  color: #fff;
 }
 .sideMenu .sideMenu-Box .sideMenu-Box-Bottom .itemBar li i {
   display: block;

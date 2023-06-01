@@ -99,7 +99,7 @@ export default {
   cursor: pointer;
   white-space: nowrap;
   text-size-adjust: none;
-  color: #515151;
+  color: #ffffff;
 }
 .notice .main .bd .swiper-container .swiper-slide span i{
   line-height: 0.4rem;
@@ -108,7 +108,7 @@ export default {
 }
 .notice .main .bd .swiper-container .swiper-slide span >>>*{
   font-size: 0.2rem;
-  color: #515151;
+  color: #ffffff;
   text-size-adjust: none;
 }
 </style>

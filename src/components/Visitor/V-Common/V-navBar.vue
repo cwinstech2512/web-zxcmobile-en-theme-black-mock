@@ -85,7 +85,7 @@ export default {
   position: absolute;
   z-index: 99;
   top: 0;
-  background: #B0C9D5;
+  background: #2d2e30;
 }
 .navBar .navName{
   width: 2rem;

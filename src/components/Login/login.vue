@@ -781,7 +781,7 @@ export default {
 }
 .login .login-main .login-main-box {
   width: 100%;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(108, 108, 110, 0.7);
   border-radius: 0.3rem;
   padding: 0.3rem;
   box-sizing: border-box;
@@ -794,7 +794,7 @@ export default {
   position: relative;
 }
 .login .login-main .login-main-box li .input_block{
-  background: rgba(235, 233, 233, 0.8);
+  background: rgba(91, 92, 92, 0.8);
   border-radius: 0.3rem;
   padding: 0.3rem;
   -webkit-box-sizing: border-box;
@@ -882,7 +882,7 @@ export default {
 }
 .login .login-main .login-main-box li.newuser span{
   font-size: 0.25rem;
-  color: #5B5B5C;
+  color: #fff;
   line-height: 0.8rem;
   margin-left: 0.9rem;
 }
@@ -890,22 +890,27 @@ export default {
   width: 100%;
   height: 100%;
   font-size: 0.35rem;
-  color: #727273;
+  color: #fff;
   padding: 0 0.8rem;
   box-sizing: border-box;
 }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+
 .login .login-main .login-main-box li input::-webkit-input-placeholder {
-  color: #b7b6b6;
+  color: #fff;
 }
 .login .login-main .login-main-box li.forget span {
   font-size: 0.25rem;
-  color: #5B5B5C;
+  color: #fff;
   line-height: 0.8rem;
   margin-left: 0.9rem;
 }
 .login .login-main .login-main-box li.forget em {
   font-size: 0.25rem;
-  color: #5B5B5C;
+  color: #fff;
   margin-top: 0.25rem;
   float: right;
 }
@@ -919,7 +924,7 @@ export default {
 }
 .login .login-main .login-main-box li.text span {
   line-height: 0.84rem;
-  color: #5B5B5C;
+  color: #fff;
   font-size: 0.3rem;
 }
 .login .login-main .login-main-box li.text span em {
@@ -933,7 +938,7 @@ export default {
   height: 0.98rem;
   border-radius: 0.06rem;
   border: 0.02rem solid rgba(91, 91, 92, 0.5);
-  color: #5B5B5C;
+  color: #fff;
   font-size: 0.3rem;
   box-sizing: border-box;
   text-align: center;
@@ -998,11 +1003,11 @@ export default {
 .loginbar .service-box .img span,
 .loginbar .download-box .img span {
   font-size: 0.35rem;
-  color: #5B5B5C;
+  color: #fff;
   top: 10%;
   position: absolute;
   left: 0;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(108, 108, 110, 0.7);
   border-radius: 0.2rem;
   padding: 0.1rem;
 }

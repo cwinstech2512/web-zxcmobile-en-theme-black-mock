@@ -189,14 +189,14 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .wallet .walletNav {
   width: 100%;
   height: 0.88rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #4A4A4A;
   position: absolute;
   top: 0.88rem;
   z-index: 99;
@@ -207,11 +207,12 @@ export default {
   line-height: 0.88rem;
   float: left;
   font-size: 0.3rem;
+  color: #fff;
 }
 .wallet .walletNav li.on {
-  color: #0088ff;
+  color: #2ecafd;
   height: 0.87rem;
-  border-bottom: 0.04rem solid #0088ff;
+  border-bottom: 0.04rem solid #2ecafd;
   box-sizing: border-box;
 }
 .walletMain {

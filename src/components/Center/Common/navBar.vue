@@ -97,7 +97,7 @@ export default {
   position: absolute;
   z-index: 99;
   top: 0;
-  background: #B0C9D5;
+  background: #121212;
 }
 .navBar.hide{
   display: none;
@@ -131,7 +131,7 @@ export default {
   color: #2b2b2b
 }
 .navBar .navRight{
-  width: 0.44rem;
+  width: 0.54rem;
   height: 0.44rem;
   position: absolute;
   right: 0.3rem;
