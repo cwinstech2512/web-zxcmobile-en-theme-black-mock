@@ -635,7 +635,7 @@ export default {
 </script>
 <style scoped>
 * {
-  font-family: "Heiti TC","黑體-繁" !important;
+  /* font-family: "Heiti TC","黑體-繁" !important; */
 }
 .user{
   width: 100%;
@@ -651,9 +651,9 @@ export default {
   background: #121212;
 }
 .user .user-card {
-  background: #ececeb;
+  background: rgba(108, 108, 110, 0.7);
   margin: 5%;
-  border-radius: 0.1rem;
+  border-radius: 0.3rem;
   padding: 2% 0;
 }
 .user .userbar-act {
@@ -697,7 +697,7 @@ export default {
 }
 .user .user-top .userbar .name em > span,
 .user .user-top .userbar .name em{
-  font-size: 0.37rem;
+  font-size: 0.32rem;
   font-weight: bold;
   color: #063246;
 }
@@ -707,7 +707,7 @@ export default {
 }
 .user .user-top .userbar .name .level em{
   margin-left: 0;
-  font-size: 0.37rem;
+  font-size: 0.32rem;
   font-weight: bold;
   line-height: 0.4rem;
   color: #063246;

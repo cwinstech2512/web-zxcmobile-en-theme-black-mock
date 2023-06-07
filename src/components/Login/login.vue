@@ -153,7 +153,7 @@ export default {
       },
       remember: false,
       inClickProcess: false,
-      loginBtnText: 'LOGIN',
+      loginBtnText: 'SIGN UP',
       appDown: false,
       vcodesrc: '',
       downUrl: 'https://app.18slot.app/'

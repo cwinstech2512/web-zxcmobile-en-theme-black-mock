@@ -106,7 +106,7 @@
           <!-- <label>Password：</label> -->
           <input v-model="accountReg.Email"
                  type="text"
-                 placeholder="Email">
+                 placeholder="EMAIL">
         </li>
         <li>
           <!-- <label>Password：</label> -->
@@ -137,15 +137,15 @@
                alt="点击刷新图片"
                style="cursor:pointer" />
         </li>
-        <li class="text">
+        <!-- <li class="text">
           <span>I have read and accept the<em @click="goRule">T&C</em></span>
-        </li>
+        </li> -->
         <li class="btn">
           <button @click="debounceSubmitAccountReg">SIGN UP</button>
         </li>
-        <li class="text">
+        <!-- <li class="text">
           <span>Already an account?<em @click="goLogin">Play now</em></span>
-        </li>
+        </li> -->
         <li>
           <div class="RtdFacebookBtn">
             <span></span>
@@ -154,6 +154,9 @@
               @click="sendFacebook()">SIGN UP WITH FACEBOOK</div>
           </div>
         </li>
+        <li class="text lookin_moment" @click="visitor">
+            <i class="lookin_moment_ico" /><span>LOOKING AT THE MOMENT</span>
+          </li>
       </ul>
     </div>
     <div class="reg-end"
@@ -250,6 +253,12 @@ export default {
   },
   //  方法集合
   methods: {
+    /**
+     * @description 游客进入
+     */
+    visitor () {
+      this.$router.push('/visitor/v_home')
+    },
     /**
      * @description 账号注册
      */
@@ -711,6 +720,11 @@ export default {
   text-align: center;
   top: 0.16rem;
   font-size: 0.28rem;
+}
+.registered .registered-main .registered-main-box li.lookin_moment,
+.registered .registered-main .registered-main-box li.download_app {
+  border-bottom: none;
+  height: 0.84rem;
 }
 .registered .reg-main .reg-main-box li b.on {
   background: rgba(255, 255, 255, 0.226);

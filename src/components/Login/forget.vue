@@ -55,12 +55,12 @@
         <div class="forget-main-step-box">
           <ul>
             <li>
-              <label>Mobile：</label>
+              <!-- <label>Mobile：</label> -->
               <input type="text" name="readonly" v-model="phone" placeholder="Enter your mobile number" />
             </li>
             <li>
-              <label>Code：</label>
-              <input type="text" name="readonly" maxlength="8" v-model="phoneCode" />
+              <!-- <label>Code：</label> -->
+              <input type="text" name="readonly" maxlength="8" v-model="phoneCode" placeholder="Enter your code" />
               <b @click="sendPhoneCode" :class="{on:codeBtnInClick}">{{codeBtnText}}</b>
             </li>
           </ul>
@@ -73,12 +73,12 @@
         <div class="forget-main-step-box">
           <ul>
             <li>
-              <label>Email：</label>
-              <input type="text" name="readonly" v-model="email" />
+              <!-- <label>Email：</label> -->
+              <input type="text" name="readonly" v-model="email" placeholder="Enter your Email" />
             </li>
             <li>
-              <label>Code：</label>
-              <input type="text" name="readonly" maxlength="8" v-model="emailCode" />
+              <!-- <label>Code：</label> -->
+              <input type="text" name="readonly" maxlength="8" v-model="emailCode" placeholder="Enter your code"/>
               <b @click="sendEmailCode" :class="{on:codeBtnInClick}">{{codeBtnText}}</b>
             </li>
           </ul>
@@ -91,15 +91,15 @@
         <div class="forget-main-step-box">
           <ul>
             <li>
-              <label>Question1：</label>
+              <!-- <label>Question1：</label> -->
               <input type="text" name="readonly" v-model="question1" disabled="disabled" />
             </li>
             <li>
-              <label>Answer1：</label>
-              <input type="text" name="readonly" v-model="answer1" />
+              <!-- <label>Answer1：</label> -->
+              <input type="text" name="readonly" v-model="answer1" placeholder="Enter your Answer1" />
             </li>
             <li>
-              <label>Question2：</label>
+              <!-- <label>Question2：</label> -->
               <input
                 type="text"
                 name="readonly"
@@ -109,8 +109,8 @@
               />
             </li>
             <li>
-              <label>Answer2：</label>
-              <input type="text" name="readonly" v-model="answer2" />
+              <!-- <label>Answer2：</label> -->
+              <input type="text" name="readonly" v-model="answer2" placeholder="Enter your Answer2" />
             </li>
           </ul>
           <div class="btn" :disabled="inClickProcess" @click="nextStep('c')">NEXT</div>
@@ -119,19 +119,19 @@
       </div>
       <!-- 第四步 -->
       <div class="forget-main-step" v-show="step==5">
-        <span>请设置新密码</span>
+        <span>Please enter new password</span>
         <div class="forget-main-step-box">
           <ul>
             <li>
-              <label>新密码：</label>
-              <input type="password" name="readonly" v-model="newPassword" />
+              <!-- <label>新密码：</label> -->
+              <input type="password" name="readonly" v-model="newPassword" placeholder="Enter your new password" />
             </li>
             <li>
-              <label>确认密码：</label>
-              <input type="password" name="readonly" v-model="repeatPassword" />
+              <!-- <label>确认密码：</label> -->
+              <input type="password" name="readonly" v-model="repeatPassword" placeholder="Enter your confirm password" />
             </li>
           </ul>
-          <div class="btn" :disabled="inClickProcess" @click="nextStep('d')">完成</div>
+          <div class="btn" :disabled="inClickProcess" @click="nextStep('d')">Confirm</div>
         </div>
       </div>
       <!-- 完成 -->
@@ -313,7 +313,7 @@ export default {
       }
       var reg = /^09[0-9]{9}$/gi
       if (!_this.phone || !reg.test(_this.phone)) {
-        _this.AlertWarning('请输入正确的手机号码')
+        _this.AlertWarning('Please enter phone number')
         return false
       }
       _this.codeBtnInClick = true
@@ -334,7 +334,7 @@ export default {
                 // 当倒计时小于等于0时清除定时器
                 _this.codeBtnInClick = false
                 window.clearInterval(_this.timerName)
-                _this.codeBtnText = '发送验证码'
+                _this.codeBtnText = 'Send code'
                 _this.totalTimespan = 60
               }
             }, 1000)
@@ -358,11 +358,11 @@ export default {
       }
       var reg = /^09[0-9]{9}$/gi
       if (!_this.phone || !reg.test(_this.phone)) {
-        _this.AlertWarning('请输入正确的手机号码')
+        _this.AlertWarning('Please enter phone number')
         return false
       }
       if (_this.phoneCode.length < 1) {
-        _this.AlertWarning('请输入验证码')
+        _this.AlertWarning('Please enter code')
         return false
       }
       _this.inClickProcess = true
@@ -384,7 +384,7 @@ export default {
             _this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: '确定'
+              confirmButtonText: 'Ok'
             })
           }
         })
@@ -422,7 +422,7 @@ export default {
               } else {
                 window.clearInterval(_this.timerName)
                 _this.codeBtnInClick = false
-                _this.codeBtnInClick = '发送验证码'
+                _this.codeBtnInClick = 'Send code'
                 _this.totalTimespan = 60
               }
             }, 1000)
@@ -636,7 +636,7 @@ export default {
 .forget .forget-main .forget-main-step span {
   display: block;
   font-size: 0.36rem;
-  color: #6b6b6b;
+  color: #fff;
   margin-bottom: 0.2rem;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box {
@@ -651,7 +651,7 @@ export default {
   display: block;
   text-align: center;
   font-size: 0.2rem;
-  color: #6b6b6b;
+  color: #fff;
   margin-top: 0.4rem;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box ul {
@@ -678,7 +678,8 @@ export default {
   background-size: 100% 100%;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box ul li > div {
-  background: rgb(252, 252, 251);
+  background: rgba(91, 92, 92, 0.8);
+  box-shadow: 0 1px rgba(208, 207, 207, 0.9);
   border-radius: 0.3rem;
   padding: 0.1rem 0.1rem;
   max-height: 83%;
@@ -690,7 +691,7 @@ export default {
 .forget .forget-main .forget-main-step .forget-main-step-box ul li em {
   line-height: 0.8rem;
   font-size: 0.25rem;
-  color: #6b6b6b;
+  color: #fff;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box ul li b {
   width: 1.82rem;
@@ -705,6 +706,9 @@ export default {
   color: #fff;
   border-radius: 0.06rem;
   font-weight: normal;
+}
+.forget .forget-main .forget-main-step li input::-webkit-input-placeholder {
+  color: #fff;
 }
 .forget .forget-main .forget-main-step .forget-main-step-box ul li b.on {
   background: rgba(255, 255, 255, 0.226);
@@ -736,6 +740,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   height: 0.9rem;
+  color: #fff;
 }
 .forget
   .forget-main
