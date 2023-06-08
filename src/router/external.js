@@ -168,6 +168,12 @@ export default new Router({
       path: '/USDTexperience',
       name: 'USDTexperience',
       component: (resolve) => require(['@/components/External/Activity/USDTexperience/USDTexperience.vue'], resolve)
+    },
+    // BrandDay
+    {
+      path: '/BrandDay',
+      name: 'BrandDay',
+      component: (resolve) => require(['@/components/External/Activity/BrandDay/BrandDay.vue'], resolve)
     }
   ]
 })
