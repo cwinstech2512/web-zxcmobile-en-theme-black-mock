@@ -82,7 +82,7 @@ table {
   border-spacing: 0;
 }
 select{
-  background: #fff url(../../assets/images/home/wallet_arrowdown_ico@2x.png) 95% no-repeat !important;
+  background: #aaaaaa url(../../assets/images/home/wallet_arrowdown_ico@2x.png) 95% no-repeat !important;
   background-size: 0.2rem !important;
 }
 body{

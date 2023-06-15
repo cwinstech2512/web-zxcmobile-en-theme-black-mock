@@ -12,7 +12,7 @@
       </select>
     </div>
     <div class="amount">
-      <h2>Withdrawal amount</h2>
+      <h2>WITHDRAWAL AMOUNT</h2>
       <div class="amount-Main">
         <i>₱</i>
         <input type="number"

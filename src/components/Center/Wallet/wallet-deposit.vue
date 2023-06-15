@@ -1,7 +1,7 @@
 <template>
   <div class="deposit">
     <div class="mode">
-      <h2>Payment Method</h2>
+      <h2>PAYMENT METHOD</h2>
       <ul class="way">
         <li v-for="(methods, index) in depositMethod"
             :key="index"
@@ -21,7 +21,7 @@
     <div v-else>
       <div class="bank"
            v-show="bankShow">
-        <h2>Select Bank</h2>
+        <h2>SELECT BANK</h2>
         <select v-model="bankName">
           <option v-for="(banks, index) in bank"
                   :key="index">{{banks}}</option>
@@ -59,7 +59,7 @@
       </div>
       <div class="bank"
            v-show="olBankShow">
-        <h2>Select Bank</h2>
+        <h2>SELECT BANK</h2>
         <select v-model="olBank">
           <option v-for="(item, index) in olBanks"
                   :key="index"
@@ -68,7 +68,7 @@
       </div>
 
       <div class="amount">
-        <h2>Deposit Amount</h2>
+        <h2>DEPOSIT AMOUNT</h2>
         <div class="amount-Main">
           <i>₱</i>
           <div v-if="fixAmount.length === 0">

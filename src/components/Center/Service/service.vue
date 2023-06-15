@@ -95,10 +95,10 @@ export default {
   border-radius: 0.06rem;
 }
 .service .service-box button.first{
-  background: #e2e2e1;
+  background: #656565;
 }
 .service .service-box button.second{
-  background: #d6e4ea;
+  background: #4a4a4a;
 }
 .service .service-box .serice_livechat > div{
   visibility: hidden;

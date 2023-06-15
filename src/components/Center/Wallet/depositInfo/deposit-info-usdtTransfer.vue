@@ -11,7 +11,7 @@
       </select>
     </div>
     <div class="amount">
-      <h2>Deposit Amount</h2>
+      <h2>DEPOSIT AMOUNT</h2>
       <div class="amount-Main">
         <i>₱</i>
         <div v-if="fixAmount.length === 0">
@@ -328,5 +328,13 @@ export default {
   font-size: 0.3rem;
   color: #007eff;
   border: 0.02rem solid #e5e5e5;
+  background: #bfbfbf;
+  border-radius: 0.3rem;
+  box-sizing: border-box;
+  padding: 0.1rem 0.25rem;
+}
+.amount-Main
+  textarea::-webkit-input-placeholder {
+  color: #fff;
 }
 </style>

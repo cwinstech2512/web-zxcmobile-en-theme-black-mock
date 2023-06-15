@@ -1,7 +1,7 @@
 <template>
   <div class="withdrawal">
     <div class="mode">
-      <h2>Payment Method</h2>
+      <h2>PAYMENT METHOD</h2>
       <ul class="way">
         <li :class="['onlineTransfer', {on: 'withdrawal' == activeWay}]"
             @click="switchWay('withdrawal')">
@@ -17,7 +17,7 @@
     </div>
     <div v-if="withdrawal.bankCard.length>0 && activeWay == 'withdrawal'">
       <div class="bank">
-        <h2>BANK Card</h2>
+        <h2>BANK CARD</h2>
         <select v-model="withdrawal.bankId">
           <option value
                   disabled="disabled">Please Select bind bank card</option>
@@ -27,7 +27,7 @@
         </select>
       </div>
       <div class="amount">
-        <h2>Withdrawal Amount</h2>
+        <h2>WITHDRAWAL AMOUNT</h2>
         <div class="amount-Main">
           <i>₱</i>
           <input type="number"

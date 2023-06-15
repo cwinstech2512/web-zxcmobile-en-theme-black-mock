@@ -46,7 +46,7 @@ export default {
     return {
       active: 0,
       showWithdrawal: false,
-      walletNav: ['Deposit', 'Transfer', 'Withdrawal'],
+      walletNav: ['DEPOSIT', 'TRANSFER', 'WITHDRAWAL'],
       swiperWalletMain: null,
       routeIndex: null,
       tutorial: false,
@@ -196,23 +196,27 @@ export default {
   height: 0.88rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #4A4A4A;
+  /* background: #4A4A4A; */
   position: absolute;
   top: 0.88rem;
   z-index: 99;
 }
 .wallet .walletNav li {
-  width: 33%;
+  width: 31%;
   text-align: center;
-  line-height: 0.88rem;
+  line-height: 0.7rem;
   float: left;
-  font-size: 0.3rem;
-  color: #fff;
+  font-size: 0.25rem;
+  color: #a0a0a3;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: #535353;
+  margin: 0 3px;
 }
 .wallet .walletNav li.on {
-  color: #2ecafd;
-  height: 0.87rem;
-  border-bottom: 0.04rem solid #2ecafd;
+  color: #fff;
+  height: 0.7rem;
+  /* border-bottom: 0.04rem solid #2ecafd; */
   box-sizing: border-box;
 }
 .walletMain {
@@ -241,7 +245,7 @@ export default {
 }
 .walletMain .swiper-slide >>> h2 {
   font-size: 0.25rem;
-  color: #6b6b6b;
+  color: #a0a0a3;
   font-weight: normal;
 }
 .walletMain .swiper-slide >>> .way {
@@ -419,7 +423,7 @@ export default {
   box-sizing: border-box;
   margin-top: 0.2rem;
   font-size: 0.3rem;
-  color: #2b2b2b;
+  color: #fff;
   background: #fff;
 }
 .walletMain .swiper-slide >>> select.else {
@@ -435,28 +439,31 @@ export default {
   margin: 0.2rem 0;
 }
 .walletMain .swiper-slide >>> .amount .amount-Main {
-  background: #fff;
+  background: #e5e5e5;
   border-radius: 0.06rem;
   margin: 0.2rem 0;
-  padding: 0 0.2rem;
+  padding: 0.3rem 0.2rem;;
   position: relative;
 }
 .walletMain .swiper-slide >>> .amount .amount-Main input {
   width: 100%;
   height: 1.2rem;
   border: none;
-  font-size: 0.8rem;
+  font-size: 0.5rem;
   padding: 0 0.8rem;
   box-sizing: border-box;
   border-bottom: 0.02rem solid #e5e5e5;
   margin-bottom: 0.2rem;
+  background: #bfbfbf;
+  border-radius: 0.3rem;
+  box-sizing: border-box;
 }
 .walletMain
   .swiper-slide
   >>> .amount
   .amount-Main
   input::-webkit-input-placeholder {
-  color: #aab2bd;
+  color: #555555;
   line-height: 1.2rem;
   font-size: 0.45rem;
 }
@@ -466,7 +473,7 @@ export default {
 .walletMain .swiper-slide >>> .amount .amount-Main i {
   font-size: 0.6rem;
   position: absolute;
-  top: 0.25rem;
+  top: 0.45rem;
   left: 0.4rem;
   color: #2b2b2b;
 }
@@ -497,6 +504,8 @@ export default {
   font-size: 0.3rem;
   margin-right: 0.4rem;
   margin-bottom: 0.2rem;
+  border-radius: 10px;
+  background-color: #bfbfbf;
 }
 .walletMain
   .swiper-slide
@@ -512,7 +521,7 @@ export default {
   border: none;
   background: #0088ff;
   color: #fff;
-  border-radius: 0.06rem;
+  border-radius: 0.2rem;
   margin: 0.2rem 0 0.4rem 0;
   font-size: 0.3rem;
 }
@@ -525,9 +534,9 @@ export default {
   width: 3.6rem;
   height: 0.98rem;
   border: none;
-  background: #0088ff;
+  background: #0097f6;
   color: #fff;
-  border-radius: 0.06rem;
+  border-radius: 10px;
   margin: 0.2rem 0 0.4rem 0;
   font-size: 0.3rem;
 }
@@ -535,9 +544,9 @@ export default {
   width: 2.6rem;
   height: 0.98rem;
   border: none;
-  background: #00c389;
+  background: #2ecafd;
   color: #fff;
-  border-radius: 0.06rem;
+  border-radius: 10px;
   margin: 0.2rem 0 0.4rem 0;
   font-size: 0.3rem;
 }
@@ -547,7 +556,7 @@ export default {
 .walletMain .swiper-slide >>> .balance {
   width: 100%;
   overflow: hidden;
-  background: #fff;
+  /* background: #fff; */
   border-radius: 0.06rem;
 }
 .walletMain .swiper-slide >>> .balance li {
@@ -562,7 +571,7 @@ export default {
   margin-right: 0;
 }
 .walletMain .swiper-slide >>> .balance li em {
-  color: #6b6b6b;
+  color: #ffffff;
   display: block;
   font-size: 0.25rem;
   margin: 0.15rem 0 0.05rem 0;
@@ -630,8 +639,8 @@ export default {
   color: #007eff;
   padding: 0.1rem;
   position: absolute;
-  right: 0.2rem;
-  top: 0.3rem;
+  right: 0.4rem;
+  top: 0.6rem;
   text-align: center;
   font-size: 0.25rem;
 }
@@ -644,7 +653,7 @@ export default {
   color: #007eff;
   padding: 0.1rem;
   position: absolute;
-  right: 0;
+  right: 0.2rem;
   top: 0;
   text-align: center;
   font-size: 0.25rem;
