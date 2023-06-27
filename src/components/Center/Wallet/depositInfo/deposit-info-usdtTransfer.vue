@@ -185,11 +185,7 @@ export default {
       if (isOL) {
         //  手动存款
         if (this.bankName === '') {
-          this.$swal({
-            text: 'Select USDT chain type',
-            type: 'warning',
-            confirmButtonText: 'OK'
-          })
+          this.AlertWarning('Select USDT chain type')
           return false
         }
         if (
@@ -197,11 +193,7 @@ export default {
           this.amount > this.onlineAmount.maxAmount ||
           this.amount < this.onlineAmount.minAmount
         ) {
-          this.$swal({
-            text: 'Deposit amount error',
-            type: 'warning',
-            confirmButtonText: 'OK'
-          })
+          this.AlertWarning('Deposit amount error')
           return false
         }
         if (isdepositSubmit) {
@@ -211,13 +203,7 @@ export default {
           this.walletAddr == null ||
           !this.vaifyWalletAddr(this.walletAddr)
         ) {
-          this.$swal({
-            text: 'Withdrawal wallet error.',
-            type: 'warning',
-            confirmButtonText: 'OK'
-          }).then(x => {
-            // this.$refs.walletAddr.focus()
-          })
+          this.AlertWarning('Withdrawal wallet error.')
           return false
         }
         isdepositSubmit = true
@@ -250,11 +236,7 @@ export default {
               })
               // })
             } else {
-              this.$swal({
-                text: res.data.Message,
-                type: 'error',
-                confirmButtonText: 'OK'
-              })
+              this.AlertError(res.data.Message)
             }
           })
           .catch(err => {

@@ -381,11 +381,7 @@ export default {
             _this.step = 5
           } else {
             _this.inClickProcess = false
-            _this.$swal({
-              text: res.data.Message,
-              type: 'error',
-              confirmButtonText: 'Ok'
-            })
+            _this.AlertError(res.data.Message)
           }
         })
         .catch(err => {

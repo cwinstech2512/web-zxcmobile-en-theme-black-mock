@@ -257,12 +257,14 @@ export default {
      */
     logout () {
       this.$swal({
-        text: 'Do you want to Logout？',
+        html: '<h4 style="color: #fff">Do you want to Logout？</h4>',
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'logout',
-        cancelButtonText: 'cancel'
+        confirmButtonColor: '#0097f6',
+        cancelButtonColor: '#adc9d6',
+        confirmButtonText: 'LOGOUT',
+        cancelButtonText: 'CANCLE',
+        background: '#434343'
         // closeOnConfirm: false,
         // closeOnClickOutside: false
       }).then(res => {
@@ -509,5 +511,8 @@ export default {
 .sideMenu .sideMenu-Box .sideMenu-Box-Bottom .itemBar li.out i {
   background: url(../../assets/images/leftmenu/leftmenu_exit_ico@2x.png);
   background-size: 100% 100%;
+}
+.swal2-icon.swal2-warning {
+  border-color: #0097f6 !important;
 }
 </style>

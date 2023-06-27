@@ -54,7 +54,7 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .PromotionInfo .img{
   width: 100%;
@@ -81,11 +81,11 @@ export default {
 .PromotionInfo .hd h2{
   margin-top: 0.2rem;
   font-size: 0.3rem;
-  color: #2b2b2b;
+  color: #fff;
 }
 .PromotionInfo .hd time{
   font-size: 0.2rem;
-  color: #6b6b6b;
+  color: #fff;
 }
 .PromotionInfo .bd {
  padding: 0.2rem 0;

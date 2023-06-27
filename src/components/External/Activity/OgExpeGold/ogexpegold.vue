@@ -152,17 +152,9 @@ export default {
       _this.$https.fetchPost(url, _this.secret(params))
         .then((res) => {
           if (res.data.Success === true) {
-            _this.$swal({
-              text: res.data.Message,
-              type: 'success',
-              confirmButtonText: '确定'
-            })
+            _this.AlertSuccess(res.data.Message)
           } else {
-            _this.$swal({
-              text: res.data.Message,
-              type: 'error',
-              confirmButtonText: '确定'
-            })
+            _this.AlertError(res.data.Message)
           }
           _this.active = false
           _this.press = !_this.active

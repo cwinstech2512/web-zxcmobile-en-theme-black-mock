@@ -25,8 +25,10 @@
             :class="proboxs.TypeId.toString()"
             v-if="pro.Id.toString() === proboxs.TypeId.toString() || pro.Id === 101 && proboxs.TypeId !== 4 || pro.Id === 102 && proboxs.Hot === 1 && proboxs.TypeId !== 4"
           >
-            <div class="img" @click="ProboxShow(proboxs.Id)">
-              <img :src="proboxs.Img" alt="">
+            <div class="imgCicle" >
+              <div class="img" @click="ProboxShow(proboxs.Id)">
+                <img :src="proboxs.Img" alt="" @error="imgError">
+              </div>
             </div>
             <div class="tit">
               <h2>{{proboxs.Title}}</h2>
@@ -184,6 +186,9 @@ export default {
         }).catch(err => {
           console.log(err)
         })
+    },
+    imgError (ele) {
+      ele.target.hidden = true
     }
   },
   //  生命周期 - 创建完成（可以访问当前this实例）
@@ -212,7 +217,7 @@ export default {
   height: 0.88rem;
   position: absolute;
   top: 0.88rem;
-  background: #4A4A4A;
+  /* background: #4A4A4A; */
   z-index: 99;
 }
 #promotionNav{
@@ -224,13 +229,19 @@ export default {
   height: 0.88rem;
   line-height: 0.88rem;
   text-align: center;
-  font-size: 0.25rem;
-  color: #fff;
+  font-size: 0.27rem;
+  color: #a0a0a3;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: #e5e5e5;
+  margin: 0 3px;
+  text-transform: uppercase;
 }
 #promotionNav .swiper-slide.on{
-  color: #0088ff;
+  color: #fff;
   height: 0.87rem;
-  border-bottom: 0.04rem solid #0088ff;
+  /* border-bottom: 0.04rem solid #0088ff; */
+  background-color: #959595;
   box-sizing: border-box;
 }
 .promotionMain{
@@ -255,22 +266,26 @@ export default {
 }
 .promotionMain .swiper-slide .pro-box{
   width: 100%;
-  border-radius: 0.06rem;
-  background: #fff;
+  border-radius: 0.2rem;
+  background: #434343;
   overflow: hidden;
   margin-bottom: 0.2rem;
   padding-bottom: 0.2rem;
 }
 .promotionMain .swiper-slide .pro-box .img{
-  width: 100%;
+  /* width: 100%; */
   height: 2.5rem;
   background: url(../../../assets/images/home/promotion_placeholder@2x.jpg);
   background-size: 100% 100%;
+  border-radius: 0.2rem;
 }
 .promotionMain .swiper-slide .pro-box .img img{
   width: 100%;
   height: 100%;
   background-size: 100% 100%;
+}
+.promotionMain .swiper-slide .pro-box .imgCicle {
+  padding: 1% 2%;
 }
 .promotionMain .swiper-slide .pro-box .tit{
   width: 100%;
@@ -279,7 +294,7 @@ export default {
 .promotionMain .swiper-slide .pro-box .tit h2{
   margin: 0.1rem 0.2rem;
   font-size: 0.3rem;
-  color: #2b2b2b;
+  color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -288,7 +303,7 @@ export default {
 .promotionMain .swiper-slide .pro-box .tit time{
   margin: 0.2rem;
   font-size: 0.2rem;
-  color: #bbb;
+  color: #fff;
 }
 .promotionMain .swiper-slide .pro-box .tit span{
   float: right;

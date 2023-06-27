@@ -148,6 +148,11 @@ export default {
  margin: 0.05rem 0;
  color: #6b6b6b;
 }
+.PromotionInfo .bd >>> li{
+ font-size: 0.25rem;
+ margin: 0.05rem 0;
+ color: #6b6b6b;
+}
 .PromotionInfo .bd >>> .table {
   width:100%;
   overflow-x:auto;
@@ -195,5 +200,8 @@ export default {
 }
 .PromotionInfo .bd >>> ol{
   padding: 0 0.3rem;
+}
+.PromotionInfo .bd >>> ol > li{
+  list-style-type: decimal;
 }
 </style>

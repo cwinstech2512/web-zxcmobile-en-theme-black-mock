@@ -393,12 +393,14 @@ export default {
      */
     signOut () {
       this.$swal({
-        text: 'Do you want to Logout？',
+        html: '<h4 style="color: #fff">Do you want to Logout？</h4>',
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'Logout',
-        cancelButtonText: 'Cancel'
+        confirmButtonColor: '#0097f6',
+        cancelButtonColor: '#adc9d6',
+        confirmButtonText: 'LOGOUT',
+        cancelButtonText: 'CANCLE',
+        background: '#434343'
         // closeOnConfirm: false
       }).then(res => {
         if (res.value) {
@@ -673,6 +675,8 @@ export default {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: flex;
+  background: url(../../../assets/images/user/block_bg.png) no-repeat;
+  background-size: 100% 100%;
 }
 .user .user-top .userbar .name > div{
   flex: 1;
@@ -812,7 +816,7 @@ export default {
   box-sizing: border-box;
 }
 .user .user-bottom .financialBar{
-  background: #adc9d6 !important;
+  background: #626262 !important;
 }
 .user .user-bottom .mainBar,
 .user .user-bottom .financialBar{
@@ -821,6 +825,8 @@ export default {
   margin-bottom: 0.2rem;
   background: #fff;
   border-radius: 0.06rem;
+  background: url(../../../assets/images/user/block_bg.png) no-repeat;
+  background-size: 100% 100%;
 }
 .user .user-bottom .financialBar li.transfer {
   width: 2.2rem;
@@ -844,12 +850,13 @@ export default {
   flex-direction: column;
 }
 .user .user-bottom .financialBar li em{
-  font-size: 0.28rem;
+  font-size: 0.26rem;
   float: left;
   line-height: 0.5rem;
   margin: 0 auto;
   color: #fff;
   font-weight: bold;
+  text-transform: uppercase;
 }
 .user .user-bottom .financialBar li i{
   display: block;
@@ -878,13 +885,15 @@ export default {
 }
 .user .user-bottom .mainBar li{
   float: left;
-  width: 2rem;
+  width: 1.9rem;
   height: 1.6rem;
   text-align: center;
+  padding: 6px 4px;
 }
 .user .user-bottom .mainBar li em{
   font-size: 0.25rem;
-  color: #2b2b2b;
+  color: #fff;
+  text-transform: uppercase;
 }
 .user .user-bottom .mainBar li i{
   display: block;
@@ -1000,5 +1009,8 @@ export default {
 }
 .user .avatarBar ul li i.on{
   display: block;
+}
+.swal2-icon.swal2-warning {
+  border-color: #0097f6 !important;
 }
 </style>

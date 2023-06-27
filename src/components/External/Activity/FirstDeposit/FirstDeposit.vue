@@ -204,11 +204,7 @@ export default {
                   if (res.data.Success === true) {
                     _this.showPopupBox = true
                   } else {
-                    _this.$swal({
-                      text: res.data.Message,
-                      type: 'error',
-                      confirmButtonText: '确定'
-                    })
+                    _this.AlertError(res.data.Message)
                     captchaObj.reset()
                   }
                   _this.isSubmitLoading = false

@@ -390,11 +390,7 @@ export default {
                     _this.$bus.$emit('loadingHide')
                     _this.loginForm.VCode = ''
                     _this.getVcode()
-                    _this.$swal({
-                      text: res.data.Message,
-                      type: 'error',
-                      confirmButtonText: 'Confirm'
-                    })
+                    _this.AlertError(res.data.Message)
                   } else if (res.data.Message == null || res.data.Message === '' ||
                     res.data.Message === '发生一个意外错误，请联系在线客服。错误：102' ||
                     res.data.Message === '您的登录发生异常，代码:102，请联系在线客服帮助您！') {

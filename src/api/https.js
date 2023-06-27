@@ -48,9 +48,12 @@ axios.interceptors.response.use((res) => {
     return
   }
   Vue.prototype.$swal({
-    text: '网络异常！',
+    html: `<p style="color: #fff; font-size: 16px">Network error！</p>`,
     type: 'error',
-    confirmButtonText: '确定'
+    confirmButtonText: 'Confirm',
+    background: '#434343',
+    confirmButtonColor: '#0097f6',
+    cancelButtonColor: '#adc9d6'
   })
   return Promise.reject(error)
 })

@@ -88,11 +88,7 @@ export default {
               top.location.href = 'index.html'
             }
           } else {
-            _this.$swal({
-              text: res.data.Message,
-              type: 'error',
-              confirmButtonText: 'Confirm'
-            })
+            _this.AlertError(res.data.Message)
           }
           // window.externalLogout()
         }).catch(err => {

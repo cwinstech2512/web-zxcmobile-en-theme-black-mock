@@ -352,12 +352,12 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .information .information-bar {
   margin-top: 0.2rem;
   width: 100%;
-  background: #fff;
+  background: #121212;
   border-radius: 0.06rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
@@ -388,7 +388,7 @@ export default {
 }
 .information .information-bar ul li em {
   font-size: 0.35rem;
-  color: #aaa;
+  color: #6b6b6b;
   float: right;
 }
 .information .information-bar ul li em.active {

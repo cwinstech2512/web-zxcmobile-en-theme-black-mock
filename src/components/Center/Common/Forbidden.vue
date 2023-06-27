@@ -74,7 +74,7 @@ export default {
 </script>
 <style scoped>
 * {
-  font-family: "Heiti TC","黑體-繁" !important;
+  font-family: "Arial" !important;
 }
 .errorinfo{
   width: 100%;
@@ -86,7 +86,7 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .errorinfo .forbidden{
   position: absolute;
@@ -105,25 +105,27 @@ export default {
 }
 .errorinfo .forbidden .forbidden-hh h2{
   font-size: 0.35rem;
-  -webkit-text-stroke: 1px #000;
-  font-weight: bolder;
+  -webkit-text-stroke: 1px #ffffff;
+  font-weight: 800;
+  color: #fff;
 }
 .errorinfo .forbidden .forbidden-hh h2 > span{
   font-size: 0.33rem;
-  -webkit-text-stroke: 1px #599AF3;
-  font-weight: bolder;
+  -webkit-text-stroke: 1px #0097f6;
+  font-weight: 800;
+  color: #0097f6;
 }
 .errorinfo .forbidden .forbidden-dd {
   padding: 3% 5%;
-  background-color: #EBEBE9;
+  background-color: #c9c9c9;
   border-radius: 0.1rem 0.1rem 0 0;
 }
 .errorinfo .forbidden .forbidden-dd > div{
-  font-size: 0.3rem;
+  font-size: 0.4rem;
 }
 .errorinfo .forbidden .forbidden-fd {
   padding: 3% 5%;
-  background-color: #EBEBE9;
+  background-color: #c9c9c9;
   border-radius: 0 0 0.1rem 0.1rem;
 }
 .errorinfo .forbidden .forbidden-fd > .forbidden-email{
