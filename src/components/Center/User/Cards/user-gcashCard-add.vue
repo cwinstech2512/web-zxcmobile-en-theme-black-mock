@@ -8,20 +8,20 @@
   <div class="box">
      <ul>
        <li>
-        <input type="text" v-model="info.BankName" placeholder="Bank Name" :disabled="true" :name="'readonly'">
+        <input type="text" v-model="info.BankName" placeholder="BANK NAME" :disabled="true" :name="'readonly'">
        </li>
        <li>
-        <input type="text" v-model="info.BankCardNo" placeholder="Mobile">
+        <input type="text" v-model="info.BankCardNo" placeholder="MOBILE">
        </li>
        <!-- <li>
         <input type="text" v-model="info.Name" placeholder="Account Name">
        </li> -->
        <li v-show="showAnswer">
-        <input type="text"  v-model.trim="info.Answer" placeholder="Security PIN">
+        <input type="text"  v-model.trim="info.Answer" placeholder="SECURITY PIN">
        </li>
      </ul>
      <p v-show="showAnswer">*Fill in any security answer (optional for the first binding)</p>
-     <button @click="dbAddCard" :disabled="inClickProcess">Confirm</button>
+     <button @click="dbAddCard" :disabled="inClickProcess">CONFIRM</button>
   </div>
 </div>
 </template>
@@ -183,7 +183,7 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .gcashCard_Add select{
   width: 100%;
@@ -194,7 +194,7 @@ export default {
   padding: 0 0.3rem;
   box-sizing: border-box;
   color: #2b2b2b;
-  background: #fff;
+  background: #121212;
   font-size: 0.3rem;
 }
 .gcashCard_Add input{
@@ -205,23 +205,24 @@ export default {
   margin-top: 0.2rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #121212;
   font-size: 0.3rem;
+  color: #fff;
 }
 .gcashCard_Add input::-webkit-input-placeholder{
-  color: #bbb;
+  color: #fff;
 }
 .gcashCard_Add p{
   line-height: 0.6rem;
   font-size: 0.25rem;
-  color: #6b6b6b;
+  color: #fff;
 }
 .gcashCard_Add .box{
   width: 100%;
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #fff;
-  border-radius: 0.06rem;
+  background: #121212;
+  border-radius: 0.15rem;
 }
 .gcashCard_Add .box ul{
   width: 100%;
@@ -240,7 +241,7 @@ export default {
   width: 100%;
   height: 0.98rem;
   background: #0088ff;
-  border-radius: 0.06rem;
+  border-radius: 0.15rem;
   font-size: 0.3rem;
   color: #fff;
   margin: 0.6rem 0;

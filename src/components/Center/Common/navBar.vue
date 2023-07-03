@@ -144,10 +144,12 @@ export default {
 .navBar .navRight.add,.navBar .navRight.virtualadd{
   background: url(../../../assets/images/nav/add_bankcard_ico@2x.png);
   background-size: 100% 100%;
+  height: 0.54rem;
 }
 .navBar .navRight.add,.navBar .navRight.gcashadd{
   background: url(../../../assets/images/nav/add_bankcard_ico@2x.png);
   background-size: 100% 100%;
+  height: 0.54rem;
 }
 .navBar .navRight.message{
   background: url(../../../assets/images/nav/message_ico@2x.png);

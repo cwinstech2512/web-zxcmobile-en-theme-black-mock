@@ -76,7 +76,7 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .gcashCard .card:last-child{
   margin-bottom: 0.2rem;
@@ -85,6 +85,7 @@ export default {
   width: 100%;
   height: 2rem;
   margin-top: 0.2rem;
+  border-radius: 0.15rem;
 }
 .gcashCard .card .top{
   width: 100%;
@@ -106,7 +107,7 @@ export default {
   font-size: 0.35rem;
   font-weight: normal;
   float: left;
-  margin-top: 0.25rem;
+  margin-top: 0.32rem;
   margin-left: 0.2rem;
   width: 85%;
   overflow: hidden;

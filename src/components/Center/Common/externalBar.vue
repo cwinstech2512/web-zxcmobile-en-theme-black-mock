@@ -60,7 +60,7 @@ export default {
   position: absolute;
   z-index: 99;
   top: 0;
-  background: #fff;
+  background: #2d2e30;
 }
 .externalBar.hide{
   display: none;
@@ -91,6 +91,6 @@ export default {
   text-align: center;
   line-height: 0.88rem;
   font-size: 0.32rem;
-  color: #2b2b2b
+  color: #fff
 }
 </style>

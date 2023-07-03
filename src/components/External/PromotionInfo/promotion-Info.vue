@@ -98,7 +98,7 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .PromotionInfo.on{
   top: 0.88rem;
@@ -128,11 +128,11 @@ export default {
 .PromotionInfo .hd h2{
   margin-top: 0.2rem;
   font-size: 0.3rem;
-  color: #2b2b2b;
+  color: #fff;
 }
 .PromotionInfo .hd time{
   font-size: 0.2rem;
-  color: #6b6b6b;
+  color: #c5c5c5;
 }
 .PromotionInfo .bd {
  padding: 0.2rem 0;
@@ -146,12 +146,12 @@ export default {
 .PromotionInfo .bd >>> p{
  font-size: 0.25rem;
  margin: 0.05rem 0;
- color: #6b6b6b;
+ color: #c5c5c5;
 }
 .PromotionInfo .bd >>> li{
  font-size: 0.25rem;
  margin: 0.05rem 0;
- color: #6b6b6b;
+ color: #c5c5c5;
 }
 .PromotionInfo .bd >>> .table {
   width:100%;

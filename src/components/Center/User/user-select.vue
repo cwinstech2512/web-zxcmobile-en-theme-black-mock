@@ -1,8 +1,8 @@
 <template>
 <div class="bankSelect">
   <div class="redirect_group">
-    <div class="redirectBtn secondBtn" @click="redirect(0)">GCash</div>
-    <div class="redirectBtn primaryBtn" @click="redirect(1)">Bank Card</div>
+    <div class="redirectBtn primaryBtn" @click="redirect(0)">GCash</div>
+    <div class="redirectBtn secondBtn" @click="redirect(1)">Bank Card</div>
     <div class="redirectBtn normalBtn" @click="redirect(2)">USDT</div>
     <!-- <div class="normalBtn redirectBtn">虚拟钱包</div> -->
   </div>
@@ -79,7 +79,7 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,14 +95,26 @@ export default {
   height: 0.98rem;
   overflow: hidden;
   margin-bottom: 0.7rem;
-  color: #ffffff;
-  border-radius: 0.06rem;
+  color: rgb(57,54,51);
   font-size: 0.5rem;
   text-align: center;
   line-height: 0.98rem;
-  border-radius: 0.08rem;
   font-size: 0.4rem;
   font-weight: bold;
+  cursor: pointer;
+}
+.bankSelect .redirect_group .redirectBtn:focus,
+.bankSelect .redirect_group .redirectBtn:hover{
+  color: #fff;
+}
+.bankSelect .redirect_group .redirectBtn:first-child {
+  border-radius: 0.3rem 0.3rem 3px 3px; /* 左上角和右上角设置为0.3rem的圆角 */
+}
+.bankSelect .redirect_group .redirectBtn:nth-child(2) {
+  border-radius: 3px;
+}
+.bankSelect .redirect_group .redirectBtn:nth-child(3) {
+  border-radius: 3px 3px 0.3rem 0.3rem; /* 左下角和右下角设置为0.3rem的圆角 */
 }
 .primaryBtn {
   background: #0097f6 !important;

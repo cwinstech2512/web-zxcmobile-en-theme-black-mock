@@ -65,7 +65,7 @@ export default {
     getPlatBalance (index) {
       var _this = this
       let url = '/api/Balance/Get'
-      _this.$set(_this.plats, index, Object.assign({}, _this.plats[index], {Balance: '查询中...'}))
+      _this.$set(_this.plats, index, Object.assign({}, _this.plats[index], {Balance: 'Loading...'}))
       var params = {
         Token: _this.getinfo().token,
         Plat: _this.plats[index].Plat
@@ -78,7 +78,7 @@ export default {
             _this.$set(_this.plats, index, Object.assign({}, _this.plats[index], {Balance: res.data.Message}))
           }
         }).catch(err => {
-          _this.$set(_this.plats, index, Object.assign({}, _this.plats[index], {Balance: '内部错误'}))
+          _this.$set(_this.plats, index, Object.assign({}, _this.plats[index], {Balance: 'Error'}))
           console.log(err)
         })
     }
@@ -113,11 +113,11 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .PlatBalance .box{
   width: 100%;
-  background: #fff;
+  background: #121212;
   border-radius: 0.06rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
@@ -130,28 +130,34 @@ export default {
   overflow: hidden;
 }
 .PlatBalance .box ul li{
-  width: 100%;
   height: 0.98rem;
   line-height: 0.98rem;
-  border-bottom: 0.02rem solid #ddd;
-  color: #6b6b6b;
+  background: rgba(115, 114, 114, 1);
+  box-shadow: 0 1px rgb(208 207 207 / 90%);
+  border-radius: 0.3rem;
+  padding: 0 0.3rem;
+  margin-top: 0.3rem;
+  color: rgba(255, 255, 255, 0.748);
   font-size: 0.32rem;
   display: flex;
   justify-content: space-between;
 }
-.PlatBalance .box ul li:last-child{
-  border-bottom: none
+.PlatBalance .box:first-child ul li:first-child{
+  /* border-bottom: none */
+  background: rgba(0, 151, 246, 1);
 }
 .PlatBalance .box ul li span{
   float: left;
-  font-size: 0.3rem;
-  color: #6b6b6b;
+  font-size: 0.35rem;
+  color: rgba(255, 255, 255, 0.748);
   min-width: 25%;
+  font-weight: 700;
 }
 .PlatBalance .box ul li em{
   float: right;
-  font-size: 0.3rem;
-  color: #0088ff;
+  font-size: 0.35rem;
+  color: rgba(255, 255, 255, 0.748);
   white-space: nowrap;
+  font-weight: 700;
 }
 </style>

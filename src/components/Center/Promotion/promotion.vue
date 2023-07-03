@@ -79,7 +79,8 @@ export default {
           observer: true,
           observeParents: true,
           simulateTouch: false,
-          slidesPerView: 5
+          slidesPerView: 4.5,
+          spaceBetween: 3
         })
       })
     },
@@ -214,7 +215,7 @@ export default {
 }
 .promotionNav{
   width: 100%;
-  height: 0.88rem;
+  height: 0.68rem;
   position: absolute;
   top: 0.88rem;
   /* background: #4A4A4A; */
@@ -226,8 +227,8 @@ export default {
 }
 #promotionNav .swiper-slide{
   width: 100%;
-  height: 0.88rem;
-  line-height: 0.88rem;
+  height: 0.58rem;
+  line-height: 0.58rem;
   text-align: center;
   font-size: 0.27rem;
   color: #a0a0a3;
@@ -239,7 +240,7 @@ export default {
 }
 #promotionNav .swiper-slide.on{
   color: #fff;
-  height: 0.87rem;
+  height: 0.58rem;
   /* border-bottom: 0.04rem solid #0088ff; */
   background-color: #959595;
   box-sizing: border-box;
@@ -313,5 +314,9 @@ export default {
   background: #0088ff;
   border-radius: 0.06rem;
   padding: 0.1rem 0.3rem;
+}
+.promotionMain .swiper-container {
+  height: 0.58rem;
+  padding-top: 10px;
 }
 </style>

@@ -8,20 +8,20 @@
   <div class="box">
      <ul>
        <li>
-        <input type="number" v-model="info.BankCardNo" placeholder="Bank Account">
+        <input type="number" v-model="info.BankCardNo" placeholder="BANK ACCOUNT">
        </li>
        <li>
-        <input type="text" v-model="info.Branch" placeholder="Bank Branch">
+        <input type="text" v-model="info.Branch" placeholder="BANK BRANCH">
        </li>
        <li>
-        <input type="text" v-model="info.RegisteredNumber" placeholder="Registered Number">
+        <input type="text" v-model="info.RegisteredNumber" placeholder="REGISTERED NUMBER">
        </li>
        <li v-show="showAnswer">
-        <input type="text"  v-model.trim="info.Answer" placeholder="Security PIN">
+        <input type="text"  v-model.trim="info.Answer" placeholder="SECURITY PIN">
        </li>
      </ul>
      <p v-show="showAnswer">*Fill in any security answer (optional for the first binding)</p>
-     <button @click="dbAddCard" :disabled="inClickProcess">Confirm</button>
+     <button @click="dbAddCard" :disabled="inClickProcess">CONFIRM</button>
   </div>
 </div>
 </template>
@@ -192,7 +192,7 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .bankCard_Add select{
   width: 100%;
@@ -202,8 +202,8 @@ export default {
   margin-top: 0.2rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
-  color: #2b2b2b;
-  background: #fff;
+  color: #fff;
+  background: #121212;
   font-size: 0.3rem;
 }
 .bankCard_Add input{
@@ -214,22 +214,23 @@ export default {
   margin-top: 0.2rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #121212;
   font-size: 0.3rem;
+  color: #fff;
 }
 .bankCard_Add input::-webkit-input-placeholder{
-  color: #bbb;
+  color: #fff;
 }
 .bankCard_Add p{
   line-height: 0.6rem;
   font-size: 0.25rem;
-  color: #6b6b6b;
+  color: #fff;
 }
 .bankCard_Add .box{
   width: 100%;
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #121212;
   border-radius: 0.06rem;
 }
 .bankCard_Add .box ul{
@@ -249,7 +250,7 @@ export default {
   width: 100%;
   height: 0.98rem;
   background: #0088ff;
-  border-radius: 0.06rem;
+  border-radius: 0.15rem;
   font-size: 0.3rem;
   color: #fff;
   margin: 0.6rem 0;

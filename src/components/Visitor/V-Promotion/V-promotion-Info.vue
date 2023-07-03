@@ -85,7 +85,7 @@ export default {
 }
 .PromotionInfo .hd time{
   font-size: 0.2rem;
-  color: #fff;
+  color: #c5c5c5;
 }
 .PromotionInfo .bd {
  padding: 0.2rem 0;
@@ -99,10 +99,14 @@ export default {
 .PromotionInfo .bd >>> p{
  font-size: 0.25rem;
  margin: 0.05rem 0;
- color: #6b6b6b;
+ color: #c5c5c5;
 }
 .PromotionInfo .bd >>> ol{
   list-style-type: decimal;
+}
+.PromotionInfo .bd >>> ol > li{
+  list-style-type: decimal;
+ color: #c5c5c5;
 }
 .PromotionInfo .bd >>> .table {
   width:100%;
