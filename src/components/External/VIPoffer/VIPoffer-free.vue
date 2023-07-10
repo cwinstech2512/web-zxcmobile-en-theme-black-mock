@@ -7,8 +7,8 @@
     <ul>
       <li>{{free.LevelName}}</li>
       <li>
-        <div class="info"><em>{{free.Bonus}}</em><p>Bonus amount</p></div>
-        <div class="info"><em class="blue">{{free.Multiple}}</em><p>Turnover multiple</p></div>
+        <div class="info"><em>{{free.Bonus}}</em><p>BONUS AMOUNT</p></div>
+        <div class="info"><em class="blue">{{free.Multiple}}</em><p>TURNOVER MULTIPLE</p></div>
       </li>
     </ul>
     <button @click="dbGetFreeBonus(index)" :class="{on:free.Available}" :disabled="!free.Available ||inClickProcess"></button>

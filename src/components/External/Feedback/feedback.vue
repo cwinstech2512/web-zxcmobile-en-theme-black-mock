@@ -44,7 +44,7 @@ export default {
   //  这里存放数据
     return {
       active: 0,
-      feedbackNav: ['Platform Rebate', 'High Rebate'],
+      feedbackNav: ['PLATFORM REBATE', 'HIGHT REBATE'],
       swiperfeedbackMain: null
     }
   },
@@ -82,11 +82,14 @@ export default {
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     this.feedbackMain()
-    this.$emit('setExternalBar', 'Rebate Offer', 'back', this.showExternalBar)
+    this.$emit('setExternalBar', 'REBATE OFFER', 'back', this.showExternalBar)
   }
 }
 </script>
 <style>
+* {
+  font-family: "Heiti TC","黑體-繁" !important;
+}
 .feedback.on{
   top:0.88rem;
 }
@@ -99,29 +102,35 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .feedback .feedbackNav{
   width: 100%;
-  height: 0.88rem;
+  /* height: 0.7rem; */
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #121212;
   position: absolute;
   top: 0;
   z-index: 99;
 }
 .feedback .feedbackNav li{
-  width: 50%;
+  width: 46%;
   text-align: center;
-  line-height: 0.88rem;
+  /* height: 0.7rem; */
   float: left;
   font-size: 0.3rem;
+  color: #a0a0a3;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: #535353;
+  margin: 5px 5px;
+  line-height: 0.7rem;
 }
 .feedback .feedbackNav li.on{
-  color: #0088ff;
-  height: 0.87rem;
-  border-bottom: 0.04rem solid #0088ff;
+  color: #fff;
+  height: 0.7rem;
+  /* border-bottom: 0.04rem solid #0088ff; */
   box-sizing: border-box;
 }
 .feedbackMain{
@@ -146,8 +155,9 @@ export default {
 }
 .feedbackMain .swiper-slide .box{
   width: 100%;
-  background: #fff;
-  border-radius: 0.06rem;
+  background: #c6c6c6;
+  opacity: 0.75;
+  border-radius: 0.16rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
   overflow: hidden;
@@ -162,16 +172,17 @@ export default {
   width: 100%;
   height: 0.98rem;
   line-height: 0.98rem;
-  border-bottom: 0.02rem solid #ddd;
-  color: #6b6b6b;
-  font-size: 0.32rem;
+  border-bottom: 0.08rem solid #fff;
+  color: #000;
+  font-size: 0.42rem;
+  font-weight: 700;
 }
 .feedbackMain .swiper-slide .box ul li:last-child{
   border-bottom: none
 }
 .feedbackMain .swiper-slide .box ul li b{
   padding: 0.05rem 0.2rem;
-  background: #ff9250;
+  background: #0097f6;
   color: #fff;
   border-radius: 1rem;
   font-weight: normal;
@@ -187,7 +198,7 @@ export default {
   height: 0.6rem;
   margin-top: 0.2rem;
   float: left;
-  border-right: 0.02rem solid #ddd;
+  border-right: 0.08rem solid #fff;
   position: relative;
 }
 .feedbackMain .swiper-slide .box ul li .info:last-child{
@@ -200,7 +211,7 @@ export default {
   display: block;
   font-size: 0.25rem;
   text-align: center;
-  color: #6b6b6b;
+  color: #000;
 }
 .feedbackMain .swiper-slide .box ul li .info em.blue{
   color: #0088ff;
@@ -211,7 +222,7 @@ export default {
   line-height: 0.3rem;
   font-size: 0.2rem;
   text-align: center;
-  color: #6b6b6b;
+  color: #000;
 }
 .feedbackMain .swiper-slide .box button.on{
   width: 1rem;
@@ -232,7 +243,7 @@ export default {
 .feedbackMain .swiper-slide button.getAll{
   width: 100%;
   height: 0.98rem;
-  background: #fff;
+  background: #121212;
   border-radius: 0.06rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
@@ -241,14 +252,17 @@ export default {
   font-size: 0.35rem;
   line-height: 0.98rem;
   text-align: center;
-  color: #f8583d;
+  color: #0097f6;
+  font-weight: 700;
 }
 .feedbackMain .swiper-slide button.getAll span{
-  font-size: 0.22rem;
-  color: #333;
+  font-size: 0.35rem;
+  color: #fff;
+  font-weight: 700;
 }
 .feedbackMain .swiper-slide button.getAll span em{
-  font-size: 0.22rem;
-  color: #0088ff;
+  font-size: 0.35rem;
+  color: #0097f6;
+  font-weight: 700;
 }
 </style>

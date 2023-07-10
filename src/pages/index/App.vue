@@ -67,7 +67,7 @@ export default {
   text-size-adjust:none;
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
-  font-family: "Microsoft YaHei";
+  font-family: "Heiti TC","黑體-繁" !important;
 }
 input, textarea, button,select{
   -webkit-appearance: none;

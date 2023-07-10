@@ -7,8 +7,8 @@
     <ul>
       <li>{{high.PlatText}}<b>Rebate rate:{{pointToPercent(high.Rete)}}</b></li>
       <li>
-        <div class="info"><em>{{numberFormat(high.RebateStake,2)}}</em><p>Wager Amount</p></div>
-        <div class="info"><em class="blue">{{numberFormat(high.RebateFactAmount,2) >= 1.0 ? numberFormat(high.RebateFactAmount,2) : '0.00'}}</em><p>Rebate Amount</p></div>
+        <div class="info"><em>{{numberFormat(high.RebateStake,2)}}</em><p>WAGER AMOUNT</p></div>
+        <div class="info"><em class="blue">{{numberFormat(high.RebateFactAmount,2) >= 1.0 ? numberFormat(high.RebateFactAmount,2) : '0.00'}}</em><p>REBATE AMOUNT</p></div>
       </li>
     </ul>
     <button @click="dbGetExtraBackwater(index)" :class="{on:high.RebateFactAmount>=1.0}" :disabled="high.RebateFactAmount<1.0 || inClickProcess"></button>
@@ -79,7 +79,7 @@ export default {
           _this.inClickProcess = false
           if (res.data.Success === true) {
             _this.$set(_this.feedInfo, index, Object.assign({}, _this.feedInfo[index], {RebateStake: 0, RebateFactAmount: 0}))
-            _this.AlertSuccess('领取成功')
+            _this.AlertSuccess('SUCCESS')
           } else {
             _this.ExteralFileComfirm(res.data)
           }

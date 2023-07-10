@@ -17,13 +17,13 @@
   <div class="betting-bottom">
     <div class="ftop">
       <input type="date" id="beginDate" v-model="startDate">
-        至
+        -
       <input type="date" id="endDate" v-model="nextDate">
       <input type="button" value="Search" @click="dbGetSearch">
     </div>
     <div class="fbottom">
-      <span>Tot Deposit：<em>{{totalDepAmount}}</em></span>
-      <span>Tot Wager：<em>{{totalBetAmount}}</em></span>
+      <span>TOT DEPOSIT: <em>{{totalDepAmount}}</em></span>
+      <span>TOT WAGER: <em>{{totalBetAmount}}</em></span>
     </div>
   </div>
 </div>
@@ -114,11 +114,11 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .betting .betting-main ul{
   width: 100%;
-  background: #fff;
+  background: #121212;
   border-radius: 0.06rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
@@ -129,7 +129,7 @@ export default {
   width: 100%;
   height: 0.98rem;
   line-height: 0.98rem;
-  border-bottom: 0.02rem solid #ddd;
+  border-bottom: 0.08rem solid #fff;
 }
 .betting .betting-main ul li:last-child{
   border-bottom:none
@@ -152,14 +152,14 @@ export default {
   height: 2rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #121212;
   position: absolute;
   bottom: 0;
-  box-shadow: 0 0 2px 0 #ddd;
+  /* box-shadow: 0 0 0.05rem 0 #fff; */
 }
 .betting .betting-bottom .ftop{
   width: 100%;
-  border-bottom: 0.02rem solid #ddd;
+  border-bottom: 0.05rem solid #fff;
   padding: 0.2rem 0;
   box-sizing: border-box;
   font-size: 0.25rem;
@@ -202,8 +202,7 @@ export default {
 .betting .betting-bottom .fbottom span{
   width: 50%;
   float: left;
-  color: 0.25rem;
-  color: #2b2b2b;
+  color: #fff;
 }
 .betting .betting-bottom .fbottom span em{
   color: #ff7200;

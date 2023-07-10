@@ -637,7 +637,7 @@ export default {
 </script>
 <style scoped>
 * {
-  /* font-family: "Heiti TC","黑體-繁" !important; */
+  font-family: "Heiti TC","黑體-繁" !important;
 }
 .user{
   width: 100%;

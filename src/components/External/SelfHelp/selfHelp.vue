@@ -130,29 +130,35 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .selfHelp .selfHelpNav{
   width: 100%;
   height: 0.88rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #121212;
   position: absolute;
   top: 0;
   z-index: 99;
 }
 .selfHelp .selfHelpNav li{
-  width: 25%;
+  width: 30%;
   text-align: center;
   line-height: 0.88rem;
   float: left;
   font-size: 0.3rem;
+  color: #a0a0a3;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: #535353;
+  margin: 5px 5px;
+  line-height: 0.7rem;
 }
 .selfHelp .selfHelpNav li.on{
-  color: #0088ff;
-  height: 0.87rem;
-  border-bottom: 0.04rem solid #0088ff;
+  color: #fff;
+  /* height: 0.87rem; */
+  /* border-bottom: 0.04rem solid #0088ff; */
   box-sizing: border-box;
 }
 .selfHelpMain{
@@ -177,8 +183,9 @@ export default {
 }
 .selfHelpMain .swiper-slide >>> .box{
   width: 100%;
-  background: #fff;
-  border-radius: 0.06rem;
+  background: #c6c6c6;
+  opacity: 0.75;
+  border-radius: 0.16rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
   overflow: hidden;
@@ -193,15 +200,15 @@ export default {
   width: 100%;
   height: 0.98rem;
   line-height: 0.98rem;
-  border-bottom: 0.02rem solid #ddd;
+  border-bottom: 0.08rem solid #fff;
   font-size: 0.32rem;
 }
 .selfHelpMain .swiper-slide >>> .box ul li:last-child{
   border-bottom: none
 }
 .selfHelpMain .swiper-slide >>> .box ul li h2{
-  color: #2b2b2b;
-  font-size: 0.32rem;
+  color: #000;
+  font-size: 0.38rem;
   font-weight: normal;
 }
 .selfHelpMain .swiper-slide >>> .box ul li p{

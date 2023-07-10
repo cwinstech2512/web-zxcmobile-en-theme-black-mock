@@ -49,7 +49,7 @@ export default {
   //  这里存放数据
     return {
       active: 0,
-      VIPofferNav: ['Free bonus', 'Deposit bonus', 'Cashback exclusive'],
+      VIPofferNav: ['FREE BONUS', 'DEPOSIT BONUS', 'CASHBACK'],
       swiperVIPofferMain: null,
       os: 'H5',
       token: '',
@@ -90,11 +90,14 @@ export default {
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     this.VIPofferMain()
-    this.$emit('setExternalBar', 'VIP Offer', 'back', this.showExternalBar)
+    this.$emit('setExternalBar', 'VIP OFFER', 'back', this.showExternalBar)
   }
 }
 </script>
 <style>
+* {
+  font-family: "Heiti TC","黑體-繁" !important;
+}
 .VIPoffer.on{
   top:0.88rem;
 }
@@ -107,29 +110,35 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .VIPoffer .VIPofferNav{
   width: 100%;
-  height: 0.88rem;
+  /* height: 0.7rem; */
   padding: 0 0.3rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #121212;
   position: absolute;
   top: 0;
   z-index: 99;
 }
 .VIPoffer .VIPofferNav li{
-  width: 33%;
+  width: 30%;
   text-align: center;
-  line-height: 0.88rem;
+  /* line-height: 0.7rem; */
   float: left;
-  font-size: 0.3rem;
+  font-size: 0.25rem;
+  color: #a0a0a3;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: #535353;
+  margin: 5px 5px;
+  line-height: 0.7rem;
 }
 .VIPoffer .VIPofferNav li.on{
-  color: #0088ff;
-  height: 0.87rem;
-  border-bottom: 0.04rem solid #0088ff;
+  color: #fff;
+  /* height: 0.7rem; */
+  /* border-bottom: 0.04rem solid #0088ff; */
   box-sizing: border-box;
 }
 .VIPofferMain{
@@ -154,8 +163,9 @@ export default {
 }
 .VIPofferMain .swiper-slide .box{
   width: 100%;
-  background: #fff;
-  border-radius: 0.06rem;
+  background: #c6c6c6;
+  opacity: 0.75;
+  border-radius: 0.16rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
   overflow: hidden;
@@ -170,16 +180,17 @@ export default {
   width: 100%;
   height: 0.98rem;
   line-height: 0.98rem;
-  border-bottom: 0.02rem solid #ddd;
-  color: #6b6b6b;
-  font-size: 0.32rem;
+  border-bottom: 0.08rem solid #fff;
+  color: #000;
+  font-size: 0.42rem;
+  font-weight: 700;
 }
 .VIPofferMain .swiper-slide .box ul li:last-child{
   border-bottom: none
 }
 .VIPofferMain .swiper-slide .box ul li b{
   padding: 0.05rem 0.2rem;
-  background: #ff9250;
+  background: #0097f6;
   color: #fff;
   border-radius: 1rem;
   font-weight: normal;
@@ -195,7 +206,7 @@ export default {
   height: 0.6rem;
   margin-top: 0.2rem;
   float: left;
-  border-right: 0.02rem solid #ddd;
+  border-right: 0.08rem solid #fff;
   position: relative;
 }
 .VIPofferMain .swiper-slide .box ul li .info:last-child{
@@ -208,7 +219,7 @@ export default {
   display: block;
   font-size: 0.25rem;
   text-align: center;
-  color: #6b6b6b;
+  color: #000;
 }
 .VIPofferMain .swiper-slide .box ul li .info em.blue{
   color: #0088ff;
@@ -219,7 +230,7 @@ export default {
   line-height: 0.3rem;
   font-size: 0.2rem;
   text-align: center;
-  color: #6b6b6b;
+  color: #000;
 }
 .VIPofferMain .swiper-slide .box button.on{
   width: 1rem;

@@ -275,7 +275,7 @@ export default {
 }
 .promotionMain .swiper-slide .pro-box .img{
   /* width: 100%; */
-  height: 2.5rem;
+  height: 2.8rem;
   background: url(../../../assets/images/home/promotion_placeholder@2x.jpg);
   background-size: 100% 100%;
   border-radius: 0.2rem;
@@ -316,7 +316,7 @@ export default {
   padding: 0.1rem 0.3rem;
 }
 .promotionMain .swiper-container {
-  height: 0.58rem;
+  /* height: 0.58rem; */
   padding-top: 10px;
 }
 </style>

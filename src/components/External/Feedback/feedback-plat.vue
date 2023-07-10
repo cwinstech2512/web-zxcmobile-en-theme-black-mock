@@ -1,6 +1,6 @@
 <template>
 <div class='plat'>
-  <button class="getAll" v-show="feedInfo.length>0" @click="backwaterGetAll" :disabled="totalFee===0 || inClickProcess">Get All<span> ( Available ₱<em>{{numberFormat(totalFee,2)}}</em> )</span></button>
+  <button class="getAll" v-show="feedInfo.length>0" @click="backwaterGetAll" :disabled="totalFee===0 || inClickProcess">GET ALL<span> ( AVAILABLE ₱<em>{{numberFormat(totalFee,2)}}</em> )</span></button>
   <template v-for="(plats, index) in feedInfo">
     <div class="box"
       v-if="plats.Plat !== 'SP'"
@@ -9,8 +9,8 @@
       <ul>
         <li>{{plats.PlatText}}<b>Rebate rate:{{pointToPercent(plats.Rete)}}</b></li>
         <li>
-          <div class="info"><em>{{numberFormat(plats.RebateStake,2)}}</em><p>Wager Amount</p></div>
-          <div class="info"><em class="blue">{{numberFormat(plats.RebateFactAmount,2) >= 1.0 ? numberFormat(plats.RebateFactAmount,2) : '0.00'}}</em><p>Rebate Amount</p></div>
+          <div class="info"><em>{{numberFormat(plats.RebateStake,2)}}</em><p>WAGER AMOUNT</p></div>
+          <div class="info"><em class="blue">{{numberFormat(plats.RebateFactAmount,2) >= 1.0 ? numberFormat(plats.RebateFactAmount,2) : '0.00'}}</em><p>REBATE AMOUNT</p></div>
         </li>
       </ul>
       <button @click="dbGetBackwater(index)" :class="{on:plats.RebateFactAmount>=1.0}" :disabled="plats.RebateFactAmount<1.0 || inClickProcess"></button>
@@ -83,7 +83,7 @@ export default {
         .then((res) => {
           if (res.data.Success === true) {
             _this.$set(_this.feedInfo, index, Object.assign({}, _this.feedInfo[index], {RebateStake: 0, RebateFactAmount: 0}))
-            _this.AlertSuccess('领取成功')
+            _this.AlertSuccess('SUCCESS')
           } else {
             _this.ExteralFileComfirm(res.data)
           }
@@ -114,7 +114,7 @@ export default {
               _this.$set(_this.feedInfo[index], 'RebateFactAmount', 0)// 此处为重点
             }
             _this.totalFee = 0
-            _this.AlertSuccess('领取成功')
+            _this.AlertSuccess('SUCCESS')
           } else {
             _this.ExteralFileComfirm(res.data)
           }

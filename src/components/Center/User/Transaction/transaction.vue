@@ -135,14 +135,14 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #000;
 }
 .transactionNav{
   width: 100%;
   height: 0.88rem;
   position: absolute;
   top: 0;
-  background: #fff;
+  background: #000;
   z-index: 99;
 }
 .transactionNav .swiper-container{
@@ -151,16 +151,20 @@ export default {
 }
 .transactionNav .swiper-slide{
   width: 100%;
-  height: 0.88rem;
-  line-height: 0.88rem;
+  /* height: 0.88rem; */
   text-align: center;
   font-size: 0.25rem;
-  color: #2b2b2b;
+  color: #a0a0a3;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: #535353;
+  margin: 5px 3px;
+  line-height: 0.7rem;
 }
 .transactionNav .swiper-slide.on{
-  color: #0088ff;
-  height: 0.87rem;
-  border-bottom: 0.04rem solid #0088ff;
+  color: #fff;
+  /* height: 0.87rem; */
+  /* border-bottom: 0.04rem solid #0088ff; */
   box-sizing: border-box;
 }
 .transactionMain{
@@ -185,8 +189,9 @@ export default {
 }
 .transactionMain .swiper-slide >>> .box{
   width: 100%;
-  background: #fff;
-  border-radius: 0.06rem;
+  background: #c6c6c6;
+  opacity: 0.75;
+  border-radius: 0.16rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
   overflow: hidden;
@@ -211,7 +216,7 @@ export default {
 .transactionMain .swiper-slide >>> .box ul li span{
   float: left;
   font-size: 0.3rem;
-  color: #2b2b2b;
+  color: #fff;
 }
 .transactionMain .swiper-slide >>> .box ul li span.r{
   color: #bbb;
@@ -220,7 +225,7 @@ export default {
 .transactionMain .swiper-slide >>> .box ul li em{
   float: right;
   font-size: 0.3rem;
-  color: #2b2b2b;
+  color: #fff;
 }
 .transactionMain .swiper-slide >>> .box ul li em.b{
   color: #0088ff;
@@ -235,7 +240,7 @@ export default {
 .transactionMain .swiper-slide >>> .box ul li p{
   line-height: 0.6rem;
   font-size: 0.25rem;
-  color: #6b6b6b;
+  color: #fff;
 }
 .transactionMain .swiper-slide >>> .box ul li p.r{
   color: #bbb;
@@ -246,7 +251,7 @@ export default {
   height: 0.5rem;
   line-height: 0.5rem;
   font-size: 0.2rem;
-  color: #6b6b6b;
+  color: #fff;
 }
 .transactionMain .swiper-slide >>> .box ul li b{
   float: right;
@@ -278,6 +283,6 @@ export default {
 .transactionMain .swiper-slide >>> .no_message p{
   text-align: center;
   font-size: 0.26rem;
-  color: #2b2b2b;
+  color: #fff;
 }
 </style>
