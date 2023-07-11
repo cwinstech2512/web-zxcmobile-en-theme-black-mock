@@ -29,7 +29,7 @@
         <div class="transferbar">
           <ul>
             <li>
-              <label>转出：</label>
+              <label>From：</label>
               <div class="trabox">
                 <span>{{zxName}}</span>
                 <i @click="dbRefresh(loadVal1)"
@@ -37,7 +37,7 @@
               </div>
             </li>
             <li>
-              <label>转入：</label>
+              <label>To：</label>
               <div class="trabox">
                 <span>{{platName}}</span>
                 <i @click="dbRefresh(loadVal2)"
@@ -46,7 +46,7 @@
             </li>
           </ul>
           <div class="cutover">
-            <i><b @click="cutover">切换</b></i>
+            <i><b @click="cutover">Switch</b></i>
           </div>
           <ul class="amount">
             <li v-for="(abtn, index) in amountBtn"
@@ -58,8 +58,8 @@
             <input v-model.number="amount"
                    type="number"
                    maxlength="9"
-                   placeholder="请输入转账金额">
-            <button @click="transfer()">转账</button>
+                   placeholder="Enter transfer amount">
+            <button @click="transfer()">Transfer</button>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@ export default {
         },
         {
           code: 'all',
-          text: '全部'
+          text: 'All'
         }
       ],
       gameBtn: [],
@@ -160,23 +160,23 @@ export default {
             demohref += '&gameCode=' + this.gameInfo.GameType
           }
         }
-        this.gameBtn.push({ code: 'h5', name: '游戏试玩', href: demohref, target: '_blank' })
+        this.gameBtn.push({ code: 'h5', name: 'Game demo', href: demohref, target: '_blank' })
       }
 
       let browser = this.browserVersions()
       if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) { // 苹果设备
         if (this.gameInfo.IosAppDownUrl.length > 0) {
-          this.gameBtn.push({ code: 'downl', name: '下载APP', href: this.gameInfo.IosAppDownUrl, target: '_blank' })
+          this.gameBtn.push({ code: 'downl', name: 'Down APP', href: this.gameInfo.IosAppDownUrl, target: '_blank' })
         }
         if (this.gameInfo.IosAppSchemesUrl.length > 0) {
-          this.gameBtn.push({ code: 'app', name: '进入游戏', href: this.gameInfo.IosAppSchemesUrl, target: '_blank' })
+          this.gameBtn.push({ code: 'app', name: 'Play game', href: this.gameInfo.IosAppSchemesUrl, target: '_blank' })
         }
       } else { // if (browser.versions.android) // 安卓设备
         if (this.gameInfo.AndroidAppDownUrl.length > 0) { // 下载
-          this.gameBtn.push({ code: 'downl', name: '下载APP', href: this.gameInfo.AndroidAppDownUrl, target: '_blank' })
+          this.gameBtn.push({ code: 'downl', name: 'Down APP', href: this.gameInfo.AndroidAppDownUrl, target: '_blank' })
         }
         if (this.gameInfo.WebUriStartAndroidApp.length > 0) {
-          this.gameBtn.push({ code: 'app', name: '进入游戏', href: this.gameInfo.WebUriStartAndroidApp, target: '_blank' })
+          this.gameBtn.push({ code: 'app', name: 'Play game', href: this.gameInfo.WebUriStartAndroidApp, target: '_blank' })
         }
         // else if (this.gameInfo.AndroidAppPackageName.length > 0) {
         //   this.gameBtn.push({code: 'app', name: '进入游戏'})
@@ -185,7 +185,7 @@ export default {
       // 网页版
       if ((this.gameInfo.GameType === 'Slots' || this.gameInfo.GameType === 'Fish') && this.gameInfo.Plat.toUpperCase() !== 'AG') {
         // 老虎机 进自己的页面
-        this.gameBtn.push({ code: 'h5', name: '网页版', href: '', target: 'router' })
+        this.gameBtn.push({ code: 'h5', name: 'Web', href: '', target: 'router' })
       } else if (this.gameInfo.WebOpenUrl.length > 0 || this.gameInfo.Method === '1') {
         // if (this.gameInfo.GameType === 'Fish' && this.gameInfo.Plat.toUpperCase() === 'PT') {
         //   // PT 捕鱼 没有PT捕鱼
@@ -200,7 +200,7 @@ export default {
             href += '&gameCode=' + this.gameInfo.GameType
           }
         }
-        this.gameBtn.push({ code: 'h5', name: '网页版', href: href, target: '_blank' })
+        this.gameBtn.push({ code: 'h5', name: 'Web', href: href, target: '_blank' })
       }
     },
     getPlatBalance () {
@@ -382,17 +382,17 @@ export default {
     transfer () {
       if (this.amount === null) {
         this.$swal({
-          text: '请输入转账金额',
+          text: 'Enter transfer amount',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return false
       }
       if (this.amount < 1) {
         this.$swal({
-          text: '转账金额错误',
+          text: 'Invalid transfer amount',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return false
       }
@@ -408,9 +408,9 @@ export default {
       }
       if (!/^[0-9]*[1-9][0-9]*$/.test(this.amount)) {
         _this.$swal({
-          text: '转账金额必须为整数',
+          text: 'Transfer amount must be an integer.',
           type: 'warning',
-          confirmButtonText: '确定'
+          confirmButtonText: 'OK'
         })
         return
       }
@@ -444,9 +444,9 @@ export default {
             let sidemenuVm = _this.$parent.$parent.$parent.$children[0]
             _this.updateSidebarBalacne(sidemenuVm)
             _this.$swal({
-              text: '转账成功',
+              text: 'Transfer successful',
               type: 'success',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
           } else {
             if (res.data.Status === 'LoginExpire') {
@@ -455,7 +455,7 @@ export default {
             _this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: '确定'
+              confirmButtonText: 'OK'
             })
           }
         })
