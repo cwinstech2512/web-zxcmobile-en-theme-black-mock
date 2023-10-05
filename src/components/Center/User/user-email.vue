@@ -124,7 +124,7 @@ export default {
             _this.clock = setInterval(function () {
               _this.countdown--
               if (_this.countdown > 0) {
-                _this.codeBtnText = _this.countdown + '秒后重新发送'
+                _this.codeBtnText = _this.countdown + ', will resend'
               } else {
                 window.clearInterval(_this.clock)
                 _this.inSending = false

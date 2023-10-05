@@ -40,6 +40,7 @@ export default {
         BankName: 'GCash',
         BankCardNo: '',
         Branch: 'GCash',
+        RegisteredNumber: '',
         Answer: ''
       },
       cards: [],
@@ -83,6 +84,7 @@ export default {
         _this.AlertWarning('Please enter security answer')
         return false
       }
+      this.info.RegisteredNumber = _this.info.BankCardNo
       _this.inClickProcess = true
       let url = '/api/withdrawal/binddrawcard'
       var params = {

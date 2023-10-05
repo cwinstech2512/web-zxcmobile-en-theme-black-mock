@@ -135,12 +135,12 @@ export default {
             _this.timerName = setInterval(function () {
               _this.totalTimespan--
               if (_this.totalTimespan > 0) {
-                _this.codeBtnText = _this.totalTimespan + 's后重新发送'
+                _this.codeBtnText = _this.totalTimespan + ', will resend'
               } else {
                 // 当倒计时小于等于0时清除定时器
                 _this.codeBtnInClick = false
                 window.clearInterval(_this.timerName)
-                _this.codeBtnText = '发送验证码'
+                _this.codeBtnText = 'Send Code'
                 _this.totalTimespan = 60
               }
             }, 1000)

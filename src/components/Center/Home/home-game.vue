@@ -293,6 +293,10 @@ export default {
   background: url(../../../assets/images/home/home_game_fish_jili.png);
   background-size: 100% 100%;
 }
+#game-box .swiper-slide.Slots span.PG {
+  background: url(../../../assets/images/home/home_game_slots_pg.png);
+  background-size: 100% 100%;
+}
 #game-box .swiper-slide.Slots span.JILI {
   background: url(../../../assets/images/home/home_game_slots_jili.png);
   background-size: 100% 100%;

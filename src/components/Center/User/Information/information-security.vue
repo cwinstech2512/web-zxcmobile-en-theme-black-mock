@@ -42,7 +42,7 @@ export default {
       question2: '',
       answer1: '',
       answer2: '',
-      saveBtnText: '立即保存',
+      saveBtnText: 'SAVE',
       inClickProcess: false
     }
   },
@@ -62,23 +62,23 @@ export default {
       }
       let _this = this
       if (!_this.question1) {
-        _this.AlertWarning('请输入问题一')
+        _this.AlertWarning('Please enter question 1')
         return false
       }
       if (!_this.answer1) {
-        _this.AlertWarning('请输入答案一')
+        _this.AlertWarning('Please enter answer 1')
         return false
       }
       if (!_this.question2) {
-        _this.AlertWarning('请输入问题二')
+        _this.AlertWarning('Please enter question 2')
         return false
       }
       if (!_this.answer2) {
-        _this.AlertWarning('请输入答案二')
+        _this.AlertWarning('Please enter answer 2')
         return false
       }
       _this.inClickProcess = true
-      _this.saveBtnText = '正在保存'
+      _this.saveBtnText = 'SAVING'
       let url = '/api/account/savesafequestanswer'
       let params = {
         QuestionFirst: _this.question1,
@@ -91,7 +91,7 @@ export default {
         .fetchPost(url, _this.secret(params))
         .then(res => {
           _this.inClickProcess = false
-          _this.saveBtnText = '立即保存'
+          _this.saveBtnText = 'SAVE'
           if (res.data.Success === true) {
             this.isReadonly = true
             _this.safeQuestions = [
@@ -105,7 +105,7 @@ export default {
         })
         .catch(err => {
           _this.inClickProcess = false
-          _this.saveBtnText = '立即保存'
+          _this.saveBtnText = 'SAVE'
           console.log('error', err)
         })
     },
@@ -161,12 +161,12 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .security .security-bar{
   margin-top: 0.2rem;
   width: 100%;
-  background: #fff;
+  background: #121212;
   border-radius: 0.06rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
@@ -176,10 +176,20 @@ export default {
   overflow: hidden;
 }
 .security .security-bar ul li{
+  background: rgba(235, 233, 233, 0.8);
+  box-shadow: 0 1px rgb(208 207 207 / 90%);
+  border-radius: 0.3rem;
+  padding: 0 0.3rem;
+  box-sizing: border-box;
   width: 100%;
-  height: 0.98rem;
-  line-height: 0.98rem;
-  border-bottom: 0.02rem solid #ddd;
+  height: 0.9rem;
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.security .security-bar ul li input::-webkit-input-placeholder{
+  color: #bbb;
 }
 .security .security-bar ul li label{
   font-size: 0.25rem;

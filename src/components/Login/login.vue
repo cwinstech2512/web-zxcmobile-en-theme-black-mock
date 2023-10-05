@@ -115,7 +115,7 @@
 import registered from '@/components/Login/registered.vue'
 import registeredFB from '@/components/Login/registered_fb.vue'
 import Verify from '@/components/Login/verify.vue'
-import {initFacebookSdk} from '@/_help/init-facebook-sdk'
+import {initFacebookSdk} from '../../../static/js/facebook/init-facebook-sdk'
 import '../../../static/js/gt/gt.js'
 export default {
   name: 'login',
@@ -235,7 +235,7 @@ export default {
      * @description 主线客服
      */
     serv1 () {
-      this.sliaonow()
+      this.sliao_liveAgent()
     },
     /**
      * @description 次线客服

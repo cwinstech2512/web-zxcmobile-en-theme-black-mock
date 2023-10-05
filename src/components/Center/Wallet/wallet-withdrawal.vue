@@ -13,15 +13,20 @@
           <i></i>
           <span>USDT</span>
         </li>
+        <li :class="['GcashToPay', {on: 'GCash_Withdrawal' == activeWay}]"
+            @click="switchWay('GCash_Withdrawal')">
+          <i></i>
+          <span>GCash</span>
+        </li>
       </ul>
     </div>
-    <div v-if="withdrawal.bankCard.length>0 && activeWay == 'withdrawal'">
+    <div v-if="withdrawal_active.bankCard.length>0 && (activeWay == 'withdrawal' || activeWay == 'GCash_Withdrawal')">
       <div class="bank">
-        <h2>BANK CARD</h2>
-        <select v-model="withdrawal.bankId">
+        <h2>{{activeWay == 'withdrawal' ? 'BANK' : 'GCash'}} CARD</h2>
+        <select v-model="withdrawal_active.bankId">
           <option value
-                  disabled="disabled">Please Select bind bank card</option>
-          <option v-for="(bankCards, index) in withdrawal.bankCard"
+                  disabled="disabled">Please Select bind {{activeWay == 'withdrawal' ? 'BANK' : 'GCash'}} card</option>
+          <option v-for="(bankCards, index) in withdrawal_active.bankCard"
                   :key="index"
                   :value="bankCards.BankId.toString()">{{bankCards.BankName}}--Ending with{{bankCards.CardNumber}}</option>
         </select>
@@ -31,7 +36,7 @@
         <div class="amount-Main">
           <i>₱</i>
           <input type="number"
-                 v-model="withdrawal.amount"
+                 v-model="withdrawal_active.amount"
                  maxlength="8"
                  placeholder="Enter withdrawal amount"
                  @input="changeAmount" />
@@ -40,25 +45,25 @@
           <div class="totalBalance">
             <span>
               Balance：
-              <em>PHP {{numberFormat(withdrawal.Balance,2)}}</em>
+              <em>PHP {{numberFormat(withdrawal_active.Balance,2)}}</em>
             </span>
             <div class="quickIcon"
                  @click="quickTransfer()">Get All</div>
           </div>
           <ul class="amountBtn">
-            <li v-for="(abtn, index) in withdrawal.amountBtn"
+            <li v-for="(abtn, index) in withdrawal_active.amountBtn"
                 :key="index"
                 :class="abtn.code"
                 @click="addAmount(abtn.code)">{{abtn.text}}</li>
           </ul>
           <span>*Withdrawal PWD must same Sign In PWD.</span>
           <input type="password"
-                 v-model="withdrawal.password"
+                 v-model="withdrawal_active.password"
                  placeholder="Your withdrawal PWD" />
-          <button :class="withdrawal.sending? 'dis':''"
+          <button :class="withdrawal_active.sending? 'dis':''"
                   @click="sendWithdrawal()">Withdrawal Now</button>
         </div>
-        <h2>*Note：Remaining withdrawal attempts today: {{withdrawal.RemainDrawCount}}，Maximum amount per withdrawal: ₱{{numberFormat(withdrawal.MaxLimit,2)}}，Remaining daily withdrawal limit: ₱{{numberFormat(withdrawal.RemainDrawSum,2)}}</h2>
+        <h2>*Note：Remaining withdrawal attempts today: {{withdrawal_active.RemainDrawCount}}，Maximum amount per withdrawal: ₱{{numberFormat(withdrawal_active.MaxLimit,2)}}，Remaining daily withdrawal limit: ₱{{numberFormat(withdrawal_active.RemainDrawSum,2)}}</h2>
       </div>
     </div>
     <div v-if="USDT_Withdraw.bankCard.length>0 && activeWay == 'USDT_Withdraw'">
@@ -127,6 +132,8 @@ export default {
     //  这里存放数据
     return {
       activeWay: 'withdrawal',
+      tmpWithdrawal: {},
+      GCash_Withdrawal: {},
       withdrawal: {
         password: '',
         amount: '',
@@ -212,7 +219,11 @@ export default {
     }
   },
   //  监听属性 类似于data概念
-  computed: {},
+  computed: {
+    withdrawal_active () {
+      return this[this.activeWay]
+    }
+  },
   //  监控data中的数据变化
   watch: {
     'USDT_Withdraw.amount': function (n, o) {
@@ -224,6 +235,14 @@ export default {
     // 改变方法
     switchWay (index) {
       this.activeWay = index
+      if (index === 'USDT_Withdraw') {
+        this.getVirtuala()
+        this.getUSDTRate()
+      } else {
+        this['GCash_Withdrawal'] = Object.assign({}, this.tmpWithdrawal)
+        this['withdrawal'] = Object.assign({}, this.tmpWithdrawal)
+        this.getInfo()
+      }
     },
     // 字串分割
     strSlice (str, number) {
@@ -287,7 +306,8 @@ export default {
         .then(res => {
           _this.$bus.$emit('loadingHide')
           if (res.data.Success === true) {
-            _this[this.activeWay].bankCard = res.data.Result.BankCards
+            _this['withdrawal'].bankCard = res.data.Result.BankCards.filter(bankCard => bankCard.BankName !== 'GCash')
+            _this['GCash_Withdrawal'].bankCard = res.data.Result.BankCards.filter(bankCard => bankCard.BankName === 'GCash')
             _this[this.activeWay].liText =
               'Remaining withdrawal attempts today: ' +
               res.data.Result.RemainDrawCount +
@@ -419,11 +439,11 @@ export default {
     },
     // 提交提款
     sendWithdrawal () {
-      if (this.withdrawal.sending === true) {
+      if (this[this.activeWay].sending === true) {
         return
       }
       let _this = this
-      if (_this.withdrawal.bankId.length < 1) {
+      if (_this[_this.activeWay].bankId.length < 1) {
         _this.$swal({
           text: 'Select bank card',
           type: 'warning',
@@ -431,8 +451,8 @@ export default {
         })
         return
       }
-      localStorage.setItem('bankId', _this.withdrawal.bankId)
-      if (_this.withdrawal.amount.toString().length < 1) {
+      localStorage.setItem('bankId', _this[_this.activeWay].bankId)
+      if (_this[_this.activeWay].amount.toString().length < 1) {
         _this.$swal({
           text: 'Enter withdrawal amount',
           type: 'warning',
@@ -440,7 +460,7 @@ export default {
         })
         return
       }
-      if (_this.withdrawal.RemainDrawCount < 1) {
+      if (_this[_this.activeWay].RemainDrawCount < 1) {
         _this.$swal({
           text: 'You have reached your daily withdrawal limit for today',
           type: 'warning',
@@ -448,7 +468,7 @@ export default {
         })
         return
       }
-      if (_this.withdrawal.RemainDrawSum < _this.withdrawal.amount) {
+      if (_this[_this.activeWay].RemainDrawSum < _this[_this.activeWay].amount) {
         _this.$swal({
           text: 'You have exceeded your daily withdrawal limit for today',
           type: 'warning',
@@ -456,23 +476,23 @@ export default {
         })
         return
       }
-      if (_this.withdrawal.amount > _this.withdrawal.MaxLimit) {
+      if (_this[_this.activeWay].amount > _this[_this.activeWay].MaxLimit) {
         _this.$swal({
-          text: 'Maximum withdrawal' + _this.withdrawal.MaxLimit + 'PHP',
+          text: 'Maximum withdrawal' + _this[_this.activeWay].MaxLimit + 'PHP',
           type: 'warning',
           confirmButtonText: 'OK'
         })
         return
       }
-      if (_this.withdrawal.amount < _this.withdrawal.MinLimit) {
+      if (_this[_this.activeWay].amount < _this[_this.activeWay].MinLimit) {
         _this.$swal({
-          text: 'Minimum withdrawal' + _this.withdrawal.MinLimit + 'PHP',
+          text: 'Minimum withdrawal' + _this[_this.activeWay].MinLimit + 'PHP',
           type: 'warning',
           confirmButtonText: 'OK'
         })
         return
       }
-      if (_this.withdrawal.password.length < 1) {
+      if (_this[_this.activeWay].password.length < 1) {
         _this.$swal({
           text: 'Please enter your withdrawal password',
           type: 'warning',
@@ -480,33 +500,33 @@ export default {
         })
         return
       }
-      _this.withdrawal.sending = true
+      _this[_this.activeWay].sending = true
       let user = this.getinfo()
       let url = '/api/withdrawal/withdraw'
       var params = {
-        BankId: _this.withdrawal.bankId,
-        Amount: _this.withdrawal.amount,
-        WPwd: _this.withdrawal.password,
+        BankId: _this[_this.activeWay].bankId,
+        Amount: _this[_this.activeWay].amount,
+        WPwd: _this[_this.activeWay].password,
         Token: _this.getinfo().token
       }
       _this.$https
         .fetchPost(url, this.secret(params))
         .then(res => {
-          _this.withdrawal.sending = false
+          _this[_this.activeWay].sending = false
           if (res.data.Success === true) {
-            _this.withdrawal.Balance -= _this.withdrawal.amount
+            _this[_this.activeWay].Balance -= _this[_this.activeWay].amount
             _this.saveinfo(
               user.account,
               user.token,
-              _this.withdrawal.Balance,
+              _this[_this.activeWay].Balance,
               user.lastlogintime
             ) // 更新本地余额
             let sidemenuVm = _this.$parent.$parent.$parent.$children[0]
             _this.updateSidebarBalacne(sidemenuVm)
-            _this.withdrawal.RemainDrawCount -= 1
-            _this.withdrawal.RemainDrawSum -= _this.amount
-            _this.withdrawal.amount = ''
-            _this.withdrawal.password = ''
+            _this[_this.activeWay].RemainDrawCount -= 1
+            _this[_this.activeWay].RemainDrawSum -= _this.amount
+            _this[_this.activeWay].amount = ''
+            _this[_this.activeWay].password = ''
             _this.$swal({
               text: 'Submit successful',
               type: 'success',
@@ -618,7 +638,6 @@ export default {
         })
     },
     // 一键回收
-    // 一键回收
     quickTransfer () {
       if (this.withdrawal.quickBtn) {
         return
@@ -673,6 +692,7 @@ export default {
   },
   //  生命周期 - 创建完成（可以访问当前this实例）
   created () {
+    this.tmpWithdrawal = this.withdrawal
     this[this.activeWay].bankId = localStorage.getItem('bankId')
     if (
       this[this.activeWay].bankId === null ||
@@ -681,9 +701,6 @@ export default {
     ) {
       this[this.activeWay].bankId = ''
     }
-    this.getInfo()
-    this.getVirtuala()
-    this.getUSDTRate()
     this.$root.$on('refreshBal', bal => {
       this[this.activeWay].Balance = bal
     })

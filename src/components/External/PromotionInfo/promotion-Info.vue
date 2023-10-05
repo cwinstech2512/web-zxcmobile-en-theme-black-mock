@@ -81,7 +81,7 @@ export default {
   },
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.$emit('setExternalBar', '活动详情', 'back', this.showExternalBar)
+    this.$emit('setExternalBar', 'Detail', 'back', this.showExternalBar)
   }
 }
 </script>

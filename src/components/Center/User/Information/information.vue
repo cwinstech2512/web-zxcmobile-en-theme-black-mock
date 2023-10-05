@@ -16,7 +16,7 @@
     <div class="information-bar">
       <ul>
         <li>
-          <label>FIRST NAME</label>
+          <label>FULL NAME</label>
           <em class="active"
               @click="modifyName"
               v-show="!VerifyRealName && userModel.RealName!==null && !haveChangedRealName">{{VerifyText}}</em>
@@ -31,8 +31,8 @@
         <li>
           <label>TITLE</label>
           <select v-model="userModel.Gender">
-            <option v-bind:value="1">男</option>
-            <option v-bind:value="0">女</option>
+            <option v-bind:value="1">Male</option>
+            <option v-bind:value="0">Female</option>
           </select>
         </li>
         <li>
@@ -398,7 +398,7 @@ export default {
 .information .information-bar ul li select {
   float: right;
   border: none;
-  width: 0.8rem;
+  width: 1.5rem;
   height: 0.96rem;
   font-size: 0.35rem;
   color: #6b6b6b;

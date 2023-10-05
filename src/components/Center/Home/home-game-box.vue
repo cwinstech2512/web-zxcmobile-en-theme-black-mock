@@ -33,7 +33,7 @@
               <div class="trabox">
                 <span>{{zxName}}</span>
                 <i @click="dbRefresh(loadVal1)"
-                   :class="load1? 'load':''"></i><em>¥{{ this.numberFormat(TransferOut,2)}}</em>
+                   :class="load1? 'load':''"></i><em>₱{{ this.numberFormat(TransferOut,2)}}</em>
               </div>
             </li>
             <li>
@@ -41,7 +41,7 @@
               <div class="trabox">
                 <span>{{platName}}</span>
                 <i @click="dbRefresh(loadVal2)"
-                   :class="load2? 'load':''"></i><em>¥{{this.numberFormat(TransferIn,2)}}</em>
+                   :class="load2? 'load':''"></i><em>₱{{this.numberFormat(TransferIn,2)}}</em>
               </div>
             </li>
           </ul>

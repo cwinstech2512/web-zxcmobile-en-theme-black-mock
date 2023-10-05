@@ -15,7 +15,7 @@
           <input type="text"
                  :value="VerifyPhone"
                  readonly="readonly"
-                 placeholder="请绑定手机" />
+                 placeholder="Please bind number" />
         </li>
         <li v-show="modifyModel.Plat==='ZXC'">
           <label>Verify Code:</label>
@@ -91,11 +91,11 @@ export default {
       let _this = this
       if (!this.VerifyPhone || this.VerifyPhone.length < 1) {
         _this.$swal({
-          text: '请先绑定手机号码',
+          text: 'Please bind your phone number',
           type: 'warning',
           showCancelButton: true,
-          confirmButtonText: '确定',
-          cancelButtonText: '取消'
+          confirmButtonText: 'Ok',
+          cancelButtonText: 'Cancle'
         }).then(x => {
           if (x.value) {
             _this.$router.push({
@@ -118,11 +118,11 @@ export default {
             _this.clock = setInterval(function () {
               _this.smscountdown--
               if (_this.smscountdown > 0) {
-                _this.codeBtnText = _this.smscountdown + '秒后重新发送'
+                _this.codeBtnText = _this.smscountdown + ', will resend'
               } else {
                 window.clearInterval(_this.clock)
                 _this.codeBtnInClick = false
-                _this.codeBtnText = '发送验证码'
+                _this.codeBtnText = 'Send Code'
                 _this.smscountdown = 60
               }
             }, 1000)
@@ -131,7 +131,7 @@ export default {
             _this.$swal({
               text: res.data.Message,
               type: 'error',
-              confirmButtonText: '确定'
+              confirmButtonText: 'Ok'
             })
           }
         })
@@ -150,24 +150,24 @@ export default {
       }
       if (this.modifyModel.Plat === 'ZXC') {
         if (!this.VerifyPhone || this.VerifyPhone.length < 1) {
-          this.AlertWarning('请先绑定手机')
+          this.AlertWarning('Please bind your phone number')
           return false
         }
         if (this.modifyModel.Code.length < 1) {
-          this.AlertWarning('请输入验证码')
+          this.AlertWarning('Please enter code')
           return false
         }
       }
       if (_this.modifyModel.Pwd.length < 1) {
-        _this.AlertWarning('请输入官网密码')
+        _this.AlertWarning('Please enter password')
         return false
       }
       if (_this.modifyModel.NewPwd.length < 1) {
-        _this.AlertWarning('请输入新的密码')
+        _this.AlertWarning('Please enter new password')
         return false
       }
       if (_this.modifyModel.NewPwd !== _this.confirmPwd) {
-        _this.AlertWarning('确认密码错误')
+        _this.AlertWarning('password incorrect')
         return false
       }
       _this.inClickProcess = true
@@ -229,12 +229,12 @@ export default {
   /* background: url(../../../assets/images/allpage_bg@2x.jpg);
   background-size: 100% 100%;
   background-attachment: fixed; */
-  background: #fff;
+  background: #121212;
 }
 .changePW .changePW-bar {
   margin-top: 0.2rem;
   width: 100%;
-  background: #fff;
+  background: #121212;
   border-radius: 0.06rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
@@ -244,31 +244,45 @@ export default {
   overflow: hidden;
 }
 .changePW .changePW-bar ul li {
+  background: rgba(235, 233, 233, 0.8);
+  box-shadow: 0 1px rgb(208 207 207 / 90%);
+  border-radius: 0.3rem;
+  padding: 0 0.3rem;
+  box-sizing: border-box;
   width: 100%;
-  height: 0.98rem;
-  line-height: 0.98rem;
-  border-bottom: 0.02rem solid #ddd;
-  position: relative;
+  height: 0.9rem;
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+.changePW .changePW-bar ul li input::placeholder{
+  color: #fff;
 }
 .changePW .changePW-bar ul li label {
   font-size: 0.3rem;
   color: #6b6b6b;
+  width: 2.5rem;
 }
 .changePW .changePW-bar ul li select {
   float: right;
   border: none;
-  width: 4.8rem;
-  height: 0.96rem;
+  width: 2.8rem;
+  height: 0.76rem;
   font-size: 0.3rem;
   color: #6b6b6b;
   background: #fff;
 }
 .changePW .changePW-bar ul li b {
-  width: 2.3rem;
+  width: 1.8rem;
   /* height: 0.62rem; */
   position: absolute;
-  right: 0px;
-  top: 0.2rem;
+  right: 44px;
+  /* top: 1.8rem; */
   display: block;
   background: #08f;
   cursor: pointer;

@@ -10,7 +10,7 @@
           maxlength="11"
           v-model="mobilePhone"
           :readonly="hasPhone"
-          placeholder="请输入您绑定的手机号"
+          placeholder="Please enter bind phone number"
         >
       </li>
       <li>
@@ -111,7 +111,7 @@ export default {
       var reg = /^09[0-9]{9}$/gi
       if (_this.mobilePhone.length < 1 || !reg.test(_this.mobilePhone)) {
         _this.$swal({
-          text: '请输入正确的手机号码',
+          text: 'Please enter phone number',
           type: 'warning',
           confirmButtonText: 'Confirm'
         })
@@ -130,7 +130,7 @@ export default {
             _this.clock = setInterval(function () {
               _this.countdown--
               if (_this.countdown > 0) {
-                _this.codeBtnText = _this.countdown + '秒后重新发送'
+                _this.codeBtnText = _this.countdown + ', will resend'
               } else {
                 window.clearInterval(_this.clock)
                 _this.inSending = false
@@ -158,11 +158,11 @@ export default {
       }
       var reg = /^09[0-9]{9}$/gi
       if (_this.mobilePhone.length < 1 || !reg.test(_this.mobilePhone)) {
-        _this.AlertWarning('请输入正确的手机号码')
+        _this.AlertWarning('Please enter phone number')
         return false
       }
       if (_this.mobileCode.length < 1) {
-        _this.AlertWarning('请输入验证码')
+        _this.AlertWarning('Please enter code')
         return false
       }
       _this.inClickProcess = true

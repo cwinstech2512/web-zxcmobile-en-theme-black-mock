@@ -1,7 +1,7 @@
 // import env from '/env';
 // import { accountService } from '@/_services';
 
-const facebookAppId = '1013820269535827'
+const facebookAppId = '580856374218206'
 
 export function initFacebookSdk () {
   window.fbAsyncInit = function () {

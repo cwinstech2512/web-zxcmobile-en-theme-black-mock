@@ -250,6 +250,11 @@ export default {
       // window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=157761' + t, 'kf2window', 'height=560,width=756,top=100,left=100,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
       window.open('https://vue.livelyhelp.chat/chatWindow.aspx?siteId=60000647&planId=2ec968de-c0bc-4000-bd6c-891e8cf7f2a8#', 'kf2window', 'height=560,width=756,top=100,left=100,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
     }
+    // 客服_LA
+    Vue.prototype.sliao_liveAgent = function (timestamp) {
+      // window.open('https://18slot.ladesk.com/scripts/generateWidget.php?v=5.35.3.12&t=' + timestamp + '&cwid=ptaxsxn1&cwt=chat_popout&cid=wto1No5LCQNxNjaj&vid=bf624n60epk72o4mr57fa944yokky', 'lawindow', 'height=660,width=490,top=40,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+      window.open('https://18slot.ladesk.com/scripts/inline_chat.php?cwid=ptaxsxn1', 'lawindow', 'height=660,width=490,top=40,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+    }
 
     /**
      * @description 刷新sessionStorage余额
