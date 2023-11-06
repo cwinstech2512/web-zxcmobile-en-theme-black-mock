@@ -196,7 +196,7 @@ export default {
     },
     // 获取游戏平台
     getGamePlat () {
-      var platRevse = ['JILI', 'CQ9', 'AE', 'KA', 'JDB', 'RICH88', 'FC', 'BNG']
+      var platRevse = ['JILI', 'CQ9', 'AE', 'KA', 'JDB', 'RICH88', 'FC', 'BNG', 'EVO']
       let _this = this
       let url = '/api/gameplat/get'
       _this.$https
