@@ -1,14 +1,14 @@
 <template>
     <div class="kgjuejin" :class="showExternalBar ? 'on':''">
             <section class="c_top">
-                <img src="../../../../assets/images/activity/kgjuejin/bg01.jpg">
+                <img src="../../../../assets/images/activity/Kgjuejin/bg01.jpg">
                 <div class="c_content">
-                    <img src="../../../../assets/images/activity/kgjuejin/title1.png">
-                    <img src="../../../../assets/images/activity/kgjuejin/title2.png">
+                    <img src="../../../../assets/images/activity/Kgjuejin/title1.png">
+                    <img src="../../../../assets/images/activity/Kgjuejin/title2.png">
                 </div>
             </section>
             <section class="c_bottom">
-                <img src="../../../../assets/images/activity/kgjuejin/bg02.jpg">
+                <img src="../../../../assets/images/activity/Kgjuejin/bg02.jpg">
                 <div class="c_content">
                     <div class="c_area_1">
                         当日KG快乐彩【加拿大】【澳洲】【斯洛伐克】【加拿大西】五行玩法出现1个“金”即可最低累积1笔28元至奖池内，凡快乐彩有效投注≥1000元即可参与当日奖池瓜分。

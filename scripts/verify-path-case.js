@@ -38,6 +38,7 @@ function visit (directory) {
     if (!/\.(js|vue|css|scss)$/.test(name)) return
     // Ignore comments so intentionally disabled legacy CSS does not create false positives.
     const source = fs.readFileSync(file, 'utf8')
+      .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/\/\*[\s\S]*?\*\//g, '')
       .replace(/^\s*\/\/.*$/gm, '')
 
@@ -55,6 +56,15 @@ function visit (directory) {
         failures.push(path.relative(root, file) + ': url ' + request)
       }
     }
+
+    const assetAttributePattern = /\b(?:src|poster|xlink:href)\s*=\s*['"]([^'"]+)['"]/g
+    while ((match = assetAttributePattern.exec(source))) {
+      const request = match[1].split(/[?#]/)[0]
+      if (!(request.indexOf('.') === 0 || request.indexOf('@/') === 0)) continue
+      if (!resolveLocal(file, request)) {
+        failures.push(path.relative(root, file) + ': asset ' + match[1])
+      }
+    }
   })
 }
 
@@ -65,4 +75,4 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log('Verified local imports and relative CSS assets with exact filesystem casing.')
+console.log('Verified local imports, template assets and relative CSS assets with exact filesystem casing.')
