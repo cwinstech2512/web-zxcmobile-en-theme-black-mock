@@ -24,7 +24,7 @@
 
 <script>
 import _ from 'lodash'
-import clipboard from '@/Plugin/clipboard.js'
+import clipboard from '@/plugin/clipboard.js'
 export default {
   name: 'depositRecord',
   //  import引入的组件需要注入到对象中才能使用

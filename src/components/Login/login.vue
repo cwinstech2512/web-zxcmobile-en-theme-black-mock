@@ -19,7 +19,7 @@
           <li class="user">
             <div class="input_block">
               <i /><input type="text"
-                    placeholder="USERBANE"
+                    placeholder="USERNAME"
                     v-model.trim="loginForm.username">
             </div>
           </li>
@@ -667,7 +667,7 @@ export default {
   },
   //  生命周期 - 创建完成（可以访问当前this实例）
   created () {
-    initFacebookSdk()
+    if (!process.env.WEB_USE_MOCK) initFacebookSdk()
     // this.setDownUrl()
     this.$root.$on('setAPPDownUrl', () => {
       // this.setDownUrl()

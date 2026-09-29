@@ -312,6 +312,10 @@ export default {
           that.name = this.gameInfo.GameName
           that.platName = 'EVO'
           break
+        case 'PG':
+          that.name = this.gameInfo.GameName
+          that.platName = 'PG'
+          break
         default:
           break
       }

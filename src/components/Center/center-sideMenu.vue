@@ -5,7 +5,7 @@
       <div class="sideMenu-Box-Top">
         <div class="userBar">
           <div class="name">
-            <i :style="{backgroundImage: 'url('+baseUrl+'/Image/avatar/'+ [avatarKey? avatarKey:1] +'.jpg)',backgroundSize:'100% 100%'}" />
+            <i :style="{backgroundImage: 'url('+(mockEnabled ? mockAvatar : baseUrl+'/Image/avatar/'+ [avatarKey? avatarKey:1] +'.jpg')+')',backgroundSize:'100% 100%'}" />
             <div :class="[VipLevelName,'level']">
               <!-- <i /> -->
               <div>
@@ -36,7 +36,7 @@
           <li v-for="(activitys, index) in activity"
               :key="index"
               @click="navTopage(index)">
-            <i :style="{backgroundImage: 'url('+baseUrl+activitys.IconUrl+')',backgroundSize:'100% 100%'}" />
+            <i :style="{backgroundImage: activitys.IconUrl ? 'url('+baseUrl+activitys.IconUrl+')' : 'none',backgroundSize:'100% 100%'}" />
             <em>{{activitys.MenuName}}</em>
           </li>
           <!-- <li class="download">
@@ -68,6 +68,8 @@ export default {
   data () {
     //  这里存放数据
     return {
+      mockEnabled: process.env.WEB_USE_MOCK,
+      mockAvatar: require('../../assets/images/account/portrait_bg@2x.png'),
       baseUrl: (process.env.NODE_ENV === 'development') ? '/api' : '/data',
       balance: this.getinfo().balance === 0 ? '0.00' : this.numberFormat(this.getinfo().balance, 2),
       downUrl: 'https://app.zxbet.app/',

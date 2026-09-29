@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import clipboard from '@/Plugin/clipboard.js'
+import clipboard from '@/plugin/clipboard.js'
 
 export default {
   name: 'alipayTransfer',

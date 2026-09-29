@@ -202,7 +202,7 @@ export default {
 #Newitem .New-banner{
   width: 100%;
   height: 5.3rem;
-  background: url(../../../../assets/images/activity/Newitem/bg_01.jpg) center no-repeat;
+  background: url(../../../../assets/images/activity/NewItem/bg_01.jpg) center no-repeat;
   background-size: 100% 100%;
   position: relative;
 }
@@ -214,17 +214,17 @@ export default {
   margin-left: -1.86rem;
   bottom: 0;
   cursor: pointer;
-  background: url(../../../../assets/images/activity/Newitem/button_01.png);
+  background: url(../../../../assets/images/activity/NewItem/button_01.png);
   background-size: 100% 100%;
 }
 #Newitem .New-banner .btn.on{
-  background: url(../../../../assets/images/activity/Newitem/button_02.png);
+  background: url(../../../../assets/images/activity/NewItem/button_02.png);
   background-size: 100% 100%;
 }
 #Newitem .New-main{
   width: 100%;
   height: 20rem;
-  background: url(../../../../assets/images/activity/Newitem/bg_02.jpg) center top no-repeat;
+  background: url(../../../../assets/images/activity/NewItem/bg_02.jpg) center top no-repeat;
   background-size: 100% 100%;
   padding-bottom: 1.8rem;
 }
@@ -242,11 +242,11 @@ export default {
   width: 2.76rem;
   height: .3rem;
   margin: 0.2rem auto;
-  background: url(../../../../assets/images/activity/Newitem/tit_01.png);
+  background: url(../../../../assets/images/activity/NewItem/tit_01.png);
   background-size: 100% 100%;
 }
 #Newitem .New-main .item-bar:last-child .tit{
-  background: url(../../../../assets/images/activity/Newitem/tit_02.png);
+  background: url(../../../../assets/images/activity/NewItem/tit_02.png);
   background-size: 100% 100%;
 }
 #Newitem .New-main .item-bar p{

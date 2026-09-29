@@ -83,12 +83,12 @@ const router = new Router({
         {
           path: 'depositInfo',
           name: 'depositInfo',
-          component: (resolve) => require(['@/components/Center/Wallet/DepositInfo/deposit-info.vue'], resolve)
+          component: (resolve) => require(['@/components/Center/Wallet/depositInfo/deposit-info.vue'], resolve)
         },
         {
           path: 'depositInfoTransferOut',
           name: 'depositInfoTransferOut',
-          component: (resolve) => require(['@/components/Center/Wallet/DepositInfo/deposit-info-usdtTransferOut.vue'], resolve)
+          component: (resolve) => require(['@/components/Center/Wallet/depositInfo/deposit-info-usdtTransferOut.vue'], resolve)
         },
         {
           path: 'message',

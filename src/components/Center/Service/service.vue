@@ -30,6 +30,10 @@ export default {
      * @description 主线客服
      */
     serv1 () {
+      if (process.env.WEB_USE_MOCK) {
+        this.AlertWarning('Live Chat is simulated in Mock mode.')
+        return
+      }
       // this.sliaonow()
       chatButton.onClick()
     },
@@ -37,6 +41,10 @@ export default {
      * @description 次线客服
      */
     serv2 () {
+      if (process.env.WEB_USE_MOCK) {
+        this.AlertWarning('Messenger is simulated in Mock mode.')
+        return
+      }
       this.sliao_messager()
     }
   },
@@ -47,6 +55,7 @@ export default {
   //  生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     this.$emit('getStatus', '24/7 Chat', 'menu', 'message')
+    if (process.env.WEB_USE_MOCK) return
     let scriptUrl = 'https://18slot.ladesk.com/scripts/track.js'
     let node = document.createElement('script')
     node.src = scriptUrl

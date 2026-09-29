@@ -29,7 +29,7 @@
 
 <script>
 import plat from '@/components/External/Feedback/feedback-plat'
-import high from '@/components/External/feedback/feedback-high'
+import high from '@/components/External/Feedback/feedback-high'
 import Swiper from 'swiper/dist/js/swiper.min.js'
 export default {
   name: 'feedback',

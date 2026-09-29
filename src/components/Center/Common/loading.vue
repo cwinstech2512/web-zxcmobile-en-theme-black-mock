@@ -33,73 +33,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-$--p-1: #d4aee0;
-$--p-2: #8975b4;
-$--p-3: #64518a;
-$--p-4: #565190;
-
-$--b-1: #44abac;
-$--b-2: #2ca7d8;
-$--b-3: #1482ce;
-$--b-4: #05597c;
-
-$--g-1: #b2dd57;
-$--g-2: #57c443;
-$--g-3: #05b853;
-$--g-4: #19962e;
-
-$--y-1: #fdc82e;
-$--y-2: #fd9c2e;
-$--y-3: #d5385a;
-$--y-4: #911750;
-
-$--s-1: #d9d9d9;
-$--s-2: #9e9e9e;
-$--s-3: #666666;
-$--s-4: #2b2b2b;
-
-$colors: (
-  $--p-1,
-  $--p-2,
-  $--p-3,
-  $--p-4,
-  $--b-1,
-  $--b-2,
-  $--b-3,
-  $--b-4,
-  $--g-1,
-  $--g-2,
-  $--g-3,
-  $--g-4,
-  $--y-1,
-  $--y-2,
-  $--y-3,
-  $--y-4,
-);
-
-h2 {
-  display: block;
-  color: white;
-  font-weight: 100;
-  //margin-right: 2rem;
-  text-align: center;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
-
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
-  font-family: 'Lato';
-  font-weight: 300;
-  font-size: 24px;
-  background: $--s-4;
-}
+<style scoped>
 .mosaic-loader {
   --cell-size: 20px;
   --cell-spacing: 1px;
@@ -115,27 +49,38 @@ body {
   margin-left: -44px;
   width: var(--total-size);
   height: var(--total-size);
-  > .cell {
-    --cell-color: white;
-    flex: 0 0 var(--cell-size);
-    margin: var(--cell-spacing);
-    background-color: transparent;
-    box-sizing: border-box;
-    border: var(--border-width) solid var(--cell-color);
-    animation: 1.5s ripple ease infinite;
-    $delays: (2 * 4) - 2;
-    @for $i from 1 through $delays {
-      &.d-#{$i} {
-        animation-delay: $i * 100ms;
-      }
-    }
-    @for $i from 1 through length($colors) {
-      &:nth-child(#{$i}) {
-        --cell-color: #{nth($colors, $i)};
-      }
-    }
-  }
 }
+.mosaic-loader > .cell {
+  --cell-color: white;
+  flex: 0 0 var(--cell-size);
+  margin: var(--cell-spacing);
+  background-color: transparent;
+  box-sizing: border-box;
+  border: var(--border-width) solid var(--cell-color);
+  animation: 1.5s ripple ease infinite;
+}
+.mosaic-loader > .cell.d-1 { animation-delay: 100ms; }
+.mosaic-loader > .cell.d-2 { animation-delay: 200ms; }
+.mosaic-loader > .cell.d-3 { animation-delay: 300ms; }
+.mosaic-loader > .cell.d-4 { animation-delay: 400ms; }
+.mosaic-loader > .cell.d-5 { animation-delay: 500ms; }
+.mosaic-loader > .cell.d-6 { animation-delay: 600ms; }
+.mosaic-loader > .cell:nth-child(1) { --cell-color: #d4aee0; }
+.mosaic-loader > .cell:nth-child(2) { --cell-color: #8975b4; }
+.mosaic-loader > .cell:nth-child(3) { --cell-color: #64518a; }
+.mosaic-loader > .cell:nth-child(4) { --cell-color: #565190; }
+.mosaic-loader > .cell:nth-child(5) { --cell-color: #44abac; }
+.mosaic-loader > .cell:nth-child(6) { --cell-color: #2ca7d8; }
+.mosaic-loader > .cell:nth-child(7) { --cell-color: #1482ce; }
+.mosaic-loader > .cell:nth-child(8) { --cell-color: #05597c; }
+.mosaic-loader > .cell:nth-child(9) { --cell-color: #b2dd57; }
+.mosaic-loader > .cell:nth-child(10) { --cell-color: #57c443; }
+.mosaic-loader > .cell:nth-child(11) { --cell-color: #05b853; }
+.mosaic-loader > .cell:nth-child(12) { --cell-color: #19962e; }
+.mosaic-loader > .cell:nth-child(13) { --cell-color: #fdc82e; }
+.mosaic-loader > .cell:nth-child(14) { --cell-color: #fd9c2e; }
+.mosaic-loader > .cell:nth-child(15) { --cell-color: #d5385a; }
+.mosaic-loader > .cell:nth-child(16) { --cell-color: #911750; }
 @keyframes ripple {
   0% {
     background-color: transparent;

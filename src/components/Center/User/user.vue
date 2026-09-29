@@ -5,7 +5,7 @@
       <div class="userbar-act">
         <div class="userbar">
           <div class="name" @click="showAvatar()">
-            <i :style="{backgroundImage: 'url('+baseUrl+'/Image/avatar/'+ [avatarKey? avatarKey:1] +'.jpg)',backgroundSize:'100% 100%'}"></i>
+            <i :style="{backgroundImage: 'url('+(mockEnabled ? mockAvatar : baseUrl+'/Image/avatar/'+ [avatarKey? avatarKey:1] +'.jpg')+')',backgroundSize:'100% 100%'}"></i>
             <div>
               <em>{{account}}</em>
               <span :class="[VipLevelName,'level']">
@@ -60,7 +60,7 @@
           v-for="(avatar, index) in avatarList"
           :key="index"
           @click="ChangeAvatar(index)"
-          :style="{backgroundImage: 'url('+ baseUrl + avatar.value + ')',backgroundSize:'100% 100%'}"
+          :style="{backgroundImage: 'url('+(mockEnabled ? mockAvatar : baseUrl + avatar.value)+')',backgroundSize:'100% 100%'}"
           ><i :class="{on: index == avatarindex}"></i></li>
       </ul>
     </div>
@@ -131,6 +131,8 @@ export default {
   data () {
   //  这里存放数据
     return {
+      mockEnabled: process.env.WEB_USE_MOCK,
+      mockAvatar: require('../../../assets/images/account/portrait_bg@2x.png'),
       baseUrl: (process.env.NODE_ENV === 'development') ? '/api' : '/data',
       infoData: null,
       plats: [],
@@ -320,7 +322,7 @@ export default {
      */
     getGamePlats () {
       // var platRevse = ['AI', 'YSB', 'AG', 'AG2', 'EA', 'OG', 'PT', 'MG', 'DT', 'PG', 'LB', 'KG']
-      var platRevse = ['JILI', 'CQ9', 'AE', 'KA', 'JDB', 'RICH88', 'FC', 'BNG']
+      var platRevse = ['JILI', 'PG', 'CQ9', 'AE', 'KA', 'JDB', 'RICH88', 'FC', 'BNG', 'EVO']
       let _this = this
       let url = '/api/gameplat/get'
       _this.$https.fetchPost(url, {})

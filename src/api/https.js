@@ -1,12 +1,19 @@
 import Vue from 'vue'
 import axios from 'axios'
 import store from '../store/store'
+import { installMockApi } from '../mock/adapter'
 // import qs from 'qs'
 
 axios.defaults.timeout = 1000 * 60 // 响应时间
 axios.defaults.headers.post['Content-Type'] = 'application/json' // 配置请求头
 // 配置默认发送请求， 线下的测试url : 上线后服务器的url
 axios.defaults.baseURL = (process.env.NODE_ENV === 'development') ? '/api' : '/data'
+
+// Mock 模式在 Axios adapter 层完全隔离网络，涵盖共用方法与直接 axios 呼叫。
+// 未启用时不会改变既有 base URL、拦截器或真实 API 行为。
+if (process.env.WEB_USE_MOCK) {
+  installMockApi(axios)
+}
 
 // POST传参序列化(添加请求拦截器)
 // axios.interceptors.request.use((config) => {

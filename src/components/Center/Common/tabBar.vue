@@ -128,51 +128,51 @@ export default {
   text-align: center;
 }
 .tabBar li.home i{
-  background: url(../../../assets/images/tabbar/tabBar_home_ico_noncheck@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_home_ico_noncheck@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.select i{
-  background: url(../../../assets/images/tabbar/tabBar_withdrawal_ico_noncheck@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_withdrawal_ico_noncheck@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.wallet i{
-  background: url(../../../assets/images/tabbar/tabBar_withdrawal_ico_noncheck@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_withdrawal_ico_noncheck@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.service i{
-  background: url(../../../assets/images/tabbar/tabBar_customer_ico_noncheck@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_customer_ico_noncheck@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.promotion i{
-  background: url(../../../assets/images/tabbar/tabBar_promotion_ico_noncheck@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_promotion_ico_noncheck@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.user i{
-  background: url(../../../assets/images/tabbar/tabBar_account_ico_noncheck@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_account_ico_noncheck@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.home.on i{
-  background: url(../../../assets/images/tabbar/tabBar_home_ico_check@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_home_ico_check@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.select.on i{
-  background: url(../../../assets/images/tabbar/tabBar_withdrawal_ico_check@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_withdrawal_ico_check@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.wallet.on i{
-  background: url(../../../assets/images/tabbar/tabBar_withdrawal_ico_check@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_withdrawal_ico_check@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.service.on i{
-  background: url(../../../assets/images/tabbar/tabBar_customer_ico_check@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_customer_ico_check@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.promotion.on i{
-  background: url(../../../assets/images/tabbar/tabBar_promotion_ico_check@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_promotion_ico_check@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.user.on i{
-  background: url(../../../assets/images/tabbar/tabBar_account_ico_check@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_account_ico_check@2x.png);
   background-size: 100% 100%;
 }
 </style>

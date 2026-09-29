@@ -109,7 +109,10 @@ export default {
       if (!sessionStorage.getItem('host')) {
         sessionStorage.setItem('host', window.location.host + '/#')
       }
-      if (process.env.NODE_ENV !== 'development' && !this.isMobileDevice()) {
+      // Production H5 normally redirects desktop visitors to the desktop site.
+      // A standalone Mock/Pages build has no parent desktop deployment, so keep
+      // it on the H5 app for Arc/desktop demos instead of redirecting out.
+      if (process.env.NODE_ENV !== 'development' && !process.env.WEB_USE_MOCK && !this.isMobileDevice()) {
         // 电脑打开跳转到电脑版
         top.location.href = '../'
       }

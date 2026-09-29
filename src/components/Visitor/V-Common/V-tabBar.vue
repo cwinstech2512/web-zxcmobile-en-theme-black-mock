@@ -127,19 +127,19 @@ export default {
   text-align: center;
 }
 .tabBar li.v_home i{
-  background: url(../../../assets/images/tabbar/tabBar_home_ico_noncheck@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_home_ico_noncheck@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.v_promotion i{
-  background: url(../../../assets/images/tabbar/tabBar_promotion_ico_noncheck@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_promotion_ico_noncheck@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.v_home.on i{
-  background: url(../../../assets/images/tabbar/tabBar_home_ico_check@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_home_ico_check@2x.png);
   background-size: 100% 100%;
 }
 .tabBar li.v_promotion.on i{
-  background: url(../../../assets/images/tabbar/tabBar_promotion_ico_check@2x.png);
+  background: url(../../../assets/images/tabbar/tabbar_promotion_ico_check@2x.png);
   background-size: 100% 100%;
 }
 .tabBar-box .login{

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div v-if="mockEnabled" class="mock-mode-badge">MOCK MODE · LOCAL DATA</div>
     <!-- 加载loading -->
     <loading v-show="showLoad" :loadingText="loadingText"/>
     <router-view />
@@ -30,6 +31,7 @@ export default {
   data () {
   //  这里存放数据
     return {
+      mockEnabled: process.env.WEB_USE_MOCK,
       showLoad: false,
       loadingText: ''
     }
@@ -98,5 +100,18 @@ body.swal2-iosfix {
 #app{
   width: 100%;
   overflow: hidden;
+}
+.mock-mode-badge {
+  position: fixed;
+  right: .16rem;
+  bottom: 1.16rem;
+  z-index: 99999;
+  padding: .1rem .16rem;
+  border-radius: .08rem;
+  color: #111;
+  background: #ffd54f;
+  box-shadow: 0 .04rem .12rem rgba(0, 0, 0, .28);
+  font: bold .2rem/1.2 Arial, sans-serif !important;
+  pointer-events: none;
 }
 </style>

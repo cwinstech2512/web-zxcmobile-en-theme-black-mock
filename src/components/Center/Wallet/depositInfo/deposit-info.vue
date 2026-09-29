@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import onlineTransfer from '@/components/Center/Wallet/DepositInfo/deposit-info-onlineTransfer'
-import alipayTransfer from '@/components/Center/Wallet/DepositInfo/deposit-info-alipayTransfer'
-import countdown from '@/components/Center/Wallet/DepositInfo/deposit-info-countdown'
+import onlineTransfer from '@/components/Center/Wallet/depositInfo/deposit-info-onlineTransfer'
+import alipayTransfer from '@/components/Center/Wallet/depositInfo/deposit-info-alipayTransfer'
+import countdown from '@/components/Center/Wallet/depositInfo/deposit-info-countdown'
 
 export default {
   name: 'depositInfo',
